@@ -265,7 +265,6 @@ class Generator16(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		
 		sTweet = self.MaleName.FirstName() + " squeezed and sucked on " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.Breasts.RandomDescription() + " as he fingered her " + self.FemBodyParts.Vagina.Clitoris.RandomDescription() + " and " + self.VThrust.Past() + " her " + self.FemBodyParts.GetRandomHole() + ".\n\n"
 		sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ", stroking his " + self.MaleBodyParts.Penis.RandomDescription() + " as he looked on, 'I can't believe I'm watching my wife " + self.VSex.Present() + " " + AddArticles(self.WhiteCollar.GetPerson()) + "!'"
 		
@@ -576,10 +575,21 @@ class Generator31(Generator):
 		return sTweet
 		
 class Generator32(Generator):
+	##I've got a present for you, she said. What's that? he asked her. She [bent over and pulled her panties aside, revealing her little starfish.] [lifted up her short skirt revealing that she wasn't wearing any panties. He could clearly see her smooth pussy lips and her inner folds.] [pulled her titties out of her blouse. They were large and gleaming with oil.]
 	def GenerateTweet(self):
 		sTweet = ""
 		
+		iRand = randint(1,3)
 		
+		sTweet = "'I've got a present for you,' she said.\n\n"
+		sTweet += "'What's that?' he asked.\n\n"
+		if iRand == 1:
+			sTweet += "She bent over and pulled her panties aside, revealing her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".\n\n"
+		elif iRand == 2:
+			sTweet += "She lifted up her short skirt and he saw that she wasn't wearing panties. Her " + self.FemBodyParts.Vagina.OuterLabia.GetNoun() + " was " + self.FemBodyParts.Vagina.OuterLabia.GetAdj() + " and her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " peaked out shyly.\n\n"
+		else:
+			sTweet += "She pulled her " + self.FemBodyParts.Breasts.RandomDescription() + " out of her low-cut blouse. They were large and gleaming with oil.\n\n"
+		sTweet += "'Happy " + self.Event.GetWord() + ", baby,' she said."
 		
 		return sTweet
 		

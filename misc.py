@@ -450,7 +450,7 @@ class TweetReplyBuilder():
 		sSeller = BookSellers().GetWord()
 		sSexyAdj = SexyAdjs().GetWord()
 		
-		sReply = "Look for my " + sSeller + " story '" + sBookTitle + "' available soon on " + sSeller
+		sReply = "Look for my " + sSexyAdj + " story '" + sBookTitle + "' available soon on " + sSeller
 		
 		return sReply
 

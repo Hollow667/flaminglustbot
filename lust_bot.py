@@ -20,7 +20,7 @@ from generators import *
 
 TWIT_USERNAME = 'bot_lust'
 MAX_TWITTER_CHARS = 280
-MAX_GENERATOR_NO = 39
+MAX_GENERATOR_NO = 40
 Q_SIZE = 4
 REPLIES_FILE_NAME = 'reply_ids.txt'
 
@@ -137,6 +137,8 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 		sTweet = Generator29().GenerateTweet()
 	elif iSwitch == 39:
 		sTweet = Generator30().GenerateTweet()
+	elif iSwitch == 40:
+		sTweet = Generator31().GenerateTweet()
 	#elif iSwitch == ??:
 		#He opened the door and his heart skipped a beat. Angela was lying on the bed naked. [Describe] She opened her naked legs, reached down and spread her gleaming pussy lips. "Happy birtday, baby," she said.
 	#elif iSwitch == ??:

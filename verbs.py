@@ -286,6 +286,8 @@ class VerbSex(Verb):
 		'making love']
 		
 	AdverbList = ['ardently',
+		'enthusiastically',
+		'fervently',
 		'fervidly',
 		'feverishly',
 		'heedlessly',

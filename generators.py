@@ -267,7 +267,7 @@ class Generator16(Generator):
 		
 		
 		sTweet = self.MaleName.FirstName() + " squeezed and sucked on " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.Breasts.RandomDescription() + " as he fingered her " + self.FemBodyParts.Vagina.Clitoris.RandomDescription() + " and " + self.VThrust.Past() + " her " + self.FemBodyParts.GetRandomHole() + ".\n\n"
-		sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ", stroking his " + self.MaleBodyParts.Penis.RandomDescription() + " as he looked on, 'I can't believe I'm watching my wife " + self.VMakeLove.Present() + " " + AddArticles(self.WhiteCollar.GetPerson()) + "!'"
+		sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ", stroking his " + self.MaleBodyParts.Penis.RandomDescription() + " as he looked on, 'I can't believe I'm watching my wife " + self.VSex.Present() + " " + AddArticles(self.WhiteCollar.GetPerson()) + "!'"
 		
 		return sTweet
 		
@@ -317,7 +317,7 @@ class Generator19(Generator):
 				sTweet += part + ", "
 			else:
 				sTweet += "and " + part
-		sTweet += ". But what made her mouth water was the " + self.MaleBodyParts.Penis.FloweryDescription() + " and " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " dangling between his legs."
+		sTweet += ". But what made her mouth water was the " + self.MaleBodyParts.Penis.FloweryDescription() + " dangling between his legs."
 		
 		return sTweet
 		
@@ -388,25 +388,37 @@ class Generator24(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		Location = locations.LocationSelector().Location()
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		
 		iRand = randint(1,2)
-		sHerName = self.FemaleName.FirstName()
+		iRandGender = randint(1,2)
+		
+		if iRandGender == 1:
+			sHisName = self.MaleName.FirstName()
+			sHerName = "the woman"
+		else:
+			sHisName = "the man"
+			sHerName = self.FemaleName.FirstName()
+		
 		
 		self.CreamPieScene = SceneCreamPie(sHerName = sHerName, oLocation = Location)
 		
 		sTweet = Location.BeginDesc 
 		
 		if iRand == 2:
-			sTweet += " In moments, the man had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
+			sTweet += " In moments, " + sHisName + " had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
 			sTweet += "Despite the " + Location.Despite + " he was soon " + self.VEjac.Gerund() + " deep within her " + self.FemBodyParts.Ass.Anus.RandomDescription() + " as an intense orgasm wracked her " + self.FemBodyParts.GetAdj() + " body."
 			sTweet += " " + self.CreamPieScene.Scene(bIsVagina = False) + "\n\n" 
 		else:
-			sTweet += " In moments, the man had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
+			sTweet += " In moments, " + sHisName + " had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
 			sTweet += "Despite the " + Location.Despite + " he was soon " + self.VEjac.Gerund() + " deep within her " + self.FemBodyParts.Vagina.RandomDescription() + " as an intense orgasm wracked her " + self.FemBodyParts.GetAdj() + " body."
 			sTweet += " " + self.CreamPieScene.Scene() + "\n\n" 
-		sTweet += sHerName + " " + Location.PutOnFemaleClothing(bBottomOnly = True) + "."
-		sTweet += " " + self.Punchline.GetPunchline(Gender.Female)
+		if iRandGender == 1:
+			sTweet += sHisName + " " + Location.PutOnMaleClothing(bBottomOnly = True) + "."
+			sTweet += " " + self.Punchline.GetPunchline(Gender.Male)
+		else: 
+			sTweet += sHerName + " " + Location.PutOnFemaleClothing(bBottomOnly = True) + "."
+			sTweet += " " + self.Punchline.GetPunchline(Gender.Female)
 		
 		return sTweet
 		
@@ -414,7 +426,7 @@ class Generator25(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		Location = locations.LocationSelector().Location()
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		sHerName = self.FemaleName.FirstName()
 		sHisName = self.MaleName.FirstName()
 		iRand = randint(1,3)
@@ -442,7 +454,7 @@ class Generator26(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		Location = locations.LocationSelector().Location()
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		sHerName = self.FemaleName.FirstName()
 		sHisName = self.MaleName.FirstName()
 		iRand = randint(1,3)
@@ -461,7 +473,7 @@ class Generator27(Generator):
 		sTweet = ""
 		
 		sBadGirlName = self.BadGirlName.GetAdj() + " " + self.BadGirlName.GetWord() 
-		Location = locations.LocationSelector().Location()
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
 		
@@ -549,7 +561,17 @@ class Generator31(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
+		sHisName = self.MaleName.FirstName()
+		sFFWB = self.FFWB.GetPerson()
 		
+		sTweet = sHisName + " walked in and froze. His " + sFFWB + " lay on the bed totally nude. His wide eyes took in her "
+		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = True)
+		for part in Parts:
+			if not part == Parts[len(Parts) - 1]:
+				sTweet += part + ", "
+			else:
+				sTweet += "and " + part + ".\n\n"
+		sTweet += "The naked guy next to her was idly " + self.VForeplay.Gerund() + " her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + ". He looked up at " + sHisName + ". 'You want in?' he asked."
 		
 		return sTweet
 		
@@ -586,6 +608,102 @@ class Generator35(Generator):
 		return sTweet
 		
 class Generator36(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator37(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator38(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator39(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator40(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator41(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator42(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator43(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator44(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator45(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator46(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator47(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		
+		
+		return sTweet
+		
+class Generator48(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		

@@ -734,6 +734,7 @@ class AnusFemale(BodyParts):
 			'butt hole',
 			'corn hole',
 			'crack',
+			'crevice',
 			'dirt-pipe',
 			'fart blaster',
 			'fissure',

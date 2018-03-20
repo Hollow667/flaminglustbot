@@ -143,6 +143,14 @@ class Exclamations(WordList):
 			sExclamation += "!"
 			
 		return sExclamation
+		
+class SexyAdjs(WordList):
+	List = ['dirty',
+		'filthy',
+		'hot',
+		'naughty',
+		'sexy',
+		'steamy']
 
 class BookSellers(WordList):
 	List = ['Apple Books',
@@ -440,8 +448,9 @@ class TweetReplyBuilder():
 		sReply = ""
 		sBookTitle = BookTitleBuilder().GetTitle()
 		sSeller = BookSellers().GetWord()
+		sSexyAdj = SexyAdjs().GetWord()
 		
-		sReply = "Look for my story '" + sBookTitle + "' available soon on " + sSeller
+		sReply = "Look for my " + sSeller + " story '" + sBookTitle + "' available soon on " + sSeller
 		
 		return sReply
 

@@ -23,6 +23,16 @@ class Gender(Enum):
 	Female = 2
 	Neuter = 3
 	
+class LocInOutType(Enum):
+	Indoors = 1
+	Outdoors = 2
+	Either = 3
+	
+class LocPubPrivType(Enum):
+	Public = 1
+	Private = 2
+	Either = 3
+	
 class WordList:
 	List = []
 	DefaultWord = ""

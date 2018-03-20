@@ -1,29 +1,20 @@
 # Locations module
 
-import util
 import bodyparts
 
 from random import *
 from enum import * 
-
-class LocType(Enum):
-	Indoors = 1
-	Outdoors = 2
+from util import *
 
 class Location():
 	Name = ""
 	NamePrep = ""
-	Loc = LocType.Indoors
+	Loc = LocInOutType.Indoors
 	BeginDesc = ""
 	EndDesc = ""
-	Despite = ""
 	BentOver = ""
 	KneelingOn = ""
 	SittingOn = ""
-	HurryReason = ""
-	Caught = ""
-	Excuse = ""
-	Consequence = ""
 	Ground = "ground"
 	MaleTopClothing = "tshirt"
 	MaleBottomClothing = "jeans"
@@ -39,7 +30,7 @@ class Location():
 		else:
 			sTakeItOff = "pulled down his " + self.MaleBottomClothing
 
-		sTakeItOff += ", exposing his " + Penis.RandomDescription(bAllowLongDesc = False)	
+		sTakeItOff += ", exposing his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False)	
 		
 		return sTakeItOff
 			
@@ -51,14 +42,14 @@ class Location():
 			sTakeItOff = "slipped out of her " + self.FemaleTopClothing + " and pulled down her " + self.FemaleBottomClothing
 		else:
 			sTakeItOff = "pulled down her " + self.FemaleBottomClothing
-		sTakeItOff += ", revealing her " + Vagina.RandomDescription(bAllowLongDesc = False)
+		sTakeItOff += ", revealing her " + bodyparts.Vagina.RandomDescription(bAllowLongDesc = False)
 			
 		return sTakeItOff
 			
 	def PutOnMaleClothing(self, bBottomOnly = False):
 		sPutItOn = ""
 		
-		if not MaleTopClothing == "":
+		if not self.MaleTopClothing == "":
 			if bBottomOnly:
 				sPutItOn = "pulled his " + self.MaleBottomClothing + " up"
 			else:
@@ -81,11 +72,20 @@ class Location():
 			
 		return sPutItOn
 		
+class PublicLocation(Location):
+	Despite = ""
+	HurryReason = ""
+	Caught = ""
+	Excuse = ""
+	Consequence = ""
+	
+class PrivateLocation(Location):
+	pass
 
-class Beach(Location):
+class Beach(PublicLocation):
 	Name = "the beach"
 	NamePrep = "at the beach"
-	Loc = LocType.Outdoors
+	Loc = LocInOutType.Outdoors
 	BeginDesc = "A hot sun shone down as blue waves lapped at the sand."
 	Despite = "the sand that got into every crack"
 	BentOver = "the sand dune"
@@ -101,7 +101,7 @@ class Beach(Location):
 	FemaleTopClothing = "skimpy bikini top"
 	FemaleBottomClothing = "bikini bottoms"
 	
-class Bedroom(Location):
+class Bedroom(PublicLocation):
 	Name = "the bedroom"
 	NamePrep = "in the bedroom"
 	BeginDesc = "The four-poster bed was bathed in warm sunlight as he shut the door behind them."
@@ -112,10 +112,10 @@ class Bedroom(Location):
 	HurryReason = "the neighbors will see us"
 	Caught = "'I think the neighbors are watching us!' she said."
 	Excuse = "'Let them,' he replied."
-	Consequence = "as the neighbors looked on"
+	Consequence = "as the people next door looked on"
 	Ground = "thick carpet"
 	
-class CarBackseat(Location):
+class CarBackseat(PublicLocation):
 	Name = "the backseat of the car"
 	NamePrep = "in the backseat of the car"
 	BeginDesc = "The couple scrambled into the backseat of the car."
@@ -129,7 +129,7 @@ class CarBackseat(Location):
 	Consequence = "as the cop shone his flashlight through the window"
 	Ground = "leather upholstery"
 	
-class Church(Location):
+class Church(PublicLocation):
 	Name = "the church"
 	NamePrep = "in the church"
 	BeginDesc = "Colored light flooded through a stained glass window."
@@ -143,12 +143,35 @@ class Church(Location):
 	Consequence = "as the minister looked on in horror"
 	Ground = "soft carpet"
 	
-#class Gym(Location)
+class Den(PrivateLocation):
+	Name = "the den"
+	NamePrep = "in the den"
+	Loc = LocInOutType.Indoors
+	BeginDesc = "A fire was crackling in the fireplace of the cozy den."
+	BentOver = "the arm of the couch"
+	KneelingOn = "the sofa"
+	SittingOn = "a thick cushion"
+	Ground = "the thick fur rug"
+	FemaleBottomClothing = "lacy silk panties"
 	
-class Kitchen(Location):
+class Gym(PublicLocation):
+	Name = "the church"
+	NamePrep = "in the church"
+	BeginDesc = "Colored light flooded through a stained glass window."
+	Despite = "the sacred atmosphere"
+	BentOver = "a weight bench"
+	KneelingOn = "an exercise machine"
+	SittingOn = "a weight bench"
+	HurryReason = "someone will catch us"
+	Caught = "A girl wearing a leotard walked in. 'Holy fuck!' the girl said."
+	Excuse = "'We are just stretching!' he yelled."
+	Consequence = "the girl with the leotard watched open-mouthed"
+	Ground = "rubber mat"
+	
+class Kitchen(PublicLocation):
 	Name = "the kitchen"
 	NamePrep = "in the kitchen"
-	BeginDesc = "S pan of bacon was frying on the kitchen stove."
+	BeginDesc = "A pan of bacon was frying on the kitchen stove."
 	Despite = "the crackling of cooking bacon"
 	BentOver = "the counter"
 	KneelingOn = "on a kitchen chair"
@@ -163,7 +186,7 @@ class Kitchen(Location):
 	FemaleTopClothing = "oversized tshirt"
 	FemaleBottomClothing = "panties"
 	
-class Library(Location):
+class Library(PublicLocation):
 	Name = "the library"
 	NamePrep = "in the library"
 	BeginDesc = "It was quiet and stuffy amongst the stacks."
@@ -178,7 +201,7 @@ class Library(Location):
 	Ground = "soft carpet"
 	FemaleBottomClothing = "thong"
 	
-class MensRoom(Location):
+class MensRoom(PublicLocation):
 	Name = "men's restroom"
 	NamePrep = "in the men's restroom"
 	BeginDesc = "Crude graffiti was scrawled on the walls of the cramped stall."
@@ -192,11 +215,35 @@ class MensRoom(Location):
 	Excuse = "'Busy!' he shouted back."
 	Ground = "tiled floor"
 	FemaleBottomClothing = "thong"
+
+class Office(PublicLocation):
+	Name = "the office"
+	NamePrep = "in the office"
+	BeginDesc = "A large oak desk stood in the center of the corner office."
+	Despite = "the danger of being caught"
+	BentOver = "the massive desk"
+	KneelingOn = "the boss's desk"
+	SittingOn = "the surface of the desk"
+	HurryReason = "Someone will catch us!"
+	Caught = "The door opened and a tall man walked in. 'Fuck, its my boss!' she said."
+	Consequence = "as her boss watched, open-mouthed"
+	Excuse = "'This isn't what it looks like!' he shouted."
+	Ground = "tiled floor"
+	FemaleTopClothing = "gray pencil dress"
+	FemaleBottomClothing = "thong panties"
+
+class ParentsBedroom(PrivateLocation):
+	Name = "his parents bedroom"
+	NamePrep = "in the bedroom of your parents"
+	Loc = LocInOutType.Indoors
+	BeginDesc = "Candles were lit all around his parents king-sized bed."
+	BentOver = "the end of the bed"
+	KneelingOn = "the bed"
+	SittingOn = "a stack of cushions"
+	Ground = "the thick comforter"
+	FemaleBottomClothing = "sheer panties"
 	
-#class Office(Location)
-#pass
-	
-class StarbucksBathroom(Location):
+class StarbucksBathroom(PublicLocation):
 	Name = "Starbucks bathroom"
 	NamePrep = "in the bathroom at Starbucks"
 	BeginDesc = "The bathroom at Starbucks was small and smelled of coffee."
@@ -210,10 +257,10 @@ class StarbucksBathroom(Location):
 	Consequence = "as someone called, 'I think they're having sex in the Starbucks bathroom'"
 	Ground = "tiled floor"
 	
-class Surf(Location):
+class Surf(PublicLocation):
 	Name = "the surf"
 	NamePrep = "in the water at the beach"
-	Loc = LocType.Outdoors
+	Loc = LocInOutType.Outdoors
 	BeginDesc = "A hot sun shone down as the waves crested against their bodies."
 	Despite = "the breaking waves"
 	BentOver = "in the water"
@@ -229,10 +276,10 @@ class Surf(Location):
 	FemaleTopClothing = "skimpy bikini top"
 	FemaleBottomClothing = "g-string"
 	
-class Woods(Location):
+class Woods(PublicLocation):
 	Name = "the woods"
 	NamePrep = "out in the woods"
-	Loc = LocType.Outdoors
+	Loc = LocInOutType.Outdoors
 	BeginDesc = "The leafy trees were thick in every direction."
 	Despite = "the dirt and mosquitos"
 	BentOver = "a mossy log"
@@ -245,21 +292,60 @@ class Woods(Location):
 	Ground = "thick carpet of leaves"
 	FemaleBottomClothing = "thong"
 	
-#class YogaStudio(Location):
-# seated on a yoga ball
-	
+class YogaStudio(PrivateLocation):
+	Name = "a yoga studio"
+	NamePrep = "in a yoga studio"
+	Loc = LocInOutType.Indoors
+	BeginDesc = "The relaxing drone of zen meditation music filled the warm studio."
+	BentOver = "a stack of foam blocks"
+	KneelingOn = "a yoga mat"
+	SittingOn = "a balance ball"
+	Ground = "the purple yoga mat"
+	FemaleBottomClothing = "tight yoga pants"
 
 	
 class LocationSelector():
 	Locations = []
 	
 	def __init__(self):
-		for sub in Location.__subclasses__():
+		for sub in PublicLocation.__subclasses__():
+			self.Locations.append(sub())
+			
+		for sub in PrivateLocation.__subclasses__():
 			self.Locations.append(sub())
 	
-	def Location(self):
-		iRand = randint(0, len(self.Locations) - 1)
+	def Location(self, InOut = LocInOutType.Either, PubPrivType = LocPubPrivType.Either):
+		ThisLoc = Location()
+		MatchingLocations = []
 		
-		return self.Locations[iRand]
+		if InOut == None:
+			InOut = LocInOutType.Either
+		if PubPrivType == None:
+			PubPrivType = LocPubPrivType.Either
+		
+		#print("Getting a " + str(PubPrivType) + "location and .")
+		#print("Length of self.Locations[] is " + str(len(self.Locations)))
+		
+		if not self.Locations is None and len(self.Locations) > 0:
+			for loc in self.Locations:
+				#print("Loc [" + loc.Name + "] is " + str(loc.Loc) + " and " + loc.__class__.__name__)
+				if InOut == LocInOutType.Either or loc.Loc == InOut:
+					if PubPrivType == LocPubPrivType.Public and isinstance(loc, PublicLocation):
+						MatchingLocations.append(loc)
+						#print("Public location added to list.")
+					elif PubPrivType == LocPubPrivType.Private and isinstance(loc, PrivateLocation):
+						MatchingLocations.append(loc)
+						#print("Private location added to list.")
+					elif PubPrivType == LocPubPrivType.Either:
+						MatchingLocations.append(loc)
+						#print("Any type location added to list.")
+			
+			#print("Length of MatchingLocations[] is " + str(len(MatchingLocations)))
+			if len(MatchingLocations) > 0:
+				iRand = randint(0, len(MatchingLocations) - 1)
+				ThisLoc = MatchingLocations[iRand]
+		
+		return ThisLoc
+		
 	
 	

@@ -636,6 +636,8 @@ class VaginaInnerLabia(BodyParts):
 							'shameless',
 							'silken',
 							'shy',
+							'sticky',
+							'sticky',
 							'succulent',
 							'suckable',
 							'tender',

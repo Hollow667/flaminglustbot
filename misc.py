@@ -181,6 +181,7 @@ class BookGirls(WordList):
 			'Maiden',
 			'Masseuse',
 			'Midwife',
+			'MILF',
 			'Milk Maid',
 			'Nurse',
 			'Pregnancy Surrogate',
@@ -205,6 +206,7 @@ class BookGirlAdjs(WordList):
 		'High-Heeled',
 		'Lesbian',
 		'Married',
+		'MILF',
 		'Pregnant',
 		'Single',
 		'Single Mom',
@@ -243,12 +245,15 @@ class BookMasters(WordList):
 			'Duke',
 			'Futanari',
 			'Gazillionaire',
+			'Goat Man',
+			'Goat Men',
 			'Hitman',
 			'King',
 			'Knight',
 			'Lesbian Cheerleader',
 			'Lesbian Dominatrix',
 			'Lesbian Harem',
+			'Lesbian MILF',
 			'Lipstick Lesbian',
 			'Older Man',
 			'Male Escort',
@@ -297,6 +302,7 @@ class BookMasterAdjs(WordList):
 			'French',
 			'Futanari',
 			'Gazillionaire',
+			'Goat Man',
 			'Highlander',
 			'Hitman',
 			'Horny',
@@ -394,12 +400,21 @@ class BookTitleBuilder():
 		Girls = BookGirls()
 		GirlAdjs = BookGirlAdjs()
 		
-		iRand = randint(1,5)
+		iRand = randint(1,7)
 		sGirl = Girls.GetWord()
 		sGirlAdj = GirlAdjs.GetWord()
-		if iRand == 5:
+		if iRand > 4 and iRand < 7:
 			while sGirlAdj in sGirl:
 				sGirlAdj = GirlAdjs.GetWord() 
+			sGirl = sGirlAdj + " " + sGirl
+		elif iRand == 7:
+			while sGirlAdj in sGirl:
+				sGirlAdj = GirlAdjs.GetWord()
+			sGirl = sGirlAdj + " " + sGirl
+			
+			sGirlAdj = GirlAdjs.GetWord()
+			while sGirlAdj in sGirl:
+				sGirlAdj = GirlAdjs.GetWord()
 			sGirl = sGirlAdj + " " + sGirl
 			
 		return sGirl

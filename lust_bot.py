@@ -19,7 +19,7 @@ from twitter_stuff import *
 TWIT_USERNAME = 'bot_lust'
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
-Q_SIZE = 4
+Q_SIZE = 5
 
 HistoryQ = []
 	
@@ -35,8 +35,8 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 	Tweet = [0,""]
 	sTweet = ""
 	iSwitch = 999
-	
-	iRandMin = 1
+
+	iRandMin = 0
 	iRandMax = iGeneratorNo
 	
 	if bTest:
@@ -50,7 +50,9 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 	if len(HistoryQ) > Q_SIZE:
 		HistoryQ.pop()
 	
-	if iSwitch == 1:
+	if iSwitch == 0:
+		sTweet = GeneratorPromo().GenerateTweet()
+	elif iSwitch == 1:
 		sTweet = Generator1().GenerateTweet()
 	elif iSwitch == 2:
 		sTweet = Generator2().GenerateTweet()
@@ -175,7 +177,7 @@ def InitBot(iSleepTimer, bTweet = True, iTweets = 1, iGeneratorNo = MAX_GENERATO
 	
 	api = InitTweepy()
 	
-	if iGeneratorNo == 0:
+	if iGeneratorNo == -1:
 		iGeneratorNo = MAX_GENERATOR_NO
 	else:
 		bTest = True
@@ -233,7 +235,7 @@ def SetGetArgs():
 	Parser = argparse.ArgumentParser(prog='lust_bot',description='Run Flaming Lust Bot for Twitter.')
 	Parser.add_argument('-tweet', action='store_true', help='send generated tweets to Twitter? (default is False)')
 	Parser.add_argument('-numtweets', type=int, default=1, help='number of tweets to generate before quitting (default is 1)')
-	Parser.add_argument('-test', type=int, default=0, help='type of tweet to generate for testing purposes')
+	Parser.add_argument('-test', type=int, default=-1, help='type of tweet to generate for testing purposes')
 	Parser.add_argument('-sleeptimer', type=int, default=1200, help='num of seconds to wait before next tweet')
 	
 	return Parser.parse_args()

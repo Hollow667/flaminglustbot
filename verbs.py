@@ -140,41 +140,49 @@ class VerbThrust(Verb):
 		'violating']
 		
 class VerbMakeLove(Verb):
-	PresentList = ['make love to',
-		'ease into',
-		'enter',
-		'push into',
-		'sex']
-		
-	PastList = ['made love to',
-		'eased into',
-		'entered',
-		'pushed into',
-		'sexed']
-		
-	GerundList = ['making love to',
-		'easing into',
-		'entering',
-		'pushing into',
-		'sexing']
+	PresentList = []
+	PastList = []
+	GerundList = []
 		
 	def __init__(self):
+		self.PresentList = ['make love to',
+			'ease into',
+			'enter',
+			'push into',
+			'sex']
+		
+		self.PastList = ['made love to',
+			'eased into',
+			'entered',
+			'pushed into',
+			'sexed']
+		
+		self.GerundList = ['making love to',
+			'easing into',
+			'entering',
+			'pushing into',
+			'sexing']
 		Harder = VerbThrust()
 		
-		for PresentVerb in Harder.PresentList:
-			self.PresentList.append("gently " + PresentVerb)
-			self.PresentList.append("lovingly " + PresentVerb)
-			self.PresentList.append("carefully " + PresentVerb)
+		Prefixes = util.WordList(['gently','lovingly','carefully','tenderly'])
+		
+		iNumAdd = len(self.PresentList)
+		#print("len(self.PresentList) = " + str(iNumAdd))
+		for x in sample(range(0, len(Harder.PresentList)), iNumAdd):
+			#print("len(Harder.PresentList) = " + str(len(Harder.PresentList)) + ", x = " + str(x))
+			self.PresentList.append(Prefixes.GetWord() + " " + Harder.PresentList[x])
 			
-		for PastVerb in Harder.PastList:
-			self.PastList.append("gently " + PastVerb)
-			self.PastList.append("lovingly " + PastVerb)
-			self.PastList.append("carefully " + PastVerb)
+		iNumAdd = len(self.PastList)
+		#print("len(self.PastList) = " + str(iNumAdd))
+		for x in sample(range(0, len(Harder.PastList)), iNumAdd):
+			#print("len(Harder.PastList) = " + str(len(Harder.PastList)) + ", x = " + str(x))
+			self.PastList.append(Prefixes.GetWord() + " " + Harder.PastList[x])
 			
-		for Gerund in Harder.GerundList:
-			self.GerundList.append("gently " + Gerund)
-			self.GerundList.append("lovingly " + Gerund)
-			self.GerundList.append("carefully " + Gerund)
+		iNumAdd = len(self.GerundList)
+		#print("len(self.GerundList) = " + str(iNumAdd))
+		for x in sample(range(0, len(Harder.GerundList)), iNumAdd):
+			#print("len(Harder.GerundList) = " + str(len(Harder.GerundList)) + ", x = " + str(x))
+			self.GerundList.append(Prefixes.GetWord() + " " + Harder.GerundList[x])
 		
 class VerbEjaculate(Verb):
 	PresentList = ['burst',

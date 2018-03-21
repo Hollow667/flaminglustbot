@@ -556,6 +556,7 @@ class Generator30(Generator):
 		return sTweet
 		
 class Generator31(Generator):
+	# Trevor walked in and froze. His step-sister lay on the bed totally nude. His wide eyes took in her heavy tits, wide hips, sticky folds, and puckered sphincter. The naked guy next to her was idly diddling her peach. He looked up at Trevor. 'You want in?' he asked.
 	def GenerateTweet(self):
 		sTweet = ""
 		
@@ -632,10 +633,12 @@ class Generator35(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Private)
+		
 		iRand = randint(1,4)
 		sHisName = self.MaleName.FirstName()
 		
-		sTweet = "'Oh baby,' " + self.FemaleName.FirstName() + " said to " + sHisName + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
+		sTweet = "'Oh " + sHisName + ",' " + self.FemaleName.FirstName() + " said to him. They were sitting on " + Location.SittingOn + " " + Location.NamePrep + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
 		if iRand == 1:
 			sTweet += "'I want to rub my " + self.MaleBodyParts.Penis.ShortDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription(bAllowLongDesc = False) + "', he said."
 		elif iRand == 2:
@@ -749,4 +752,18 @@ class Generator48(Generator):
 		
 		
 		
+		return sTweet
+		
+class GeneratorPromo(Generator):
+	def GenerateTweet(self):
+		sTweet = ""
+		
+		iRand = randint(1,3)
+		if iRand == 1:
+			sTweet = misc.TweetReplyBuilder().GetReply() + " from Flaming Lust Bot!"
+		elif iRand == 2:
+			sTweet = misc.TweetReplyBuilder().GetReply() + " from Flaming Lust Bot!"
+		else:
+			sTweet = "Filthy Lust Bot is a twitter bot designed to automatically generate erotic love scenes and tweet them out. Sometimes they're hot, or filthy, or funny. Like and RT if you enjoy!\n\nTweets for those 18+ only! 🔞\n\nReply to @bot_lust and it will plug a (made up) book!"
+			
 		return sTweet

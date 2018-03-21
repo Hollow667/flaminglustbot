@@ -18,7 +18,7 @@ from twitter_stuff import *
 
 TWIT_USERNAME = 'bot_lust'
 MAX_TWITTER_CHARS = 280
-MAX_GENERATOR_NO = 43
+MAX_GENERATOR_NO = 44
 Q_SIZE = 4
 
 HistoryQ = []
@@ -118,15 +118,14 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 		sTweet = Generator33().GenerateTweet()
 	elif iSwitch == 43:
 		sTweet = Generator34().GenerateTweet()
+	elif iSwitch == 44:
+		sTweet = Generator35().GenerateTweet()
 	#elif iSwitch == ??:
-		#He opened the door and his heart skipped a beat. Angela was lying on the bed naked. [Describe] She opened her naked legs, reached down and spread her gleaming pussy lips. "Happy birthday, baby," she said.
+		#He opened the door and his heart skipped a beat. Angela was lying on the bed naked. [Describe] She opened her naked legs, reached down and spread her gleaming pussy lips. 
 	#elif iSwitch == ??:
 		#I still love you, Veronica, he said, even after all these years. I love you too, Steve, said Veronica. I've loved you since the first time you titty fucked me in the men's bathroom
 	#elif iSwitch == ??:
 		#Raoul entered, wearing a white robe. He whipped the towel off Rosanna, exposing her naked form. He began to gently massage her {body parts}. Rosanna opened her eyes. His robe was now open, exposing his massive swollen
-	#elif iSwitch == ??:
-		#'Oh baby,' she said. 'I love you so much. I just want to be with you and make you happy. Tell me what I can do,' she said, giving him a peck on the lips.
-		#'I want {to fuck your big titties / to put my finger in your butthole / to put my balls in your mouth / you to eat out my starfish },' he said.
 	#elif iSwitch == ??:
 		#'Kylie! Hi!' he said to the barista. 'You two know each other?' Sam's girlfriend asked. 'Oh yes,' said Kylie. 'Sam sucked my titties back in college.'
 	else:

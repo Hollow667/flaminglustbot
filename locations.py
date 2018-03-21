@@ -16,6 +16,7 @@ class Location():
 	KneelingOn = ""
 	SittingOn = ""
 	Ground = "ground"
+	Despite = ""
 	MaleTopClothing = "tshirt"
 	MaleBottomClothing = "jeans"
 	FemaleTopClothing = "dress"
@@ -26,11 +27,13 @@ class Location():
 		sTakeItOff = ""
 		
 		if not self.MaleTopClothing == "":
-			sTakeItOff = "stripped off his " + self.MaleTopClothing + " and pulled down his " + self.MaleBottomClothing 
-		else:
-			sTakeItOff = "pulled down his " + self.MaleBottomClothing
+			sTakeItOff = "stripped off his " + self.MaleTopClothing + " and pulled down his " + self.MaleBottomClothing  + " exposing his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False)
+		elif not self.MaleBottomClothing == "":
+			sTakeItOff = "pulled down his " + self.MaleBottomClothing + " exposing his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False)
+		else: 
+			sTakeItOff = "was naked, his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False) + " on full display"
 
-		sTakeItOff += ", exposing his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False)	
+		sTakeItOff += bodyparts.Penis.RandomDescription(bAllowLongDesc = False)	
 		
 		return sTakeItOff
 			
@@ -39,10 +42,11 @@ class Location():
 		sTakeItOff = ""
 		
 		if not FemaleTopClothing == "":
-			sTakeItOff = "slipped out of her " + self.FemaleTopClothing + " and pulled down her " + self.FemaleBottomClothing
+			sTakeItOff = "slipped out of her " + self.FemaleTopClothing + " and pulled down her " + self.FemaleBottomClothing + " revealing her " + bodyparts.Vagina.RandomDescription(bAllowLongDesc = False)
+		elif not FemaleBottomClothing == "":
+			sTakeItOff = "pulled down her " + self.FemaleBottomClothing + " revealing her " + bodyparts.Vagina.RandomDescription(bAllowLongDesc = False)
 		else:
-			sTakeItOff = "pulled down her " + self.FemaleBottomClothing
-		sTakeItOff += ", revealing her " + bodyparts.Vagina.RandomDescription(bAllowLongDesc = False)
+			"was naked, her " + bodyparts.Breasts.RandomDescription(bAllowLongDesc = False) + " on full display"
 			
 		return sTakeItOff
 			
@@ -73,7 +77,6 @@ class Location():
 		return sPutItOn
 		
 class PublicLocation(Location):
-	Despite = ""
 	HurryReason = ""
 	Caught = ""
 	Excuse = ""
@@ -81,6 +84,25 @@ class PublicLocation(Location):
 	
 class PrivateLocation(Location):
 	pass
+
+class Balcony(PublicLocation):
+	Name = "the hotel balcony"
+	NamePrep = "on the hotel balcony"
+	Loc = LocInOutType.Outdoors
+	BeginDesc = "The city spread out below them and the horizon was blue ocean."
+	Despite = "the fact that they were exposed to anyone who looked up"
+	BentOver = "the balcony rail"
+	KneelingOn = "on a patio chair"
+	SittingOn = "the broad ledge of the balcony"
+	HurryReason = "What if someone is watching?"
+	Caught = "'I think those people down there are videoing us with their iPhones!"
+	Excuse = "'Let's give them a show, baby!' he replied."
+	Consequence = "as a small crowd gathered to watch them"
+	Ground = "balcony floor"
+	MaleTopClothing = ""
+	MaleBottomClothing = "boxer briefs"
+	FemaleTopClothing = "bra"
+	FemaleBottomClothing = "panties"
 
 class Beach(PublicLocation):
 	Name = "the beach"
@@ -100,6 +122,16 @@ class Beach(PublicLocation):
 	MaleBottomClothing = "swim trunks"
 	FemaleTopClothing = "skimpy bikini top"
 	FemaleBottomClothing = "bikini bottoms"
+	
+class Boat(PrivateLocation):
+	Name = "the boat"
+	NamePrep = "on a boat"
+	BeginDesc = "The boat rocked gently in the open water. It was a perfect day."
+	Despite = "the sun beating down on them"
+	BentOver = "the side rail"
+	KneelingOn = "on the stern of the boat"
+	SittingOn = "on the stern of the boat"
+	Ground = "deck"
 	
 class Bedroom(PublicLocation):
 	Name = "the bedroom"
@@ -143,10 +175,25 @@ class Church(PublicLocation):
 	Consequence = "as the minister looked on in horror"
 	Ground = "soft carpet"
 	
+class Classroom(PublicLocation):
+	Name = "the classroom"
+	NamePrep = "in the classroom"
+	BeginDesc = "The blackboard was covered in notes and the rows of student desks were nice and orderly."
+	Despite = "the threat of being caught"
+	BentOver = "the teacher's desk"
+	KneelingOn = "on a student desk"
+	SittingOn = "the teacher's desk"
+	HurryReason = "someone will catch us"
+	Caught = "Suddenly the door opened. A male student carrying a textbook walked in."
+	Excuse = "'This isn't what it looks like!' he said."
+	Consequence = "as the student tugged feverishly at his crotch"
+	Ground = "the floor"
+	
 class Den(PrivateLocation):
 	Name = "the den"
 	NamePrep = "in the den"
 	Loc = LocInOutType.Indoors
+	Despite = "a little shyness"
 	BeginDesc = "A fire was crackling in the fireplace of the cozy den."
 	BentOver = "the arm of the couch"
 	KneelingOn = "the sofa"
@@ -154,11 +201,26 @@ class Den(PrivateLocation):
 	Ground = "the thick fur rug"
 	FemaleBottomClothing = "lacy silk panties"
 	
+class Hottub(PrivateLocation):
+	Name = "the hot tub"
+	NamePrep = "in the hot tub"
+	Loc = LocInOutType.Outdoors
+	Despite = "the heat"
+	BeginDesc = "They slipped into the warm water of the hot tub."
+	BentOver = "the side of the tub"
+	KneelingOn = "the seat in the tub"
+	SittingOn = "a seat in the tub"
+	Ground = "the steaming water"
+	FemaleTopClothing = "bikini"
+	FemaleBottomClothing = "bikini bottoms"
+	MaleTopClothing = ""
+	MaleBottomClothing = "swimming trunks"
+	
 class Gym(PublicLocation):
 	Name = "the gym"
 	NamePrep = "at the gym"
 	BeginDesc = "The mirrors on the wall of the gym reflected their bodies back at them."
-	Despite = "the danger of discovery"
+	Despite = "the sweat which covered their bodies"
 	BentOver = "a weight bench"
 	KneelingOn = "on an exercise machine"
 	SittingOn = "a weight bench"
@@ -201,6 +263,20 @@ class Library(PublicLocation):
 	Ground = "soft carpet"
 	FemaleBottomClothing = "thong"
 	
+class MassageRoom(PrivateLocation):
+	Name = "a massage room"
+	NamePrep = "in a massage room"
+	BeginDesc = "Ambient ocean sounds and the smell of incense filled the massage room."
+	Despite = "the danger of being caught"
+	BentOver = "the massage table"
+	KneelingOn = "on the massage table"
+	SittingOn = "on the massage table"
+	Ground = "soft carpet"
+	FemaleTopClothing = ""
+	FemaleBottomClothing = "towel"
+	MaleTopClothing = ""
+	MaleBottomClothing = "towel"
+	
 class MensRoom(PublicLocation):
 	Name = "men's restroom"
 	NamePrep = "in the men's restroom"
@@ -228,20 +304,53 @@ class Office(PublicLocation):
 	Caught = "The door opened and a tall man walked in. 'Fuck, its my boss!' she said."
 	Consequence = "as her boss watched, open-mouthed"
 	Excuse = "'This isn't what it looks like!' he shouted."
-	Ground = "tiled floor"
+	Ground = "carpet"
 	FemaleTopClothing = "gray pencil dress"
 	FemaleBottomClothing = "thong panties"
+	MaleTopClothing = "dress shirt"
+	MaleBottomClothing = "slacks"
 
 class ParentsBedroom(PrivateLocation):
 	Name = "his parents bedroom"
 	NamePrep = "in the bedroom of his parents"
 	Loc = LocInOutType.Indoors
+	Despite = "some fumbling awkwardness"
 	BeginDesc = "Candles were lit all around his parents king-sized bed."
 	BentOver = "the end of the bed"
 	KneelingOn = "the bed"
 	SittingOn = "a stack of cushions"
 	Ground = "the thick comforter"
 	FemaleBottomClothing = "sheer panties"
+	
+class PrivateBeach(PrivateLocation):
+	Name = "a private beach"
+	NamePrep = "on a private beach"
+	Loc = LocInOutType.Outdoors
+	BeginDesc = "The beach was lovely, and so private that she felt free to go topless."
+	Despite = "the sand that got into every crack"
+	BentOver = "a sand dune"
+	KneelingOn = "on the beach towel"
+	SittingOn = "a beach chair"
+	Ground = "sand"
+	MaleTopClothing = ""
+	MaleBottomClothing = "speedo"
+	FemaleTopClothing = ""
+	FemaleBottomClothing = "g-string"
+	
+class Shower(PrivateLocation):
+	Name = "the shower"
+	NamePrep = "in the hot tub"
+	Loc = LocInOutType.Indoors
+	Despite = "the slippery floor"
+	BeginDesc = "The hot shower water rained down on them."
+	BentOver = "against the wall"
+	KneelingOn = "the floor of the shower stall"
+	SittingOn = "a seat in the shower stall"
+	Ground = "wet floor"
+	FemaleTopClothing = ""
+	FemaleBottomClothing = ""
+	MaleTopClothing = ""
+	MaleBottomClothing = ""
 	
 class StarbucksBathroom(PublicLocation):
 	Name = "Starbucks bathroom"
@@ -283,8 +392,8 @@ class Woods(PublicLocation):
 	BeginDesc = "The leafy trees were thick in every direction."
 	Despite = "the dirt and mosquitos"
 	BentOver = "a mossy log"
-	KneelingOn = "a large smooth rock"
-	SittingOn = "a tree stump"
+	KneelingOn = "on a large smooth rock"
+	SittingOn = "on a tree stump"
 	HurryReason = "someone might see us"
 	Caught = "'Oh my god, there is a homeless guy watching us,' she whispered."
 	Excuse = "'Fuck off!' he yelled at the man."
@@ -297,7 +406,8 @@ class YogaStudio(PrivateLocation):
 	NamePrep = "in a yoga studio"
 	Loc = LocInOutType.Indoors
 	BeginDesc = "The relaxing drone of zen meditation music filled the warm studio."
-	BentOver = "a stack of foam blocks"
+	Despite = "not having stretched properly"
+	BentOver = "a large yoga ball"
 	KneelingOn = "a yoga mat"
 	SittingOn = "a balance ball"
 	Ground = "the purple yoga mat"

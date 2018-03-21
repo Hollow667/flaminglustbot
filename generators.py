@@ -386,7 +386,7 @@ class Generator24(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
+		Location = locations.LocationSelector().Location()
 		
 		iRand = randint(1,2)
 		iRandGender = randint(1,2)
@@ -444,7 +444,7 @@ class Generator25(Generator):
 		sTweet += Location.Caught + "\n\n"
 		sTweet += "'" + self.Exclamation.GetWord().capitalize() + " I'm gonna cum!' said " + sHisName + ".\n\n"
 		sTweet += "'Wait, not yet!' she cried.\n\n"
-		sTweet += "'Too late!' said " + sHisName + ". 'I'm " + self.VEjac.Gerund() + "!' And then, " + Location.Consequence + ", he grabbed her by the hips and " + self.VEjac.Past() + " deep into her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + "."
+		sTweet += "'Too late!' said " + sHisName + ". 'I'm " + self.VEjac.Gerund() + "!' And then, " + Location.Consequence + ", he grabbed her by the hips and filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with " + self.Semen.RandomDescription() + "."
 		
 		return sTweet
 		
@@ -627,10 +627,23 @@ class Generator34(Generator):
 		return sTweet
 		
 class Generator35(Generator):
+		#'Oh baby,' she said. 'I love you so much. I just want to be with you and make you happy. Tell me what I can do,' she said, giving him a peck on the lips.
+		#'I want {to fuck your big titties / to put my finger in your butthole / to put my balls in your mouth / you to eat out my starfish },' he said.
 	def GenerateTweet(self):
 		sTweet = ""
 		
+		iRand = randint(1,4)
+		sHisName = self.MaleName.FirstName()
 		
+		sTweet = "'Oh baby,' " + self.FemaleName.FirstName() + " said to " + sHisName + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
+		if iRand == 1:
+			sTweet += "'I want to rub my " + self.MaleBodyParts.Penis.ShortDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription(bAllowLongDesc = False) + "', he said."
+		elif iRand == 2:
+			sTweet += "'I want to put my finger in your " + self.FemBodyParts.Ass.Anus.ShortDescription() + ",' he said."
+		elif iRand == 3:
+			sTweet += "'I want to put my " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + " in your mouth,' he said."
+		else:
+			sTweet += "'I want you to eat out my " + self.FemBodyParts.Ass.Anus.ShortDescription() + ",' he said."
 		
 		return sTweet
 		

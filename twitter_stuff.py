@@ -25,6 +25,8 @@ def UpdateStatus(api, Tweet, in_reply_to_status_id = ""):
 		status = api.update_status(Tweet, in_reply_to_status_id)
 	except tweepy.TweepError as e:
 		print("***ERROR*** [" + e.reason + "]")	
+		
+	return status 
 	
 
 def RespondToReplies(api):

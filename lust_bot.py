@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
  
-import argparse, datetime, tweepy
-import twitterauth
-import urllib.parse
-import twitter
+import argparse, datetime
 
 import bodyparts
 import locations
@@ -17,12 +14,12 @@ import scenes
 from random import *
 from util import *
 from generators import *
+from twitter_stuff import *
 
 TWIT_USERNAME = 'bot_lust'
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 41
 Q_SIZE = 4
-REPLIES_FILE_NAME = 'reply_ids.txt'
 
 HistoryQ = []
 	
@@ -44,30 +41,6 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 	
 	if bTest:
 		iRandMin = iGeneratorNo
-
-	Event = misc.Events()
-	Exclamation = misc.Exclamations()
-	WealthyMan = people.JobWealthyMale()
-	WealthyWoman = people.JobWealthyFemale()
-	WhiteCollar = people.JobWhiteCollar()
-	BlueCollar = people.JobBlueCollar()
-	VerbThrust = verbs.VerbThrust()
-	VerbMakeLove = verbs.VerbMakeLove()
-	VerbEjaculate = verbs.VerbEjaculate()
-	VerbForeplay = verbs.VerbForeplay()
-	MaleName = names.NamesMale()
-	FemaleName = names.NamesFemale()
-	MaleFWB = people.MaleFWB()
-	FemaleFWB = people.FemaleFWB()
-	FemBodyParts = bodyparts.BodyFemale()
-	MaleBodyParts = bodyparts.BodyMale()
-	Mouth = bodyparts.Mouth()
-	Breasts = bodyparts.Breasts()
-	Thighs = bodyparts.Thighs()
-	Vagina = bodyparts.Vagina()
-	Ass = bodyparts.AssFemale()
-	Penis = bodyparts.Penis()
-	Semen = bodyparts.Semen()
 	
 	iSwitch = randint(iRandMin, iRandMax)
 	while not bTest and iSwitch in HistoryQ:
@@ -197,56 +170,13 @@ def AddHashtag(Tweets):
 
 	return Tweets
 	
-	
-def RespondToReplies(api):
-	my_screen_name = 'bot_lust'
-	my_userid = '973202601545273344'
-	max_id = None
-	max_tweets = 60
-	
-	HistoricReplies = []
-	with open(REPLIES_FILE_NAME) as ReadReplyFile:
-		HistoricReplies = ReadReplyFile.read().splitlines()
-		
-	#print("Historic reply IDs:")
-	#print(HistoricReplies)
-		
-	query = "to:" + my_screen_name
-		
-	try:		
-		replies = [status for status in tweepy.Cursor(api.search, q=query).items(max_tweets)]
-
-		for reply in replies:
-			if not reply.user.id_str == my_userid:
-				if len(HistoricReplies) == 0 or not reply.id_str in HistoricReplies:
-	 
-					#print(reply.id_str)
-					#print(reply.text)
-					#print(reply.user.screen_name)
-					
-					api.update_status("@" + reply.user.screen_name + " " + misc.TweetReplyBuilder().GetReply(), in_reply_to_status_id = reply.id_str)
-					
-					with open(REPLIES_FILE_NAME, 'a') as WriteReplyFile:
-						WriteReplyFile.write(str(reply.id_str) + "\n")
-		
-	except tweepy.TweepError as e:
-		print("***ERROR*** [" + e.reason + "]")
-	
 def InitBot(iSleepTimer, bTweet = True, iTweets = 1, iGeneratorNo = MAX_GENERATOR_NO):
 	print("=*=*=*= FLAMING LUST BOT IS RUNNING (@bot_lust) =*=*=*=\n\n")
 	
 	sTweet = ""
 	bTest = False 
 	
-	CONSUMER_KEY = twitterauth.ConsumerKey
-	CONSUMER_SECRET = twitterauth.ConsumerSecret
-	ACCESS_KEY = twitterauth.AccessKey
-	ACCESS_SECRET = twitterauth.AccessSecret
-	
-	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-	auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-	
-	api = tweepy.API(auth)
+	api = InitTweepy()
 	
 	if iGeneratorNo == 0:
 		iGeneratorNo = MAX_GENERATOR_NO
@@ -278,18 +208,17 @@ def InitBot(iSleepTimer, bTweet = True, iTweets = 1, iGeneratorNo = MAX_GENERATO
 			
 			RespondToReplies(api)
 				
-			try:
-				for tweet in Tweets:
-					if status == None:
-						#pass
-						status = api.update_status(tweet)
+			for tweet in Tweets:
+				if status == None:
+					#pass
+					#status = api.update_status(tweet)
+					status = UpdateStatus(api, tweet)
 							
-					else:
-						#pass
-						status = api.update_status(tweet, in_reply_to_status_id = status.id)
-			except tweepy.TweepError as e:
-				print("***ERROR*** [" + e.reason + "]")				
-				
+				else:
+					#pass
+					#status = api.update_status(tweet, in_reply_to_status_id = status.id)
+					status = UpdateStatus(api, tweet, status.id)
+							
 			#make timer slightly variable +-33%
 			if iSleepTimer > 180:
 				iRandSecs = iSleepTimer

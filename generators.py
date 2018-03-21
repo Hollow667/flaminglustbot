@@ -177,7 +177,7 @@ class Generator10(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 
-		sTweet = "'" + self.Exclamation.GetWord(bExMk = False).capitalize() + ", what a day it has been,' said the " + self.WealthyWoman.GetPerson() +". Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDescription() + " to him. 'Come, my little " + self.BlueCollar.GetPerson() + ". I need you to " + self.VForeplay.Present() + " my " + self.FemBodyParts.GetRandomBodyParts(1, True, True)[0] + " and cover my " + self.FemBodyParts.GetRandomBodyParts(1, False, True)[0] + " in your "+ self.Semen.RandomDescription() + ".'"
+		sTweet = "'" + self.Exclamation.GetWord(bExMk = False).capitalize() + ", what a day it has been,' said the " + self.FemBodyParts.GetAdj() + " " + self.WealthyWoman.GetPerson() +". Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDescription() + " to him. 'Come, my little " + self.BlueCollar.GetPerson() + ". I need you to " + self.VForeplay.Present() + " my " + self.FemBodyParts.GetRandomBodyParts(1, True, True)[0] + " and cover my " + self.FemBodyParts.GetRandomBodyParts(1, False, True)[0] + " in your "+ self.Semen.RandomDescription() + ".'"
 		
 		return sTweet
 		
@@ -613,7 +613,7 @@ class Generator34(Generator):
 		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		iRand = randint(1,4)
 		
-		sTweet = "'It was just a silly bet,' " + self.MaleName.FirstName () + " said. 'Don't worry about it.'\n\n"
+		sTweet = "'It was just a silly bet,' " + self.MaleName.FirstName () + " said to his " + self.FemBodyParts.GetAdj() + " " + self.FFWB.GetPerson() + ". 'Don't worry about it.'\n\n"
 		sTweet += "'No, fair is fair,' " + self.FemaleName.FirstName() + " said, pulling down her " + Location.FemaleBottomClothing + ". "
 		if iRand == 1:
 			sTweet += "'I said that you could use my " + self.FemBodyParts.Vagina.RandomDescription() + " any way you want, "

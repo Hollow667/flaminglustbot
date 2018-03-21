@@ -817,19 +817,21 @@ class AssFemale(BodyParts):
 			'tush',
 			'tushy']
 			
-		self.AdjList = ['bare',
+		self.AdjList = ['ample',
 			'bountiful',
 			'broad',
+			'bubble',
 			'bubble-shaped',
+			'chubby',
 			'curvaceous',
 			'curvy',
-			'exposed',
 			'fuckable',
 			'generous',
 			'glistening',
 			'honeyed',
+			'juicy',
 			'lush',
-			'naked',
+			'luscious',
 			'nubile',
 			'pert',
 			'plump',
@@ -847,6 +849,7 @@ class AssFemale(BodyParts):
 			'thick',
 			'trim',
 			'virginal',
+			'voluptuous',
 			'womanly']
 		
 		self.DefaultNoun = "ass"
@@ -878,23 +881,18 @@ class BodyFemale(BodyParts):
 			'form',
 			'physique']
 			
-		self.AdjList = ['bare',
-			'beautiful',
+		self.AdjList = ['beautiful',
 			'busty',
 			'buxom',
 			'curvaceous',
 			'curvy',
-			'exposed',
 			'feminine',
-			'girlish',
-			'glistening',
 			'gorgeous',
-			'honeyed',
 			'leggy',
+			'little',
 			'lush',
 			'luxuriant',
 			'model-esque',
-			'naked',
 			'nubile',
 			'pale',
 			'ravishing',
@@ -906,16 +904,14 @@ class BodyFemale(BodyParts):
 			'slender',
 			'statuesque',
 			'stunning',
-			'succulent',
 			'sultry',
-			'supple',
 			'sweet',
-			'tender',
+			'teenage',
 			'tight',
-			'trim',
 			'voluptuous',
-			'willing',
-			'womanly']
+			'womanly',
+			'young',
+			'youthful']
 		
 		self.DefaultNoun = "body"
 		self.IsPlural = False

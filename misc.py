@@ -399,6 +399,19 @@ class BookTitleBuilder():
 			
 		return sGirl
 		
+	def _getFMs_(self):
+		FMs = ""
+		
+		iRandLen = randint(4,10)
+		for x in range(1, iRandLen):
+			iRandChoice = randint(1,3)
+			if iRandChoice == 1:
+				FMs += "F"
+			else:
+				FMs += "M"
+		
+		return FMs
+		
 	def GetTitle(self):
 		sTitle = ""
 		
@@ -411,33 +424,48 @@ class BookTitleBuilder():
 		sVerbBy = VerbsBy.GetWord()
 		sVerbTo = VerbsTo.GetWord()
 		
-		iRand = randint(1,8)
+		iRand = randint(1,10)
 		if iRand == 1:
 			#Blackmailed by the Billionaire Mountain Man 
 			sTitle = sVerbBy + " by the " + sMaster
 		elif iRand == 2:
 			#Married to the Alpha Wolf
 			sTitle = sVerbTo + " to the " + sMaster
+			iRand2 = randint(1,2)
+			if iRand2 == 1:
+					sTitle += ": An " + self._getFMs_() + " Adventure"
 		elif iRand == 3:
+			#The President's Girl
 			sTitle = "The " + sMaster + "'s " + sGirl
 		elif iRand == 4:
 			#Seduced in the Bed of the Billionaire 
 			sTitle = sVerbTo + " in the Bed of the " + sMaster
 		elif iRand == 5:
 			#The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", And The " + sMaster + ": A Hot Menage"
+			iRand2 = randint(1,2)
+			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", And The " + sMaster + ": "
+			if iRand2 == 1:
+				sTitle += "A Hot Menage"
+			else:
+				sTitle += "A " + self._getFMs_() + " Romance"
 		elif iRand == 6:
 			#The Virgin's Secret Daddy Dom 
 			sTitle = "The " + sGirl + "'s " + sMaster
 		elif iRand == 7:
 			#The Secretary and the Space Werewolf 
+			iRand2 = randint(1,2)
 			sTitle = "The " + sGirl + " & the " + sMaster
+			if iRand2 == 1:
+					sTitle += ": A " + self._getFMs_() + " Romance"
 		elif iRand == 8:
 			#Baby for the Stay-at-Home Manticore
 			sTitle = "Baby for the " + sMaster 
 		elif iRand == 9:
 			#The Millionaire Sherrif's Virgin
 			sTitle = "The " + sMaster + "'s " + sGirl
+		elif iRand == 10:
+			#Babysitter to the Billionaire Uniporn
+			sTitle = sGirl + " to the " + sMaster
 		else:
 			pass
 			

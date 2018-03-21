@@ -144,8 +144,6 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 	#elif iSwitch == ??:
 		#He opened the door and his heart skipped a beat. Angela was lying on the bed naked. [Describe] She opened her naked legs, reached down and spread her gleaming pussy lips. "Happy birthday, baby," she said.
 	#elif iSwitch == ??:
-		#I've got a present for you, she said. What's that? he asked her. She [bent over and pulled her panties aside, revealing her little starfish.] [lifted up her short skirt revealing that she wasn't wearing any panties. He could clearly see her smooth pussy lips and her inner folds.] [pulled her titties out of her blouse. They were large and gleaming with oil.]
-	#elif iSwitch == ??:
 		#I still love you, Veronica, he said, even after all these years. I love you too, Steve, said Veronica. I've loved you since the first time you titty fucked me in the men's bathroom
 	#elif iSwitch == ??:
 		#Raoul entered, wearing a white robe. He whipped the towel off Rosanna, exposing her naked form. He began to gently massage her {body parts}. Rosanna opened her eyes. His robe was now open, exposing his massive swollen

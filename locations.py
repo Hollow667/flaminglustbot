@@ -222,8 +222,8 @@ class Office(PublicLocation):
 	BeginDesc = "A large oak desk stood in the center of the corner office."
 	Despite = "the danger of being caught"
 	BentOver = "the massive desk"
-	KneelingOn = "the boss's desk"
-	SittingOn = "the surface of the desk"
+	KneelingOn = "on the boss's desk"
+	SittingOn = "on the surface of the desk"
 	HurryReason = "Someone will catch us!"
 	Caught = "The door opened and a tall man walked in. 'Fuck, its my boss!' she said."
 	Consequence = "as her boss watched, open-mouthed"
@@ -234,7 +234,7 @@ class Office(PublicLocation):
 
 class ParentsBedroom(PrivateLocation):
 	Name = "his parents bedroom"
-	NamePrep = "in the bedroom of your parents"
+	NamePrep = "in the bedroom of his parents"
 	Loc = LocInOutType.Indoors
 	BeginDesc = "Candles were lit all around his parents king-sized bed."
 	BentOver = "the end of the bed"

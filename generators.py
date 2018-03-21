@@ -155,12 +155,11 @@ class Generator8(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		print(self.VMoan)
-		print(self.VMoan.Past())
+		Location = locations.LocationSelector().Location(InOut = LocInOutType.Indoors)
 		
 		sBoyfriendName = self.MaleName.FirstName()
-		sTweet = self.FemaleName.FirstName() + " bit her lip as he " + self.VForeplay.Past() + " her " + self.FemBodyParts.GetRandomBodyParts(1, True, True)[0] + ". "
-		sTweet += "'" + sBoyfriendName + "!' she " + self.VMoan.Past() + ", 'My " + self.MFWB.GetPerson() + " is in the next room!'\n\n'Do you think he'd like to join us?' " + sBoyfriendName + " asked innocently, inserting a finger into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
+		sTweet = self.FemaleName.FirstName() + " bit her lip as he " + self.VForeplay.Past() + " her " + self.FemBodyParts.GetRandomBodyParts(1, True, True)[0] + " " + Location.NamePrep + ". "
+		sTweet += "'" + sBoyfriendName + "!' she " + self.VMoan.Past() + ", 'My " + self.MFWB.GetPerson() + " is right outside!'\n\n'Do you think he'd like to join us?' " + sBoyfriendName + " asked innocently, inserting a finger into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
 		
 		return sTweet
 		
@@ -483,6 +482,7 @@ class Generator27(Generator):
 		return sTweet
 		
 class Generator28(Generator):
+	#Doing it in a location. Surprise! They're being watched by her husband.
 	def GenerateTweet(self):
 		sTweet = ""
 		
@@ -492,7 +492,6 @@ class Generator28(Generator):
 		
 		iRand = randint(1,2)
 		
-		#Doing it in a location. Surprise! They're being watched by her husband.
 		sTweet = Location.BeginDesc + " " + sHisName + " ripped " + sHerName + "'s " + Location.FemaleBottomClothing + " off. She sat down " + Location.SittingOn + " and spread her legs. " + sHisName + " began to "
 		if iRand == 1:
 			sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.OuterLabia.RandomDescription() + " vigorously.\n\n" 

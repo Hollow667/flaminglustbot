@@ -593,18 +593,36 @@ class Generator32(Generator):
 		return sTweet
 		
 class Generator33(Generator):
+	#'I own you now,' he said to the babysitter. "I own your your pretty mouth, I own your lickable tits, I own the dripping folds of your cunt and I even own..." He leaned forward, and whispered in her ear, "Your tight little starfish."
+	#"Ooh, yes general," she said.
 	def GenerateTweet(self):
 		sTweet = ""
 		
-		
+		sTweet = "'I own you now,' said " + self.MaleName.FirstName() + " to his " + self.FFWB.GetPerson() + ". 'I own your " + self.FemBodyParts.Lips.RandomDescription() + ", I own your " + self.FemBodyParts.Breasts.RandomDescription() + ", I own the " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " of your " + self.FemBodyParts.Vagina.ShortDescription() + ", and I even own...' He leaned in and whispered in her ear, 'Your " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".'\n\n"
+		sTweet += "'Ooh, yes sir!' she " + self.VMoan.Past() + "."
 		
 		return sTweet
 		
 class Generator34(Generator):
+	#'It was just a silly bet,' he said.\n\n
+	#'No, fair is fair,' she said, pulling down her panties. 'I said that you could use my cocksock any way you want, right here in the woods, and I never go back on a bet.' 
 	def GenerateTweet(self):
 		sTweet = ""
 		
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
+		iRand = randint(1,4)
 		
+		sTweet = "'It was just a silly bet,' " + self.MaleName.FirstName () + " said. 'Don't worry about it.'\n\n"
+		sTweet += "'No, fair is fair,' " + self.FemaleName.FirstName() + " said, pulling down her " + Location.FemaleBottomClothing + ". "
+		if iRand == 1:
+			sTweet += "'I said that you could use my " + self.FemBodyParts.Vagina.RandomDescription() + " any way you want, "
+		elif iRand == 2:
+			sTweet += "'I said that you could use my " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " any way you want, "
+		elif iRand == 3:
+			sTweet += "'I said that you could use my " + self.FemBodyParts.Ass.RandomDescription() + " any way you want, "
+		else:
+			sTweet += "'I said that you could use my " + self.FemBodyParts.Ass.Anus.RandomDescription() + " any way you want, "
+		sTweet += "right here " + Location.NamePrep + ", and I never go back on a bet.' "
 		
 		return sTweet
 		

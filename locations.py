@@ -155,12 +155,12 @@ class Den(PrivateLocation):
 	FemaleBottomClothing = "lacy silk panties"
 	
 class Gym(PublicLocation):
-	Name = "the church"
-	NamePrep = "in the church"
-	BeginDesc = "Colored light flooded through a stained glass window."
-	Despite = "the sacred atmosphere"
+	Name = "the gym"
+	NamePrep = "at the gym"
+	BeginDesc = "The mirrors on the wall of the gym reflected their bodies back at them."
+	Despite = "the danger of discovery"
 	BentOver = "a weight bench"
-	KneelingOn = "an exercise machine"
+	KneelingOn = "on an exercise machine"
 	SittingOn = "a weight bench"
 	HurryReason = "someone will catch us"
 	Caught = "A girl wearing a leotard walked in. 'Holy fuck!' the girl said."

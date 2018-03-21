@@ -105,6 +105,9 @@ class Exclamations(WordList):
 		'damn',
 		'fuck',
 		'fuck',
+		'fuck',
+		'fuck',
+		'fuck me',
 		'fuck me',
 		'hell',
 		'holy shit',
@@ -120,8 +123,9 @@ class Exclamations(WordList):
 		'oh goodness',
 		'oh my',
 		'shit',
+		'shit',
 		'sweet Mother Mary',
-		'wow']
+		'tits']
 		
 	def GetWord(self, bHappy = False, bSad = False, bExMk = True):
 		sExclamation = ""
@@ -129,15 +133,15 @@ class Exclamations(WordList):
 		
 		sExclamation = super().GetWord()
 		
-		iRand = randint(1, 2)
+		iRand = randint(1, 3)
 		if iRand == 1 and not "oh " in sExclamation:
 			sExclamation = "oh " + sExclamation
 			
-		iRand = randint(1, 2)
+		iRand = randint(1, 3)
 		if iRand == 1 and bHappy:
-			sExclamation += " yes"
+			sExclamation += ", yes"
 		elif iRand == 1 and bSad:
-			sExclamation += " no"
+			sExclamation += ", no"
 			
 		if bExMk:
 			sExclamation += "!"
@@ -187,7 +191,6 @@ class BookGirls(WordList):
 			'Single Mom',
 			'Step-Daughter',
 			'Step-Sister',
-			'Sub',
 			'Submissive',
 			'Virgin',
 			'Waitress',
@@ -269,7 +272,9 @@ class BookMasters(WordList):
 			'Prince',
 			'Professor',
 			'Rock Star',
+			'Shah',
 			'Sex Warlock',
+			'Sheikh',
 			'Sheriff',
 			'Trillionaire',
 			'Viking',

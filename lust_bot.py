@@ -18,7 +18,7 @@ from twitter_stuff import *
 
 TWIT_USERNAME = 'bot_lust'
 MAX_TWITTER_CHARS = 280
-MAX_GENERATOR_NO = 41
+MAX_GENERATOR_NO = 43
 Q_SIZE = 4
 
 HistoryQ = []
@@ -114,6 +114,10 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 		sTweet = Generator31().GenerateTweet()
 	elif iSwitch == 41:
 		sTweet = Generator32().GenerateTweet()
+	elif iSwitch == 42:
+		sTweet = Generator33().GenerateTweet()
+	elif iSwitch == 43:
+		sTweet = Generator34().GenerateTweet()
 	#elif iSwitch == ??:
 		#He opened the door and his heart skipped a beat. Angela was lying on the bed naked. [Describe] She opened her naked legs, reached down and spread her gleaming pussy lips. "Happy birthday, baby," she said.
 	#elif iSwitch == ??:
@@ -123,12 +127,6 @@ def GenerateTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 	#elif iSwitch == ??:
 		#'Oh baby,' she said. 'I love you so much. I just want to be with you and make you happy. Tell me what I can do,' she said, giving him a peck on the lips.
 		#'I want {to fuck your big titties / to put my finger in your butthole / to put my balls in your mouth / you to eat out my starfish },' he said.
-	#elif iSwitch == ??:
-		#'I own you now,' he said to the babysitter. "I own your your pretty mouth, I own your lickable tits, I own the dripping folds of your cunt and I even own..." He leaned forward, and whispered in her ear, "Your tight little starfish."
-		#"Ooh, yes general," she said.
-	#elif iSwitch == ??:
-		#'It was just a silly bet,' he said.\n\n
-		#'No, fair is fair,' she said, pulling down her panties. 'I said that you could use my cocksock any way you want, right here in the woods, and I never go back on a bet.'  
 	#elif iSwitch == ??:
 		#'Kylie! Hi!' he said to the barista. 'You two know each other?' Sam's girlfriend asked. 'Oh yes,' said Kylie. 'Sam sucked my titties back in college.'
 	else:

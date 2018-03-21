@@ -362,7 +362,9 @@ class Breasts(BodyParts):
 	Nipples = []
 	
 	def __init__(self):
-		self.NounList = ['bosoms',
+		self.NounList = ['boobies',
+			'boobs',
+			'bosoms',
 			'bosoms',
 			'breasts',
 			'breasts',
@@ -370,15 +372,20 @@ class Breasts(BodyParts):
 			'breasts',
 			'buds',
 			'bust',
-			'chest',
 			'coconuts',
+			'dumplings',
+			'gazongas',
+			'globes',
+			'jugs',
+			'knockers',
 			'mammaries',
 			'melons',
 			'orbs',
 			'rack',
 			'teats',
 			'tits',
-			'tits']
+			'tits',
+			'titties']
 			
 		self.AdjList = ['bare',
 			'bouncy',
@@ -395,6 +402,7 @@ class Breasts(BodyParts):
 			'generous',
 			'gentle',
 			'girlish',
+			'glorious',
 			'gorgeous',
 			'heaving',
 			'heavy',
@@ -652,7 +660,7 @@ class Vagina(BodyParts):
 					'fuckhole',
 					'hole',
 					'honeypot',
-					'love-muffin'
+					'love-muffin',
 					'muff',
 					'muffin',
 					'peach',

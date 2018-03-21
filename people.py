@@ -55,7 +55,6 @@ class FemaleFWB(Person):
 		'parole officer',
 		'pastor\'s wife',
 		'personal trainer',
-		'proctologist',
 		'secretary',
 		'sister',
 		'sister-in-law',

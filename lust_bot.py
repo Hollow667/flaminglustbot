@@ -51,7 +51,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 			Tweets = [1]
 			
 			Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
-			print("===Here is your " + str(len("".join(Tweets))) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
+			print("\n===Here is your " + str(len("".join(Tweets))) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
 			for tweet in Tweets:
 				print("[" + tweet + "](" + str(len(tweet)) + " chars)")
 			

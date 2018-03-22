@@ -918,17 +918,49 @@ class Generator35(Generator):
 		
 		return sTweet
 		
-# class Generator36(Generator):
-	# ID = 36
-	# Priority = 1
+class Generator36(Generator):
+	#Their masked host guided them into the banquet hall. On the dining table a beautiful woman lay spread-eagled, completely naked, in the center. Her succulent bronzed skin was dripping with honey, her lissome form was covered with fruits and berries, her navel was brimming with liquor, her full, perfect breasts were topped with whipped cream, and her pussy was stuffed with a single ripe strawberry. 'Gentlemen,' said the marquis, 'Let's eat!'\n\n'Holy fuck,' thought Leon, 'That's my step-daughter!'
+	ID = 36
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		print("Generator36 active")
 		
+		sTweet = "Their masked host ushered them into the banquet hall. In the center of the dining table a beautiful woman lay spread-eagled, completely naked. "
 		
-		# return sTweet
+		Feast = []
+		Feast.append("her succulent " + self.FemBodyParts.Skin.GetAdj(sNot = "succulent") + " " + self.FemBodyParts.Skin.GetNoun() + " was dripping with syrup") 
+		#print("Added syrup")
+		Feast.append("she held a ripe cherry between her " + self.FemBodyParts.Lips.GetAdj(sNot = "cherry") + " lips")
+		#print("Added cherry")
+		Feast.append("her " + self.FemBodyParts.GetAdj(sNot = "womanly") + " " + self.FemBodyParts.GetNoun() + " was covered with fruits and berries")
+		#print("Added fruit")
+		Feast.append("her navel was a goblet brimming with liquor") 
+		#print("Added liquor")
+		Feast.append("her full, " + self.FemBodyParts.Breasts.GetAdj(sNot = "full") + " " + self.FemBodyParts.Breasts.GetNoun() + " were topped with whip cream")
+		#print("Added whip cream")
+		Feast.append("the inside of her " + self.FemBodyParts.Thighs.ShortDescription() + " were glazed with chocolate")
+		#print("Added chocolate sauce")
+		Feast.append("her " + self.FemBodyParts.Vagina.OuterLabia.GetNoun() + " gleamed with sticky honey")
+		#print("Added honey")
+			
+		sFeast = ""
+		if len(Feast) > 0:
+			for x in sorted(sample(range(0, len(Feast)), 3)): 
+				sFeast += Feast[x] + ", "
+			sFeast += "and a "
+			sFeast = sFeast.capitalize()
+		else: 
+			sFeast = "A "
+				
+		sTweet += sFeast + "single, ripe strawberry was stuffed in her " + self.FemBodyParts.Vagina.MediumDescription() + ". "
+		sTweet += "'Gentlemen,' said the " + self.WealthyMan.GetPerson() + ", 'Let's feast!'\n\n"
+		sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' thought " + self.MaleName.FirstName() + ", 'That's my " + self.FFWB.GetPerson() + "!'"
+		
+		return sTweet
 		
 # class Generator37(Generator):
 	# ID = 37

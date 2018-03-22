@@ -8,19 +8,6 @@ from enum import *
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
 TWIT_USERNAME = 'bot_lust'
-
-def AddArticles(sNounPhrase):
-	sUpdatedPhrase = ""
-	
-	if not sNounPhrase[len(sNounPhrase) - 1] == 's':
-		if sNounPhrase[0].lower() in ['a','e','i','o','u']:
-			sUpdatedPhrase = 'an ' + sNounPhrase
-		else:
-			sUpdatedPhrase = 'a ' + sNounPhrase
-	else:
-		sUpdatedPhrase = sNounPhrase
-		
-	return sUpdatedPhrase
 	
 class Gender(Enum):
 	Male = 1
@@ -36,6 +23,28 @@ class LocPubPrivType(Enum):
 	Public = 1
 	Private = 2
 	Either = 3
+	
+def AddArticles(sNounPhrase):
+	sUpdatedPhrase = ""
+	
+	if len(sNounPhrase) > 0:
+		if not sNounPhrase[len(sNounPhrase) - 1] == 's':
+			if sNounPhrase[0].lower() in ['a','e','i','o','u']:
+				sUpdatedPhrase = 'an ' + sNounPhrase
+			else:
+				sUpdatedPhrase = 'a ' + sNounPhrase
+		else:
+			sUpdatedPhrase = sNounPhrase
+			
+	return sUpdatedPhrase
+
+def CoinFlip():
+	bHeads = True 
+	iRand = randint(1,2)
+	if iRand == 2:
+		bHeads = False
+		
+	return bHeads 
 	
 class WordList:
 	List = []

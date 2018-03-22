@@ -98,7 +98,7 @@ class Balcony(PublicLocation):
 	Caught = "'I think those people down there are videoing us with their iPhones!"
 	Excuse = "'Let's give them a show, baby!' he replied."
 	Consequence = "as a small crowd gathered to watch them"
-	Ground = "balcony floor"
+	Ground = "ground"
 	MaleTopClothing = ""
 	MaleBottomClothing = "boxer briefs"
 	FemaleTopClothing = "bra"
@@ -178,7 +178,7 @@ class Church(PublicLocation):
 class Classroom(PublicLocation):
 	Name = "the classroom"
 	NamePrep = "in the classroom"
-	BeginDesc = "The blackboard was covered in notes and the rows of student desks were nice and orderly."
+	BeginDesc = "The blackboard was covered in notes and the rows of student desks were straight and orderly."
 	Despite = "the threat of being caught"
 	BentOver = "the teacher's desk"
 	KneelingOn = "on a student desk"
@@ -339,7 +339,7 @@ class PrivateBeach(PrivateLocation):
 	
 class Shower(PrivateLocation):
 	Name = "the shower"
-	NamePrep = "in the hot tub"
+	NamePrep = "in the shower"
 	Loc = LocInOutType.Indoors
 	Despite = "the slippery floor"
 	BeginDesc = "The hot shower water rained down on them."

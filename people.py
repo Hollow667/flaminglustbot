@@ -30,7 +30,7 @@ class FemaleFWB(Person):
 		'daughter\'s best friend',
 		'daughter-in-law',
 		'dominatrix',
-		'eight-grade teacher',
+		'eighth-grade teacher',
 		'English teacher',
 		'ex',
 		'fashion model',
@@ -327,4 +327,5 @@ class JobWealthyFemale(Person):
 		'social media influencer',
 		'supermodel',
 		'surgeon general',
-		'viscountess']
+		'viscountess',
+		'wealthy MILF']

@@ -339,6 +339,7 @@ class Nipples(BodyParts):
 			'inch-long',
 			'long',
 			'luscious',
+			'petite',
 			'pert',
 			'pokey',
 			'puffy',
@@ -387,14 +388,12 @@ class Breasts(BodyParts):
 			'tits',
 			'titties']
 			
-		self.AdjList = ['bare',
-			'bouncy',
+		self.AdjList = ['bouncy',
 			'bountiful',
 			'budding',
 			'buxom',
 			'delicious',
 			'double-D',
-			'exposed',
 			'fake',
 			'fucking',
 			'full',
@@ -413,12 +412,12 @@ class Breasts(BodyParts):
 			'lush',
 			'luxuriant',
 			'magnificent',
-			'naked',
 			'nubile',
 			'pale',
 			'pendulous',
 			'perky',
 			'pert',
+			'petite',
 			'plump',
 			'proud',
 			'quivering',
@@ -428,7 +427,6 @@ class Breasts(BodyParts):
 			'shapely',
 			'smooth',
 			'soft',
-			'stacked',
 			'statuesque',
 			'stunning',
 			'succulent',
@@ -438,8 +436,7 @@ class Breasts(BodyParts):
 			'sweet',
 			'swollen',
 			'tender',
-			'voluptuous',
-			'womanly']
+			'voluptuous']
 		
 		self.DefaultNoun = "breasts"
 		self.Nipples = Nipples() 

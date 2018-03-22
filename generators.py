@@ -1,5 +1,6 @@
 # Utilities module
 
+import sys, threading, traceback
 from random import *
 from util import *
 from bodyparts import *
@@ -9,6 +10,179 @@ from scenes import *
 from names import *
 from locations import *
 from people import *
+
+Q_SIZE = 5
+
+HistoryQ = []
+
+def GetTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
+	Tweet = [0,""]
+	sTweet = ""
+	iSwitch = 999
+
+	iRandMin = 0
+	iRandMax = iGeneratorNo
+	
+	if bTest:
+		iRandMin = iGeneratorNo
+	
+	iSwitch = randint(iRandMin, iRandMax)
+	while not bTest and iSwitch in HistoryQ:
+		iSwitch = randint(iRandMin, iRandMax)
+	
+	HistoryQ.insert(0, iSwitch)
+	if len(HistoryQ) > Q_SIZE:
+		HistoryQ.pop()
+	
+	if iSwitch == 0:
+		sTweet = GeneratorPromo().GenerateTweet()
+	elif iSwitch == 1:
+		sTweet = Generator1().GenerateTweet()
+	elif iSwitch == 2:
+		sTweet = Generator2().GenerateTweet()
+	elif iSwitch == 3:
+		sTweet = Generator3().GenerateTweet()
+	elif iSwitch == 4:
+		sTweet = Generator4().GenerateTweet()
+	elif iSwitch == 5:
+		sTweet = Generator5().GenerateTweet()
+	elif iSwitch == 6:
+		sTweet = Generator6().GenerateTweet()
+	elif iSwitch == 7:
+		sTweet = Generator7().GenerateTweet()
+	elif iSwitch == 8:
+		sTweet = Generator8().GenerateTweet()
+	elif iSwitch == 9:
+		sTweet = Generator9().GenerateTweet()
+	elif iSwitch == 10:
+		sTweet = Generator10().GenerateTweet()
+	elif iSwitch == 11:
+		sTweet = Generator11().GenerateTweet()
+	elif iSwitch == 12:
+		sTweet = Generator12().GenerateTweet()
+	elif iSwitch == 13:
+		sTweet = Generator13().GenerateTweet()
+	elif iSwitch == 14:
+		sTweet = Generator14().GenerateTweet()
+	elif iSwitch == 15:
+		sTweet = Generator15().GenerateTweet()
+	elif iSwitch == 16:
+		sTweet = Generator16().GenerateTweet()
+	elif iSwitch == 17:
+		sTweet = Generator17().GenerateTweet()
+	elif iSwitch == 18:
+		sTweet = Generator18().GenerateTweet()
+	elif iSwitch == 19:
+		sTweet = Generator19().GenerateTweet()
+	elif iSwitch == 20:
+		sTweet = Generator20().GenerateTweet()
+	elif iSwitch == 21:
+		sTweet = Generator21().GenerateTweet()
+	elif iSwitch == 22:
+		sTweet = Generator22().GenerateTweet()
+	elif iSwitch == 23:
+		sTweet = Generator23().GenerateTweet()
+	elif iSwitch >= 24 and iSwitch < 26:
+		sTweet = Generator24().GenerateTweet()
+	elif iSwitch >= 26 and iSwitch < 29:
+		sTweet = Generator25().GenerateTweet()
+	elif iSwitch >= 29 and iSwitch < 32:
+		sTweet = Generator26().GenerateTweet()
+	elif iSwitch == 32:
+		sTweet = Generator27().GenerateTweet()
+	elif iSwitch >= 33 and iSwitch < 36:
+		sTweet = Generator28().GenerateTweet()
+	elif iSwitch >= 36 and iSwitch < 39:
+		sTweet = Generator29().GenerateTweet()
+	elif iSwitch == 39:
+		sTweet = Generator30().GenerateTweet()
+	elif iSwitch == 40:
+		sTweet = Generator31().GenerateTweet()
+	elif iSwitch == 41:
+		sTweet = Generator32().GenerateTweet()
+	elif iSwitch == 42:
+		sTweet = Generator33().GenerateTweet()
+	elif iSwitch == 43:
+		sTweet = Generator34().GenerateTweet()
+	elif iSwitch == 44:
+		sTweet = Generator35().GenerateTweet()
+	#elif iSwitch == ??:
+		#He opened the door and his heart skipped a beat. Angela was lying on the bed naked. [Describe] She opened her naked legs, reached down and spread her gleaming pussy lips. 
+	#elif iSwitch == ??:
+		#I still love you, Veronica, he said, even after all these years. I love you too, Steve, said Veronica. I've loved you since the first time you titty fucked me in the men's bathroom
+	#elif iSwitch == ??:
+		#Raoul entered, wearing a white robe. He whipped the towel off Rosanna, exposing her naked form. He began to gently massage her {body parts}. Rosanna opened her eyes. His robe was now open, exposing his massive swollen
+	#elif iSwitch == ??:
+		#'Kylie! Hi!' he said to the barista. 'You two know each other?' Sam's girlfriend asked. 'Oh yes,' said Kylie. 'Sam sucked my titties back in college.'
+	else:
+		print("iSwitch not found: " + str(iSwitch))
+		
+	return sTweet
+	
+def IsTweetTooLong(sTweet):
+	bTooLong = True
+	
+	if len(sTweet) <= MAX_TWITTER_CHARS:
+		bTooLong = False 
+	
+	return bTooLong
+	
+def ChopTweet(sTweet, sPrefix):
+	Tweets = []
+	iTargetLen = MAX_TWITTER_CHARS - 4
+	iTweetNo = 1
+	
+	iLastChar = iTargetLen
+	sTweet = sPrefix + str(iTweetNo) + ") " + sTweet
+	while not sTweet[iLastChar].isspace():
+		iLastChar = iLastChar - 1
+	
+	Tweets.append(sTweet[0:iLastChar])
+	sTweet = sTweet[iLastChar + 1:]
+	iTweetNo = iTweetNo + 1
+	sTweet = str(iTweetNo) + ") " + sTweet
+		
+	while len(sTweet) > iTargetLen:
+		iLastChar = iTargetLen
+		
+		while not sTweet[iLastChar].isspace():
+			iLastChar = iLastChar - 1
+			
+		Tweets.append(sTweet[0:iLastChar])
+		sTweet = sTweet[iLastChar + 1:]
+		iTweetNo = iTweetNo + 1
+		sTweet = str(iTweetNo) + ") " + sTweet
+		
+	Tweets.append(sTweet)
+	
+	return Tweets
+
+def AddHashtag(Tweets):
+	# if the last tweet has left over space, append a random hashtag to it: eartg, lprtg, wprtg, ssrtg, imabot, smut, erotica, etc
+	if not Tweets is None and type(Tweets) in [list,tuple] and len(Tweets) > 0:
+		sHashtag = "\n#" + misc.Hashtags().GetWord()
+		if len(Tweets[len(Tweets) - 1]) + len(sHashtag) < MAX_TWITTER_CHARS:
+			Tweets[len(Tweets) - 1] += sHashtag
+
+	return Tweets
+	
+def GetChoppedTweets(bTest, iGeneratorNo = MAX_GENERATOR_NO, sPrefix = ""):
+	Tweets = [1]
+	sTweetStr = ""
+	
+	print("Prefix is [" + sPrefix + "]")
+	sTweetStr = GetTweet(bTest, iGeneratorNo)
+	print(sTweetStr)
+	if len(sTweetStr) > 0:
+		if IsTweetTooLong(sPrefix + sTweetStr):
+			Tweets = ChopTweet(sTweetStr, sPrefix)
+		else:
+			Tweets[0] = sPrefix + sTweetStr
+		Tweets = AddHashtag(Tweets)	
+	else: 
+		Tweets[0] = sTweetStr
+
+	return Tweets
 
 class Generator():
 	MaleBodyparts = None 
@@ -177,7 +351,7 @@ class Generator10(Generator):
 	def GenerateTweet(self):
 		sTweet = ""
 
-		sTweet = "'" + self.Exclamation.GetWord(bExMk = False).capitalize() + ", what a day it has been,' said the " + self.FemBodyParts.GetAdj() + " " + self.WealthyWoman.GetPerson() +". Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDescription() + " to him. 'Come, my little " + self.BlueCollar.GetPerson() + ". I need you to " + self.VForeplay.Present() + " my " + self.FemBodyParts.GetRandomBodyParts(1, True, True)[0] + " and cover my " + self.FemBodyParts.GetRandomBodyParts(1, False, True)[0] + " in your "+ self.Semen.RandomDescription() + ".'"
+		sTweet = "'" + self.Exclamation.GetWord(bExMk = False).capitalize() + ", what a day it has been,' said the " + misc.WomanAdjs().GetWord() + " " + self.WealthyWoman.GetPerson() +". Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDescription() + " to him. 'Come, my little " + self.BlueCollar.GetPerson() + ". I need you to " + self.VForeplay.Present() + " my " + self.FemBodyParts.GetRandomBodyParts(1, True, True)[0] + " and cover my " + self.FemBodyParts.GetRandomBodyParts(1, False, True)[0] + " in your "+ self.Semen.RandomDescription() + ".'"
 		
 		return sTweet
 		
@@ -405,11 +579,11 @@ class Generator24(Generator):
 		
 		if iRand == 2:
 			sTweet += " In moments, " + sHisName + " had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
-			sTweet += "Despite the " + Location.Despite + " he was soon " + self.VEjac.Gerund() + " deep within her " + self.FemBodyParts.Ass.Anus.RandomDescription() + " as an intense orgasm wracked her " + self.FemBodyParts.GetAdj() + " body."
+			sTweet += "He was soon " + self.VEjac.Gerund() + " deep within her " + self.FemBodyParts.Ass.Anus.RandomDescription() + " as an intense orgasm wracked her body."
 			sTweet += " " + self.CreamPieScene.Scene(bIsVagina = False) + "\n\n" 
 		else:
 			sTweet += " In moments, " + sHisName + " had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
-			sTweet += "Despite the " + Location.Despite + " he was soon " + self.VEjac.Gerund() + " deep within her " + self.FemBodyParts.Vagina.RandomDescription() + " as an intense orgasm wracked her " + self.FemBodyParts.GetAdj() + " body."
+			sTweet += "He was soon " + self.VEjac.Gerund() + " deep within her " + self.FemBodyParts.Vagina.RandomDescription() + " as an intense orgasm wracked her body."
 			sTweet += " " + self.CreamPieScene.Scene() + "\n\n" 
 		if iRandGender == 1:
 			sTweet += sHisName + " " + Location.PutOnMaleClothing(bBottomOnly = True) + "."
@@ -492,7 +666,10 @@ class Generator28(Generator):
 		
 		iRand = randint(1,2)
 		
-		sTweet = Location.BeginDesc + " " + sHisName + " ripped " + sHerName + "'s " + Location.FemaleBottomClothing + " off. She sat down " + Location.SittingOn + " and spread her legs. " + sHisName + " began to "
+		sTweet = Location.BeginDesc
+		if not Location.FemaleBottomClothing == "": 
+			sTweet += " " + sHisName + " ripped " + sHerName + "'s " + Location.FemaleBottomClothing + " off. "
+		sTweet += "She sat down " + Location.SittingOn + " and spread her legs. " + sHisName + " began to "
 		if iRand == 1:
 			sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.OuterLabia.RandomDescription() + " vigorously.\n\n" 
 		else: 
@@ -613,7 +790,7 @@ class Generator34(Generator):
 		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		iRand = randint(1,4)
 		
-		sTweet = "'It was just a silly bet,' " + self.MaleName.FirstName () + " said to his " + self.FemBodyParts.GetAdj() + " " + self.FFWB.GetPerson() + ". 'Don't worry about it.'\n\n"
+		sTweet = "'It was just a silly bet,' " + self.MaleName.FirstName () + " said to his " + misc.WomanAdjs().GetWord() + " " + self.FFWB.GetPerson() + ". 'Don't worry about it.'\n\n"
 		sTweet += "'No, fair is fair,' " + self.FemaleName.FirstName() + " said, pulling down her " + Location.FemaleBottomClothing + ". "
 		if iRand == 1:
 			sTweet += "'I said that you could use my " + self.FemBodyParts.Vagina.RandomDescription() + " any way you want, "
@@ -638,7 +815,7 @@ class Generator35(Generator):
 		iRand = randint(1,4)
 		sHisName = self.MaleName.FirstName()
 		
-		sTweet = "'Oh " + sHisName + ",' " + self.FemaleName.FirstName() + " said to him. They were sitting on " + Location.SittingOn + " " + Location.NamePrep + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
+		sTweet = "'Oh " + sHisName + ",' " + self.FemaleName.FirstName() + " said to him. They were sitting together " + Location.NamePrep + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
 		if iRand == 1:
 			sTweet += "'I want to rub my " + self.MaleBodyParts.Penis.ShortDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription(bAllowLongDesc = False) + "', he said."
 		elif iRand == 2:

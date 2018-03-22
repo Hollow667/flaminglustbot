@@ -1,10 +1,16 @@
 # Twitter-related functions (Tweepy-based)
 
+import generators
 import misc
 import tweepy
 import twitterauth
 
-REPLIES_FILE_NAME = 'reply_ids.txt'
+from random import *
+from util import *
+
+REPLIES_FILE_NAME = "reply_ids.txt"
+HASHTAG_LOVESCENE = "#lovescene"
+HASHTAG_BOOKTITLE = "#book"
 
 def InitTweepy():
 	api = None
@@ -31,7 +37,6 @@ def UpdateStatus(api, Tweet, in_reply_to_status_id = ""):
 	
 
 def RespondToReplies(api):
-	my_screen_name = 'bot_lust'
 	my_userid = '973202601545273344'
 	max_id = None
 	max_tweets = 60
@@ -43,7 +48,7 @@ def RespondToReplies(api):
 	#print("Historic reply IDs:")
 	#print(HistoricReplies)
 		
-	query = "to:" + my_screen_name
+	query = "to:" + TWIT_USERNAME
 		
 	try:		
 		replies = [status for status in tweepy.Cursor(api.search, q=query).items(max_tweets)]
@@ -51,12 +56,36 @@ def RespondToReplies(api):
 		for reply in replies:
 			if not reply.user.id_str == my_userid:
 				if len(HistoricReplies) == 0 or not reply.id_str in HistoricReplies:
-	 
-					#print(reply.id_str)
-					#print(reply.text)
-					#print(reply.user.screen_name)
+					print("Reply found: " + reply.text)
+					iFlag = 0
+					if HASHTAG_BOOKTITLE in reply.text.lower():
+						iFlag = 1
+					elif HASHTAG_LOVESCENE in reply.text.lower():
+						iFlag = 2
+					else:
+						iCoinFlip = randint(1,2)
+						if iCoinFlip == 2:
+							iFlag  = 2
+						else:
+							iFlag = 1
 					
-					api.update_status("@" + reply.user.screen_name + " " + misc.TweetReplyBuilder().GetReply(), in_reply_to_status_id = reply.id_str)
+					if iFlag == 1: 
+						api.update_status("@" + reply.user.screen_name + " " + misc.TweetReplyBuilder().GetReply(), in_reply_to_status_id = reply.id_str)	
+					elif iFlag == 2:
+						Tweets = [1]
+			
+						sPrefix = "@" + reply.user.screen_name + " "
+						Tweets = generators.GetChoppedTweets(False, MAX_GENERATOR_NO, sPrefix)
+
+						status = None
+						print("===Here is your " + str(len("".join(Tweets))) + " char tweet===")
+						for tweet in Tweets:
+							print("[" + tweet + "](" + str(len(tweet)) + " chars)")
+							
+							if status == None:	
+								status = UpdateStatus(api, tweet, reply.id_str)
+							else:
+								status = UpdateStatus(api, tweet, status.id)
 					
 					with open(REPLIES_FILE_NAME, 'a') as WriteReplyFile:
 						WriteReplyFile.write(str(reply.id_str) + "\n")

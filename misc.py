@@ -155,6 +155,37 @@ class SexyAdjs(WordList):
 		'naughty',
 		'sexy',
 		'steamy']
+		
+class WomanAdjs(WordList):
+	def __init__(self):
+		self.List = ['beautiful',
+			'busty',
+			'buxom',
+			'comely',
+			'curvaceous',
+			'curvy',
+			'elegant',
+			'gorgeous',
+			'leggy',
+			'lewd',
+			'model-esque',
+			'MILF-esque',
+			'nubile',
+			'petite',
+			'ravishing',
+			'saucy',
+			'sensual',
+			'sexy',
+			'shameless',
+			'shapely',
+			'slender',
+			'statuesque',
+			'stunning',
+			'sultry',
+			'teenage',
+			'voluptuous',
+			'young',
+			'youthful']
 
 class BookSellers(WordList):
 	List = ['Apple Books',

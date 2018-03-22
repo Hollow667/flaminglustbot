@@ -476,7 +476,7 @@ class BookTitleBuilder():
 		sVerbBy = VerbsBy.GetWord()
 		sVerbTo = VerbsTo.GetWord()
 		
-		iRand = randint(1,10)
+		iRand = randint(1,11)
 		if iRand == 1:
 			#Blackmailed by the Billionaire Mountain Man 
 			sTitle = sVerbBy + " by the " + sMaster
@@ -518,6 +518,9 @@ class BookTitleBuilder():
 		elif iRand == 10:
 			#Babysitter to the Billionaire Uniporn
 			sTitle = sGirl + " to the " + sMaster
+		elif iRand == 11:
+			#The Virgin Call-Girl's Gang Bang
+			sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
 		else:
 			pass
 			

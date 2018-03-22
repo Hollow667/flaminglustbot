@@ -22,7 +22,7 @@ def ReplyResponder(e, api, iReplyTimer):
 	
 	RespondToReplies(api)
 	e.wait(iReplyTimer)
-	while e.is_set() == False :
+	while e.is_set() == False and ResponderThread.parent_thread.is_alive():
 		RespondToReplies(api)
 		e.wait(iReplyTimer)
 	print("Exiting ReplyResponder()")
@@ -39,6 +39,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 
 		e = threading.Event()
 		ResponderThread = threading.Thread(target=ReplyResponder, args=(e,api,iReplyTimer))
+		ResponderThread.parent_thread = threading.current_thread()
 		ResponderThread.start()
 		
 		if iGeneratorNo == -1:
@@ -96,7 +97,7 @@ def SetGetArgs():
 	Parser.add_argument('-numtweets', type=int, default=1, help='number of tweets to generate before quitting (default is 1)')
 	Parser.add_argument('-test', type=int, default=-1, help='type of tweet to generate for testing purposes')
 	Parser.add_argument('-tweettimer', type=int, default=1200, help='num of seconds to wait before next tweet')
-	Parser.add_argument('-replytimer', type=int, default=90, help='num of seconds to wait before running reply routine')
+	Parser.add_argument('-replytimer', type=int, default=60, help='num of seconds to wait before running reply routine')
 	
 	return Parser.parse_args()
 			

@@ -758,6 +758,8 @@ class AnusFemale(BodyParts):
 			'hole',
 			'knot',
 			'poop-chute',
+			'poop-trap',
+			'pooper',
 			'rear orifice',
 			'rear passage',
 			'rectum',

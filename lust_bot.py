@@ -21,10 +21,17 @@ def ReplyResponder(e, api, iReplyTimer):
 	ResponderThread = threading.current_thread()
 	
 	RespondToReplies(api)
-	e.wait(iReplyTimer)
+	for x in range(0, iReplyTimer):
+		e.wait(1)
+		if not ResponderThread.parent_thread.is_alive():
+			break
+			
 	while e.is_set() == False and ResponderThread.parent_thread.is_alive():
 		RespondToReplies(api)
-		e.wait(iReplyTimer)
+		for x in range(0, iReplyTimer):
+			e.wait(1)
+			if not ResponderThread.parent_thread.is_alive():
+				break
 	print("Exiting ReplyResponder()")
 	
 def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo = MAX_GENERATOR_NO):

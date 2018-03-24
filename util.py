@@ -14,6 +14,11 @@ class Gender(Enum):
 	Female = 2
 	Neuter = 3
 	
+class Tense(Enum):
+	Present = 1
+	Past = 2
+	Gerund = 3
+	
 class LocInOutType(Enum):
 	Indoors = 1
 	Outdoors = 2

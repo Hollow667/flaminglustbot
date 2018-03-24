@@ -344,4 +344,23 @@ class VerbMoan(Verb):
 					'sighing',
 					'wailing',
 					'whimpering',
-					'whispering',]
+					'whispering']
+					
+class VerbOralMale(Verb):
+	PresentList = ['blow',
+		'go down on',
+		'fellate',
+		'suck',
+		'suck off']
+	
+	PastList = ['blew'
+		'went down on',
+		'fellated',
+		'sucked'
+		'sucked off',]
+	
+	GerundList = ['blowing'
+		'fellating',
+		'going down on',
+		'sucking',
+		'sucking off']

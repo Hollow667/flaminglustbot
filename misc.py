@@ -200,6 +200,7 @@ class BookSellers(WordList):
 class BookGirls(WordList):
 	List = ['Amish Maiden',
 			'Babysitter',
+			'BBW',
 			'Call-Girl',
 			'Co-ed',
 			'Fashion Model',
@@ -216,35 +217,47 @@ class BookGirls(WordList):
 			'Midwife',
 			'MILF',
 			'Milk Maid',
+			'Nanny',
 			'Nurse',
-			'Pregnancy Surrogate',
+			'Surrogate',
 			'Secretary',
 			'Servant',
 			'Sex Slave',
 			'Sex Witch',
 			'Single Mom',
+			'Small-Town Girl',
 			'Step-Daughter',
 			'Step-Sister',
 			'Submissive',
+			'Teacher',
+			'Tutor',
 			'Virgin',
 			'Waitress',
 			'Wife']
 			
 class BookGirlAdjs(WordList):
-	List = ['BDSM',
+	List = ['Amish',
+		'BBW',
+		'BDSM',
 		'Call-Girl',
 		'Co-ed',
+		'Curvy',
 		'Engaged',
 		'Harem',
 		'High-Heeled',
+		'Innocent',
+		'Intern',
 		'Lesbian',
 		'Married',
 		'MILF',
+		'Naked',
 		'Pregnant',
 		'Sex',
 		'Single',
 		'Single Mom',
+		'Small-Town',
 		'Submissive',
+		'Taboo',
 		'Teenage',
 		'Virgin',
 		'Virgin',
@@ -389,6 +402,7 @@ class BookVerbsBy(WordList):
 			'Punished',
 			'Ravaged',
 			'Seduced',
+			'Sexually Harrassed At My Workplace',
 			'Spanked',
 			'Shaved',
 			'Taken',
@@ -463,6 +477,11 @@ class BookTitleBuilder():
 				FMs += "F"
 			else:
 				FMs += "M"
+				
+		if "M" not in FMs:
+			FMs += "M"
+		elif "F" not in FMs:
+			FMs += "F"
 		
 		return FMs
 		
@@ -478,16 +497,15 @@ class BookTitleBuilder():
 		sVerbBy = VerbsBy.GetWord()
 		sVerbTo = VerbsTo.GetWord()
 		
-		iRand = randint(1,11)
+		iRand = randint(1,14)
 		if iRand == 1:
 			#Blackmailed by the Billionaire Mountain Man 
 			sTitle = sVerbBy + " by the " + sMaster
 		elif iRand == 2:
 			#Married to the Alpha Wolf
 			sTitle = sVerbTo + " to the " + sMaster
-			iRand2 = randint(1,2)
-			if iRand2 == 1:
-					sTitle += ": An " + self._getFMs_() + " Adventure"
+			if CoinFlip():
+				sTitle += ": An " + self._getFMs_() + " Adventure"
 		elif iRand == 3:
 			#The President's Girl
 			sTitle = "The " + sMaster + "'s " + sGirl
@@ -496,9 +514,8 @@ class BookTitleBuilder():
 			sTitle = sVerbTo + " in the Bed of the " + sMaster
 		elif iRand == 5:
 			#The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-			iRand2 = randint(1,2)
 			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", And The " + sMaster + ": "
-			if iRand2 == 1:
+			if CoinFlip():
 				sTitle += "A Hot Menage"
 			else:
 				sTitle += "A " + self._getFMs_() + " Romance"
@@ -514,6 +531,8 @@ class BookTitleBuilder():
 		elif iRand == 8:
 			#Baby for the Stay-at-Home Manticore
 			sTitle = "Baby for the " + sMaster 
+			if CoinFlip():
+				sTitle += ": A " + self._getFMs_() + " Romance"
 		elif iRand == 9:
 			#The Millionaire Sherrif's Virgin
 			sTitle = "The " + sMaster + "'s " + sGirl
@@ -521,8 +540,23 @@ class BookTitleBuilder():
 			#Babysitter to the Billionaire Uniporn
 			sTitle = sGirl + " to the " + sMaster
 		elif iRand == 11:
+			#Babysitter for the Billionaire Uniporn
+			sTitle = sGirl + " for the " + sMaster
+			if CoinFlip():
+				sTitle += ": An " + self._getFMs_() + " Adventure"
+		elif iRand == 12:
 			#The Virgin Call-Girl's Gang Bang
 			sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
+		elif iRand == 13:
+			#The Small-Town Virgin's First Porno
+			sTitle = "The " + sGirl + "'s First Porno"
+			if CoinFlip():
+				sTitle += ": An " + self._getFMs_() + " Adventure"
+		elif iRand == 14:
+			#The Small-Town Virgin's First Time
+			sTitle = "The " + sGirl + "'s First Time"
+			if CoinFlip():
+				sTitle += ": A " + self._getFMs_() + " Romance"
 		else:
 			pass
 			

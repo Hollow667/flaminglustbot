@@ -75,7 +75,7 @@ def RespondToReplies(api):
 						Tweets = [1]
 			
 						sPrefix = "@" + reply.user.screen_name + " "
-						Tweets = generators.GetChoppedTweets(False, MAX_GENERATOR_NO, sPrefix)
+						Tweets = generators.GetChoppedTweets(False, MAX_GENERATOR_NO, sPrefix, bAllowPromo = False)
 
 						status = None
 						print("===Here is your " + str(len("".join(Tweets))) + " char tweet===")

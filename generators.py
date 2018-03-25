@@ -15,7 +15,7 @@ Q_SIZE = 5
 
 HistoryQ = []
 
-def GetTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
+def GetTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO, bAllowPromo = True):
 	sTweet = ""
 	iSwitch = 999
 	
@@ -25,9 +25,9 @@ def GetTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO):
 		if not gen == None:
 			sTweet = gen.GenerateTweet()
 	else:
-		gen = GenSel.RandomGenerator()
+		gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo)
 		while gen.ID in HistoryQ:
-			gen = GenSel.RandomGenerator()
+			gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo)
 		if not gen == None:
 			sTweet = gen.GenerateTweet()
 			
@@ -85,12 +85,12 @@ def AddHashtag(Tweets):
 
 	return Tweets
 	
-def GetChoppedTweets(bTest, iGeneratorNo = MAX_GENERATOR_NO, sPrefix = ""):
+def GetChoppedTweets(bTest, iGeneratorNo = MAX_GENERATOR_NO, sPrefix = "", bAllowPromo = False):
 	Tweets = [1]
 	sTweetStr = ""
 	
 	#print("Prefix is [" + sPrefix + "]")
-	sTweetStr = GetTweet(bTest, iGeneratorNo)
+	sTweetStr = GetTweet(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
 	#print(sTweetStr)
 	if len(sTweetStr) > 0:
 		if IsTweetTooLong(sPrefix + sTweetStr):
@@ -106,6 +106,7 @@ def GetChoppedTweets(bTest, iGeneratorNo = MAX_GENERATOR_NO, sPrefix = ""):
 class Generator():
 	ID = -1
 	Priority = 1
+	Type = GeneratorType.Normal
 	
 	MaleBodyparts = None 
 	FemBodyParts = None 
@@ -124,6 +125,7 @@ class Generator():
 	VMakeLove = None 
 	VMoan = None
 	VSex = None
+	VSexWith = None
 	VThrust = None
 	
 	MFWB = None 
@@ -152,6 +154,7 @@ class Generator():
 		self.VMakeLove = VerbMakeLove()
 		self.VMoan = VerbMoan()
 		self.VSex = VerbSex()
+		self.VSexWith = VerbSexWith()
 		self.VThrust = VerbThrust()
 		
 		self.MFWB = MaleFWB()
@@ -167,6 +170,7 @@ class Generator():
 class GeneratorPromo(Generator):
 	ID = 0
 	Priority = 4
+	Type = GeneratorType.Promo
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -174,7 +178,7 @@ class GeneratorPromo(Generator):
 		
 		iRand = randint(1,6)
 		if iRand == 1:
-			sTweet = misc.TweetReplyBuilder().GetReply() + " from Flaming Lust Bot!"
+			sTweet = misc.TweetReplyBuilder().GetReply() + " from F.L. Bot!"
 		elif iRand == 2:
 			sTweet = "Reply to a Flaming Lust Bot tweet with a tweet containing '#book' and it will tweet a random smutty book title at you! Use '#lovescene' instead to get your own custom filthy love scene!"
 		elif iRand == 3:
@@ -458,7 +462,7 @@ class Generator16(Generator):
 		sTweet = ""
 		
 		sTweet = self.MaleName.FirstName() + " squeezed and sucked on " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.Breasts.RandomDescription() + " as he fingered her " + self.FemBodyParts.Vagina.Clitoris.RandomDescription() + " and " + self.VThrust.Past() + " her " + self.FemBodyParts.GetRandomHole() + ".\n\n"
-		sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ", stroking his " + self.MaleBodyParts.Penis.RandomDescription() + " as he looked on, 'I can't believe I'm watching my wife " + self.VSex.Present() + " " + AddArticles(self.WhiteCollar.GetPerson()) + "!'"
+		sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ", stroking his " + self.MaleBodyParts.Penis.RandomDescription() + " as he looked on, 'I can't believe I'm watching my wife " + self.VSexWith.Present() + " " + AddArticles(self.WhiteCollar.GetPerson()) + "!'"
 		
 		return sTweet
 		
@@ -678,7 +682,7 @@ class Generator25(Generator):
 		return sTweet
 		
 class Generator26(Generator):
-	#Naked in a public location and cuaght.
+	#Naked in a public location and caught.
 	ID = 26
 	Priority = 2
 	
@@ -762,7 +766,7 @@ class Generator29(Generator):
 	#'What are you reading?' Martin asked.
 	#'Sex Slave to the Vampire Pirates,' Sabrina moaned.
 	ID = 29
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -848,7 +852,7 @@ class Generator32(Generator):
 		if iRand == 1:
 			sTweet += "She bent over and pulled her panties aside, revealing her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".\n\n"
 		elif iRand == 2:
-			sTweet += "She lifted up her short skirt and he saw that she wasn't wearing panties. Her " + self.FemBodyParts.Vagina.OuterLabia.GetNoun() + " was " + self.FemBodyParts.Vagina.OuterLabia.GetAdj() + " and her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " peaked out shyly.\n\n"
+			sTweet += "She lifted up her short skirt and he saw that she wasn't wearing panties. Her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " peaked out shyly from her " + self.FemBodyParts.Vagina.OuterLabia.MediumDescription() + ".\n\n"
 		else:
 			sTweet += "She pulled her " + self.FemBodyParts.Breasts.RandomDescription() + " out of her low-cut blouse. They were large and gleaming with oil.\n\n"
 		sTweet += "'Happy " + self.Event.GetWord() + ", baby,' she said."
@@ -968,31 +972,32 @@ class Generator36(Generator):
 		
 		return sTweet
 		
-# class Generator37(Generator):
-	# ID = 37
-	# Priority = 1
+class Generator37(Generator):
+	ID = 37
+	Priority = 1
+	Type = GeneratorType.Test
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# sHisName = self.MaleName.FirstName()
-		# sHerName = self.FemaleName.FirstName()
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 		
-		# Location = locations.LocationSelector().Location()
-		# AnalScene = SceneAnal(sHisName = sHisName, sHerName = sHerName, oLocation = Location)
+		Location = locations.LocationSelector().Location()
+		TitFuckScene = SceneTitFuck(sHisName = sHisName, sHerName = sHerName, oLocation = Location)
 		
-		# sTweet = Location.BeginDesc + " "
+		sTweet = Location.BeginDesc + " "
 		
-		# sTweet += AnalScene.Scene()
-		# sTweet += "\n\n" + AnalScene.ShortScene()
+		sTweet += TitFuckScene.Scene()
+		sTweet += "\n\n" + TitFuckScene.ShortScene()
 		
-		# return sTweet
+		return sTweet
 		
 class Generator38(Generator):
 	# Husband gets a surprise birthday present from his wife
 	ID = 38
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1042,17 +1047,35 @@ class Generator38(Generator):
 		
 		return sTweet
 		
-# class Generator39(Generator):
-	# ID = 39
-	# Priority = 1
+class Generator39(Generator):
+	#Naked in a public location and watched.
+	ID = 39
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public, InOut = LocInOutType.Indoors)
+		sHerName = self.FemaleName.FirstName()
+		sHisName = self.MaleName.FirstName()
+		iRand = randint(1,3)
+		iRandLength = randint (7,12)
 		
+		sTweet += sHerName + " " + Location.RemoveFemaleClothing() + ". " + sHisName + " bent her over " + Location.BentOver + ". His " + self.MaleBodyParts.Penis.ShortDescription() + " was " + self.MaleBodyParts.Penis.GetAdj(sNot = "erect") + " and fully erect. "
+		if CoinFlip():
+			sTweet += "He spread her " + self.FemBodyParts.Ass.MediumDescription() + " open and carefully eased into her " + self.FemBodyParts.Ass.Anus.RandomDescription(bAllowShortDesc = False) + ". "
+		else:
+			sTweet += "He spread her legs and then eased all " + str(randint(6,13)) + " inches of his " + self.MaleBodyParts.Penis.MediumDescription() + " inside her " + self.FemBodyParts.Vagina.InnerVag.MediumDescription() + " and then began to " + self.VThrust.Present() + " into her. "
+		sTweet += "'But " + sHisName + ",' she " + self.VMoan.Past() + ", '" + Location.HurryReason + "!'\n\n"
+		sTweet += "'Don't worry, baby,' he said. 'No one will see us " + Location.NamePrep + ".'\n\n"
 		
-		# return sTweet
+		if CoinFlip():
+			sTweet += self.MaleName.FirstName() + " watched from his hiding place. His jeans were unzipped and he was stroking his " + self.MaleBodyParts.Penis.MediumDescription() + " feverishly."
+		else:
+			sTweet += self.FemaleName.FirstName() + " watched from her hiding place. Her hands were down her panties and she was frigging her " + self.FemBodyParts.Vagina.ShortDescription() + " furiously."
+
+		return sTweet
 		
 # class Generator40(Generator):
 	# ID = 40
@@ -1193,13 +1216,21 @@ class GeneratorSelector():
 			for x in range(0, item.Priority):
 				self.GeneratorList.append([item.ID, item])
 			
-	def RandomGenerator(self):
+	def RandomGenerator(self, bAllowPromo = True):
 		Generator = None
 		
+		AllowedTypes = [GeneratorType.Normal]
+		if bAllowPromo:
+			AllowedTypes.append(GeneratorType.Promo)
+			
 		if len(self.GeneratorList) > 0:
 			iRand = randint(0, len(self.GeneratorList) - 1)
 			Generator = self.GeneratorList[iRand][1]
 			
+			while not self.GeneratorList[iRand][1].Type in AllowedTypes:
+				iRand = randint(0, len(self.GeneratorList) - 1)
+				Generator = self.GeneratorList[iRand][1]
+				
 		return Generator 
 		
 	def GetGenerator(self, iGen):

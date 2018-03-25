@@ -29,6 +29,11 @@ class LocPubPrivType(Enum):
 	Private = 2
 	Either = 3
 	
+class GeneratorType(Enum):
+	Normal = 1
+	Promo = 2
+	Test = 3
+
 def AddArticles(sNounPhrase):
 	sUpdatedPhrase = ""
 	

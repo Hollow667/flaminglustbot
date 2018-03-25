@@ -303,6 +303,41 @@ class VerbSex(Verb):
 		'passionately',
 		'rapturously']
 		
+class VerbSexWith(Verb):
+	PresentList = ['bang',
+		'boink',
+		'fuck',
+		'go at it with',
+		'have sex with',
+		'hump',
+		'make love to']
+		
+	PastList = ['banged',
+		'boinked',
+		'fucked',
+		'went at it with',
+		'had sex with',
+		'humped',
+		'made love to']
+		
+	GerundList = ['banging',
+		'boinking',
+		'fucking',
+		'going at it with',
+		'having sex with',
+		'humping',
+		'making love to']
+		
+	AdverbList = ['ardently',
+		'enthusiastically',
+		'fervently',
+		'fervidly',
+		'feverishly',
+		'heedlessly',
+		'intensely',
+		'passionately',
+		'rapturously']
+		
 class VerbMoan(Verb):
 	PresentList = ['cry',
 					'gasp',
@@ -364,3 +399,4 @@ class VerbOralMale(Verb):
 		'going down on',
 		'sucking',
 		'sucking off']
+		

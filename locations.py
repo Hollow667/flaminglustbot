@@ -40,14 +40,24 @@ class Location():
 			
 	def RemoveFemaleClothing(self):
 		Vagina = bodyparts.Vagina()
+		Breasts = bodyparts.Breasts()
+
 		sTakeItOff = ""
 		
-		if not FemaleTopClothing == "":
-			sTakeItOff = "slipped out of her " + self.FemaleTopClothing + " and pulled down her " + self.FemaleBottomClothing + " revealing her " + bodyparts.Vagina.RandomDescription(bAllowLongDesc = False)
+		if not self.FemaleTopClothing == "":
+			if CoinFlip():
+				sTakeItOff += "slipped out of her " + self.FemaleTopClothing + " and pulled down her " + self.FemaleBottomClothing + ", revealing her " + Vagina.RandomDescription(bAllowLongDesc = False)
+			else:
+				sTakeItOff += "pulled down her " + self.FemaleBottomClothing + " and slipped out of her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDescription(bAllowLongDesc = False)
 		elif not FemaleBottomClothing == "":
-			sTakeItOff = "pulled down her " + self.FemaleBottomClothing + " revealing her " + bodyparts.Vagina.RandomDescription(bAllowLongDesc = False)
+			sTakeItOff = "pulled down her " + self.FemaleBottomClothing + ", revealing her " + Vagina.RandomDescription(bAllowLongDesc = False)
 		else:
-			"was naked, her " + bodyparts.Breasts.RandomDescription(bAllowLongDesc = False) + " on full display"
+			sTakeItOff += "was naked, her " 
+			if CoinFlip():
+				sTakeItOff += Breasts.RandomDescription(bAllowLongDesc = False) 
+			else:
+				sTakeItOff += Vagina.RandomDescription(bAllowLongDesc = False)
+			sTakeItOff += " on full display"
 			
 		return sTakeItOff
 			
@@ -137,20 +147,17 @@ class Boat(PrivateLocation):
 	LyingOn = "the deck"
 	Ground = "deck"
 	
-class Bedroom(PublicLocation):
+class Bedroom(PrivateLocation):
 	Name = "the bedroom"
 	NamePrep = "in the bedroom"
-	BeginDesc = "The four-poster bed was bathed in warm sunlight as he shut the door behind them."
-	Despite = "the open window"
-	BentOver = "the king-sized bed"
-	KneelingOn = "on the king-sized bed"
-	SittingOn = "on the king-sized bed"
-	LyingOn = "on the king-sized bed"
-	HurryReason = "the neighbors will see us"
-	Caught = "'I think the neighbors are watching us!' she said."
-	Excuse = "'Let them,' he replied."
-	Consequence = "as the people next door looked on"
-	Ground = "thick carpet"
+	Despite = "some fumbling awkwardness"
+	BeginDesc = "Candles were lit all around the four-poster king-sized bed."
+	BentOver = "the end of the bed"
+	KneelingOn = "the bed"
+	SittingOn = "a stack of cushions"
+	LyingOn = "the king-sized bed"
+	Ground = "the thick comforter"
+	FemaleBottomClothing = "sheer panties"
 	
 class CarBackseat(PublicLocation):
 	Name = "the backseat of the car"
@@ -363,19 +370,21 @@ class Office(PublicLocation):
 	FemaleBottomClothing = "thong panties"
 	MaleTopClothing = "dress shirt"
 	MaleBottomClothing = "slacks"
-
-class ParentsBedroom(PrivateLocation):
-	Name = "his parents bedroom"
-	NamePrep = "in the bedroom of his parents"
-	Loc = LocInOutType.Indoors
-	Despite = "some fumbling awkwardness"
-	BeginDesc = "Candles were lit all around his parents king-sized bed."
-	BentOver = "the end of the bed"
-	KneelingOn = "the bed"
-	SittingOn = "a stack of cushions"
-	LyingOn = "the king-sized bed"
-	Ground = "the thick comforter"
-	FemaleBottomClothing = "sheer panties"
+	
+class OpenWindow(PublicLocation):
+	Name = "the open window"
+	NamePrep = "in front of an open window"
+	BeginDesc = "Sunlight flooded through the large open window that looked down on the street."
+	Despite = "the open window"
+	BentOver = "the window sill"
+	KneelingOn = "on the wide window sill"
+	SittingOn = "on sofa in front of the window"
+	LyingOn = "on the the wide window sill"
+	HurryReason = "the neighbors will see us"
+	Caught = "'I think the neighbors are watching us!' she said."
+	Excuse = "'Let them,' he replied."
+	Consequence = "as the people next door looked on"
+	Ground = "thick carpet"
 	
 class PoolPatio(PrivateLocation):
 	Name = "the pool patio"

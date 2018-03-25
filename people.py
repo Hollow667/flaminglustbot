@@ -235,7 +235,7 @@ class JobWhiteCollar(Person):
 		'lieutenant colonel',
 		'merchant',
 		'middle manager',
-		'motivational spieaker',
+		'motivational speaker',
 		'opthamologist',
 		'orthodonist',
 		'pharmacist',

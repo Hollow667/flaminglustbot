@@ -28,10 +28,18 @@ def InitTweepy():
 	return api
 	
 def UpdateStatus(api, Tweet, in_reply_to_status_id = ""):
-	try:
-		status = api.update_status(Tweet, in_reply_to_status_id)
-	except tweepy.TweepError as e:
-		print("***ERROR*** [" + e.reason + "]")	
+	status = None 
+	bTryToTweet = True 
+	
+	while bTryToTweet:
+		try:
+			status = api.update_status(Tweet, in_reply_to_status_id)
+			bTryToTweet = False 
+		except tweepy.TweepError as e:
+			# if twitter throws an error message, wait a few seconds and try again
+			print("***ERROR*** [" + e.reason + "]")	
+			bTryToTweet = True
+			time.sleep(10)
 		
 	return status 
 	

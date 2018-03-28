@@ -1,23 +1,34 @@
 # People module
 
 from random import *
-import util
+from util import *
 
-class Person:
-	PersonList = []
-	
+class Person(WordList):
 	def GetPerson(self):
 		sPerson = ""
-		iRandIndex = 0
 		
-		iRandIndex = randint(0, len(self.PersonList) - 1)
-		
-		sPerson = self.PersonList[iRandIndex]
+		sPerson = self.GetWord()
 		
 		return sPerson
 		
+class MaleSO(Person):
+	List = ['boyfriend',
+			'fiancé',
+			'hubby',
+			'husband',
+			'man',
+			'partner']
+			
+class FemaleSO(Person):
+	List = ['bride',
+			'girlfriend',
+			'fiancé',
+			'wife',
+			'partner',
+			'woman']
+		
 class FemaleFWB(Person):
-	PersonList = ['aunt',
+	List = ['aunt',
 		'babysitter',
 		'barista',
 		'boss',
@@ -78,7 +89,7 @@ class FemaleFWB(Person):
 		'wife\'s pregnancy surrogate']
 		
 class MaleFWB(Person):
-	PersonList = ['attorney',
+	List = ['attorney',
 			'attractive male masseuse',
 			'baby daddy',
 			'bank teller',
@@ -144,7 +155,7 @@ class MaleFWB(Person):
 			'yoga teacher']
 			
 class JobBlueCollar(Person):
-	PersonList = ['bag boy',
+	List = ['bag boy',
 		'ball boy',
 		'bellhop',
 		'Starbucks barista',
@@ -153,6 +164,7 @@ class JobBlueCollar(Person):
 		'bus driver',
 		'cattle wrangler',
 		'civil servant',
+		'club bouncer',
 		'Comcast technician',
 		'dog walker',
 		'dog groomer',
@@ -186,16 +198,17 @@ class JobBlueCollar(Person):
 		'pool boy',
 		'porn set fluffer',
 		'postal clerk',
+		'private in the army',
 		'public restroom attendant',
 		'rent-a-cop',
 		'roadie',
 		'roadkill disposal worker',
+		'sea man',
 		'self-published author',
 		'serf',
 		'server at Applebee\'s',
 		'shift supervisor',
 		'short-order cook',
-		'soldier',
 		'stable boy',
 		'stand-up comedian',
 		'Whole Foods stock boy',
@@ -208,11 +221,12 @@ class JobBlueCollar(Person):
 		'used car salesman',
 		'waiter',
 		'Wal-Mart greeter',
+		'wedding DJ',
 		'writer of erotic romances',
 		'zoo keeper']
 		
 class JobWhiteCollar(Person):
-	PersonList = ['accountant',
+	List = ['accountant',
 		'actuary',
 		'airline pilot',
 		'Apple Store genius',
@@ -223,9 +237,11 @@ class JobWhiteCollar(Person):
 		'city councilman',
 		'civil engineer',
 		'classical violinist',
+		'club DJ',
 		'crossword puzzle writer',
 		'database developer',
 		'detective',
+		'executive producer',
 		'guru',
 		'gynecologist',
 		'fashion photographer',
@@ -255,7 +271,6 @@ class JobWhiteCollar(Person):
 		'sex therapist',
 		'sex toy designer',
 		'sherriff',
-		'stage magician',
 		'stay-at-home dad',
 		'surgeon',
 		'tax attorney',
@@ -264,10 +279,11 @@ class JobWhiteCollar(Person):
 		'veterinarian',
 		'web designer',
 		'Wendy\'s franchise owner',
-		'yoga teacher']
+		'yoga teacher',
+		'YouTube personality']
 		
 class JobWealthyMale(Person):
-	PersonList = ['archduke',
+	List = ['archduke',
 		'baron',
 		'Bitcoin billionaire',
 		'billionaire',
@@ -277,8 +293,6 @@ class JobWealthyMale(Person):
 		'duke',
 		'earl',
 		'emperor',
-		'executive producer',
-		'father superior',
 		'film mogul',
 		'general',
 		'king',
@@ -302,11 +316,10 @@ class JobWealthyMale(Person):
 		'sultan',
 		'surgeon general',
 		'titan of industry',
-		'viscount',
-		'YouTube star']
+		'viscount']
 
 class JobWealthyFemale(Person): 
-	PersonList = ['actress',
+	List = ['actress',
 		'archduchess',
 		'baroness',
 		'heiress',

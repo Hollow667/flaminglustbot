@@ -1,6 +1,6 @@
 # Utilities module
 
-import time, sys, random
+import os, time, sys, random
 
 from random import *
 from enum import * 
@@ -8,6 +8,20 @@ from enum import *
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
 TWIT_USERNAME = 'bot_lust'
+
+Q_SIZE = 5
+HISTORYQ_FILENAME = 'history_q.txt'
+
+TAG_PEN = "sex act with penetration scene"
+TAG_NON_PEN = "non-penetrative sex act scene"
+TAG_DONE_TO_HER = "done to her scene"
+TAG_DONE_TO_HIM = "done to him scene"
+TAG_CLIMAX = "orgasm scene"
+TAG_POSITION = "sex position scene"
+TAG_FOREPLAY = "foreplay scene"
+TAG_ABOVE_BELT = "above-the-belt sex act scene"
+TAG_BELOW_BELT = "below-the-belt sex act scene"
+TAG_ORAL = "oral sex scene"
 	
 class Gender(Enum):
 	Male = 1
@@ -66,7 +80,7 @@ class WordList:
 		else:
 			self.List = NewList
 	
-	def GetWord(self):
+	def GetWord(self, sNot = ""):
 		sWord = ""
 		iRandIndex = 0
 			
@@ -74,6 +88,10 @@ class WordList:
 			iRandIndex = randint(0, len(self.List) - 1)
 		
 			sWord = self.List[iRandIndex]
+			while not sNot == "" and sNot in sWord:
+				iRandIndex = randint(0, len(self.List) - 1)
+		
+				sWord = self.List[iRandIndex]
 		
 		return sWord
 		

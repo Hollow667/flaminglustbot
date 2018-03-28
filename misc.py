@@ -203,6 +203,7 @@ class BookGirls(WordList):
 			'BBW',
 			'Call-Girl',
 			'Co-ed',
+			'Concubine',
 			'Fashion Model',
 			'Flight Attendant',
 			'Governess',
@@ -241,6 +242,7 @@ class BookGirlAdjs(WordList):
 		'BDSM',
 		'Call-Girl',
 		'Co-ed',
+		'Concubine',
 		'Curvy',
 		'Engaged',
 		'Harem',
@@ -400,7 +402,6 @@ class BookVerbsBy(WordList):
 			'Owned',
 			'Pleasured',
 			'Punished',
-			'Ravaged',
 			'Seduced',
 			'Sexually Harrassed At My Workplace',
 			'Spanked',
@@ -451,7 +452,7 @@ class BookTitleBuilder():
 		iRand = randint(1,7)
 		sGirl = Girls.GetWord()
 		sGirlAdj = GirlAdjs.GetWord()
-		if iRand > 4 and iRand < 7:
+		if iRand > 3 and iRand < 7:
 			while sGirlAdj in sGirl:
 				sGirlAdj = GirlAdjs.GetWord() 
 			sGirl = sGirlAdj + " " + sGirl
@@ -589,6 +590,8 @@ class Punchline():
 		JobWealthyFemale = people.JobWealthyFemale()
 		MaleFWB = people.MaleFWB()
 		FemaleFWB = people.FemaleFWB()
+		MaleSO = people.MaleSO()
+		FemaleSO = people.FemaleSO()
 		VerbSex = verbs.VerbSex()
 		
 		sHappyExclamation = Exclamation.GetWord(bHappy = True).capitalize() + " "
@@ -625,23 +628,25 @@ class Punchline():
 		self.FemalePunchlines.append("'I'll bet you brought the last " + FemaleFWB.GetPerson() + " here too,' she said teasingly.")
 		self.FemalePunchlines.append("'Is this how a " + JobWealthyMale.GetPerson() + " treats a lady?' she asked.")
 		self.FemalePunchlines.append("'You can't tell anyone that I'm a " + JobWealthyFemale.GetPerson() + ",' she said seriously.")
-		self.FemalePunchlines.append("'We can't tell my boyfriend about this,' she said.")
+		self.FemalePunchlines.append("'We can't tell my " + MaleSO.GetWord() + " about this,' she said.")
 		self.FemalePunchlines.append("'" + sSadExclamation + "My dress is completely ruined!' she said.")
 		self.FemalePunchlines.append("'Was this your first time " + VerbSex.Gerund() + " a " + JobWealthyFemale.GetPerson() + "?' she asked him.")
 		self.FemalePunchlines.append("'Before you ask, I already have a boyfriend,' she said, 'And he's not a " + JobBlueCollar.GetPerson() + " like you.'")
 		self.FemalePunchlines.append("'" + sExclamation + "What would my mother say if she knew that I was " + VerbSex.Gerund () + " a " + JobBlueCollar.GetPerson() + "?'. she asked.")
-		self.FemalePunchlines.append("'It doesn't count as cheating on your husband if you " + VerbSex.Present() + " a " + JobWealthyMale.GetPerson() + ", right?' she asked.")
-		self.FemalePunchlines.append("'I can't let my " + MaleFWB.GetPerson() + " know that I'm screwing my " + JobBlueCollar.GetPerson() + "!' she said.")
+		self.FemalePunchlines.append("'It doesn't count as cheating on your " + MaleSO.GetWord() + " if you " + VerbSex.Present() + " a " + JobWealthyMale.GetPerson() + ", right?' she asked.")
+		self.FemalePunchlines.append("'I can't let my " + MaleSO.GetWord() + " know that I'm screwing my " + JobBlueCollar.GetPerson() + "!' she said.")
 		self.FemalePunchlines.append("'Hang on,' she said, 'I need to Snap Chat this.'")
 		self.FemalePunchlines.append("'I usually only do this for money,' she said.")
 		self.FemalePunchlines.append("'Same time next Thursday?' she asked.")
 		
 		#Male exclamations
 		self.MalePunchlines.append("'Happy " + BigEvent.GetWord(bRemoveMy = True) + "!' he said.")
-		self.MalePunchlines.append("'We can't tell my girlfriend about this,' he said.")
+		self.MalePunchlines.append("'We can't tell my " + FemaleSO.GetWord() + " about this,' he said.")
 		self.MalePunchlines.append("'You should know I'm married,' he said.")
 		self.MalePunchlines.append("'You can't tell anyone that I'm a " + JobWealthyMale.GetPerson() + ",' he said, seriously.")
 		self.MalePunchlines.append("'Same time next Tuesday?' he asked.")
+		self.MalePunchlines.append("'You're even better than your sister,' he said.")
+		self.MalePunchlines.append("'You remind me so much of my ex-wife,' he said.")
 		
 	def GetPunchline(self, gender):
 		sPunchline = ""

@@ -18,7 +18,8 @@ class Names:
 
 class NamesMale(Names):
 	def __init__(self):
-		self.FirstNamesList = ['Alistair',
+		self.FirstNamesList = ['Adam',
+			'Alistair',
 			'Ambrose',
 			'Andre',
 			'Angel',
@@ -190,8 +191,12 @@ class NamesFemale(Names):
 			'Leslie',
 			'Lilli',
 			'Lola',
+			'Marianna',
+			'Marilyn',
+			'Marsha',
 			'Melina',
 			'Misty',
+			'Molly',
 			'Morgan',
 			'Natasha',
 			'Olive',

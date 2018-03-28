@@ -477,6 +477,9 @@ class VaginaInner(BodyParts):
 
 	def __init__(self):
 			self.NounList = ['cherry',
+				'cleft',
+				'chamber',
+				'chasm',
 				'cock-sock',
 				'cunt-hole',
 				'fuck-tunnel',
@@ -486,37 +489,36 @@ class VaginaInner(BodyParts):
 				'hole',
 				'honey hole',
 				'honeypot',
+				'keyhole',
 				'love-channel',
 				'love-tunnel',
+				'passage',
 				'slit',
 				'trench',
 				'tunnel',
 				'vagina',
 				'vaginal canal',
 				'vestibule',
-				'womb']
+				'womanhood']
 			self.AdjList = ['cherry',
 				'cherry red',
 				'clenched',
 				'deep',
-				'delicate',
-				'dewy',
+				'deep',
 				'dripping',
-				'fuckable',
 				'glazed',
 				'gushing',
-				'honeyed',
 				'hungry',
 				'juicy',
-				'leaky',
 				'lewd',
-				'lush',
 				'lustful',
-				'moist',
-				'oozing',
 				'pink',
+				'pink',
+				'pink'
 				'secret',
-				'silk',
+				'silken',
+				'slick',
+				'slick',
 				'snug',
 				'sopping',
 				'spread',
@@ -524,6 +526,7 @@ class VaginaInner(BodyParts):
 				'sweet',
 				'tender',
 				'tight',
+				'velvet',
 				'velvet',
 				'virginal',
 				'wanton',
@@ -550,6 +553,8 @@ class VaginaOuterLabia(BodyParts):
 							'down-thatched',
 							'dripping',
 							'fat',
+							'fat',
+							'flushed',
 							'fur-lined',
 							'girlish',
 							'gleaming wet',
@@ -1015,16 +1020,16 @@ class BodyFemale(BodyParts):
 		
 		return Holes
 		
-	def GetRandomHole(self, bIncludeMouth = True, bAllowShortDesc = True):
+	def GetRandomHole(self, bIncludeMouth = True, bAllowShortDesc = True, bAllowLongDesc = True):
 		sHole = ""
 		Holes = []
 		if bIncludeMouth:		
-			Holes.append(self.Mouth.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-			Holes.append(self.Vagina.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-			Holes.append(self.Ass.Anus.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			Holes.append(self.Mouth.RandomDescription(bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc))
+			Holes.append(self.Vagina.RandomDescription(bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc))
+			Holes.append(self.Ass.Anus.RandomDescription(bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc))
 		else:
-			Holes.append(self.Vagina.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-			Holes.append(self.Ass.Anus.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			Holes.append(self.Vagina.RandomDescription(bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc))
+			Holes.append(self.Ass.Anus.RandomDescription(bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc))
 		
 		iRand = randint(0, len(Holes) - 1)
 		sHole = Holes[iRand]
@@ -1182,6 +1187,7 @@ class Penis(BodyParts):
 			'enormously erect',
 			'erect',
 			'erect',
+			'fat',
 			'fat',
 			'fevered',
 			'fucking',

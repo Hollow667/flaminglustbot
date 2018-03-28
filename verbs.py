@@ -301,7 +301,8 @@ class VerbSex(Verb):
 		'heedlessly',
 		'intensely',
 		'passionately',
-		'rapturously']
+		'rapturously',
+		'urgently']
 		
 class VerbSexWith(Verb):
 	PresentList = ['bang',
@@ -399,4 +400,72 @@ class VerbOralMale(Verb):
 		'going down on',
 		'sucking',
 		'sucking off']
+		
+class VerbSexActsByMale(Verb):
+	PresentList = ["ass fuck",
+		"cream-pie",
+		"dry hump",
+		"eat out",
+		"facial",
+		"finger bang",
+		"rim",
+		"sixty-nine",
+		"tea-bag",
+		"titty fuck"]
+		
+	PastList = ["ass fucked",
+		"cream-pied",
+		"dry humped",
+		"ate out",
+		"facialed",
+		"finger banged",
+		"rim-jobbed",
+		"sixty-nined",
+		"tea-bagged",
+		"titty fucked"]
+		
+	GerundList = ["ass fucking",
+		"cream-pieing",
+		"dry humping",
+		"eating out",
+		"facialing",
+		"finger banging",
+		"rimming",
+		"sixty-nining",
+		"tea-bagging",
+		"titty fucking"]
+		
+class VerbSexActsByFemale(Verb):
+	PresentList = ["blow",
+		"deep throat",
+		"dry hump",
+		"fellate",
+		"give a footjob to",
+		"jerk off",
+		"peg",
+		"rim",
+		"sixty-nine",
+		"squirt on"]
+		
+	PastList = ["blew",
+		"dry humped",
+		"deep-throated",
+		"fellated",
+		"gave a footjob to",
+		"jerked off",
+		"pegged",
+		"rimmed",
+		"sixty-nined",
+		"squirted on"]
+		
+	GerundList = ["blowing",
+		"deep throating",
+		"dry humping",
+		"fellating",
+		"giving a footjob to",
+		"pegging",
+		"rimming",
+		"sixty-nining",
+		"squriting on"]
+	
 		

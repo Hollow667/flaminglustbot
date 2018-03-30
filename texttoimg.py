@@ -1,7 +1,7 @@
 PATH = "resources/"
 FONT = "NoticiaText-Regular.ttf"
 TEST_IMAGE = "test.png"
-MAX_IMG_NUM = 13
+MAX_IMG_NUM = 26
 
 # Text-to-Image module
 
@@ -28,7 +28,7 @@ def WrapText(sText, font, offset_width):
 		iLastWhtSpc = iLineStart
 		
 		for x in range(iLineStart, len(sText)):
-			if sText[x].isspace():
+			if sText[x].isspace() or sText[x] == "-":
 				iLastWhtSpc = x
 			#print("WrapText() x = " + str(x) + ", iLastWhtSpc = " + str(iLastWhtSpc))
 			#print("WrapText() sTest[" + str(x) + "] is '" + sText[x] + "'")
@@ -39,14 +39,14 @@ def WrapText(sText, font, offset_width):
 				if iLastWhtSpc >= iLineStart:
 					#print("WrapText() iLastWhtSpc > iLineStart and line is too wide. Break and append to Lines[]")
 					Lines.append(sText[iLineStart:iLastWhtSpc])
-					print("WrapText() current line is [" + sText[iLineStart:iLastWhtSpc] + "]")
+					#print("WrapText() current line is [" + sText[iLineStart:iLastWhtSpc] + "]")
 					iLineStart = iLastWhtSpc + 1
 					break
 				else:
 					#print("WrapText() iLastWhtSpc <= iLineStart and line is too wide. Break and append to Lines[]")
 					iLastWhtSpc = int((x - iLineStart)/2) 
 					Lines.append(sText[iLineStart:iLastWhtSpc])
-					print("WrapText() current line is [" + sText[iLineStart:iLastWhtSpc] + "]")
+					#print("WrapText() current line is [" + sText[iLineStart:iLastWhtSpc] + "]")
 					iLineStart = iLastWhtSpc + 1
 					break
 			else:
@@ -54,7 +54,7 @@ def WrapText(sText, font, offset_width):
 				if x == len(sText) - 1:
 					bEndOfText = True
 					Lines.append(sText[iLineStart:len(sText)])
-					print("WrapText() current line is [" + sText[iLineStart:len(sText)] + "]")
+					#print("WrapText() current line is [" + sText[iLineStart:len(sText)] + "]")
 					break 
 	
 	return Lines
@@ -172,15 +172,17 @@ def DrawText(size, sText, color):
 
 	return ImgFrame
 	
-def GetBGImg():
-	#iNo = randint(1, MAX_IMG_NUM)
-	iNo = 9
+def GetBGImg(iPicNo = 0):
+	if iPicNo == 0:
+		iPicNo = randint(1, MAX_IMG_NUM)
 	
-	return Image.open(PATH + "bg_" + str(iNo) + ".png").convert('RGBA')
+	return Image.open(PATH + "bg_" + str(iPicNo) + ".png").convert('RGBA')
 
 def CreateImage(sText):
 	# create Image object with the input image
-	 
+	
+	#for i in range(1, MAX_IMG_NUM + 1):
+	#ImgBase = GetBGImg(iPicNo = i)
 	ImgBase = GetBGImg()
 	
 	color = 'rgb(255, 255, 255)' # black color
@@ -193,7 +195,7 @@ def CreateImage(sText):
 	 
 	# save the edited image
 	 
-	ImgOut.save('test.png', optimize = True, quality = 100)
+	ImgOut.save('test' + str(randint(0,99999999)) + '.png')
 
 SampleTweets = ["'You like my outfit?' Dani asked.\n\n'It's stunning, babe,' Quinn said.\n\nHe grabbed the top of her strapless red gown and tugged it down, revealing her swaying girlish jugs. He cupped them with his hands and squeezed them gently. Then he began to suck her nipples.", "'Oh thank God Chastity,' he said to the woman with the dazzling eyes and tightly-bound locks. 'You saved me. How can I ever repay you?'\n\nChastity bent over and pulled down her panties, revealing her luscious tushy.\n\n'You can start by licking my backdoor,' she said.","Calliope knelt in the shallow water and Iain began to lick her dripping dangling petals. Iain eased his impressive stem into her hungry vaginal canal.\n\n'But Iain,' she said, 'People will notice us!!'\n\n'Don't worry baby,' he said, ramming relentlessly into into her.\n\n'That lifeguard is coming towards us!' she said.\n\n'Fuck! I'm gonna cum!' said Iain.\n\n'Wait, not yet!' she cried.\n\n'Too late!' said Iain. 'I'm spurting!' And then, as the lifeguard watched, he grabbed her by the hips and filled her hungry gash with sticky seed.", "'Oh Roberto', she sighed as he held her in his protective arms at the gym, 'I never want this moment to end. I want to stare into your penetrating eyes and put my head against your mighty pectorals forever. I want to dry hump you all night long.'", "'You don't have to hide the truth from me, Chastity,' he said, 'Shane is a successful proctologist and I'm just a lowly stand-up comedian!'\n\n'I don't care about Shane,' she said, 'You're the one I want. And anyway, you have a 9 1/2 inch stalk!'", "Stefan walked in and froze. His wife's Avon Lady lay on the bed totally nude. His wide eyes took in her unbound hair, young figure, heavy thighs, and juicy nether-lips.\n\nThe naked guy next to her was idly kissing her luscious snatch. He looked up at Stefan. 'You want in?' he asked.", "Their masked host ushered them into the banquet hall. In the center of the dining table a beautiful woman lay spread-eagled, completely naked. Her succulent un-sullied flesh was dripping with syrup, her navel was a goblet brimming with liquor, the inside of her thighs were glazed with chocolate, and a single, ripe strawberry was stuffed in her naked hole. 'Gentlemen,' said the prince, 'Let's feast!'\n\n'Lordy!' thought Rafael, 'That's my life drawing model, Ava!'", "Delores slipped out of her dress and pulled down her panties, revealing her shameless muffin. Hunter bent her over the examination table. His beef-rifle was hardening and fully erect. He spread her legs and then eased all 8 inches of his thick girth inside her deep hole and then began to piston into into her. 'But Hunter,' she panted, 'a nurse will hear us!'\n\n'Don't worry, baby,' he said. 'No one will see us in the doctor's office.'\n\nAva watched from her hiding place. Her hands were down her panties and she was frigging her hole furiously.", "'Constance, my dear, I wrote you a poem,' he said.\n\n'What about?' she asked.\n\n'It's about you, my love,' he said. 'It's about your yielding flesh, voluptuous wide womanly hips, shapely legs, puffy cunny, & your gossamer labia.'\n\n'Oh Reginald!' she sighed.", "Chastity slipped out of her dress and pulled down her panties, revealing her vagina. Alistair bent her over the toilet. His meat-missile was hard and fully erect. He spread her legs and then eased all 8 inches of his burning thing inside her dripping chamber and then began to jackhammer into her. 'But Alistair,' she wailed, 'Someone might hear us!!'\n\n'Don't worry, baby,' he said. 'No one will see us in the bathroom at Starbucks.'\n\nRoyce watched from his hiding place. His jeans were unzipped and he was stroking his turgid hard-on feverishly."]
 	
@@ -206,9 +208,10 @@ sTextMedShort = "Viola entered the bedroom. Connor was wearing nothing but a lea
 
 sTextShort = "\"Please, no!\" Vivienne whimpered, squirming with pleasure as Ruben ravished her lewd bunghole. \"Not while my dentist is watching!\""
 
-KillTestImg()
+#KillTestImg()
 
 CreateImage(SampleTweets[randint(0, len(SampleTweets) - 1)])
+#CreateImage(SampleTweets[7])
 
 
 

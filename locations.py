@@ -268,9 +268,9 @@ class DressingRoom(PublicLocation):
 	BeginDesc = "Whispering and giggling, they locked themselves in the dressing room."
 	Despite = "the danger of being heard"
 	BentOver = "the bench in the dressing room"
-	KneelingOn = "the bench in the dressing room"
-	LyingOn = "the floor"
-	SittingOn = "a weight bench"
+	KneelingOn = "on the bench in the dressing room"
+	LyingOn = "on the floor"
+	SittingOn = "on the dressing room bench"
 	HurryReason = "they'll hear us"
 	Caught = "'Excuse me? Do you need help in there?' called a store clerk."
 	Excuse = "'Don't come in!' he yelled."
@@ -344,7 +344,7 @@ class HikingTrail(PublicLocation):
 	Ground = "the rocky mountainside"
 	FemaleBottomClothing = "spandex shorts"
 	
-class Kitchen(PublicLocation):
+class Kitchen(PrivateLocation):
 	Name = "the kitchen"
 	NamePrep = "in the kitchen"
 	BeginDesc = "A pan of bacon was frying on the kitchen stove."
@@ -353,11 +353,6 @@ class Kitchen(PublicLocation):
 	KneelingOn = "on a kitchen chair"
 	SittingOn = "on the kitchen table"
 	LyingOn = "on the kitchen table"
-	HurryReason = "the bacon will burn"
-	Caught = "The pan of bacon began to smoke."
-	Excuse = "'We'll just make some more!', he said."
-	Consequence = "the fire alarm blared"
-	AuthorityFigure = "a fireman"
 	Ground = "black and white tiled floor"
 	MaleTopClothing = ""
 	MaleBottomClothing = "briefs"

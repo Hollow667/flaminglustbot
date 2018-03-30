@@ -46,25 +46,23 @@ class Hashtags(WordList):
 			'blockchain',
 			'bot',
 			'botlife',
-			'botlife',
 			'botlove',
 			'eartg',
 			'eartg',
 			'erotica',
 			'erotica',
 			'filthy',
-			'filthybot',
-			'iamabot',
 			'lprtg',
 			'lprtg',
 			'naughty',
-			'naughtybot',
-			'PleaseRT',
+			'nsfw',
 			'PleaseRT',
 			'smut',
 			'sorrynotsorry',
 			'ssrtg',
-			'ssrtg']
+			'ssrtg',
+			'twitterbot',
+			'twitterbot']
 		
 class BadGirlNames(WordList):
 	List = ['hussy',
@@ -206,6 +204,7 @@ class BookGirls(WordList):
 			'Concubine',
 			'Fashion Model',
 			'Flight Attendant',
+			'Futa',
 			'Governess',
 			'Handmaiden',
 			'Harem Girl',
@@ -244,8 +243,10 @@ class BookGirlAdjs(WordList):
 		'Co-ed',
 		'Concubine',
 		'Curvy',
-		'Engaged',
+		'Fertile',
+		'Futa',
 		'Harem',
+		'Hotwife',
 		'High-Heeled',
 		'Innocent',
 		'Intern',
@@ -279,6 +280,7 @@ class BookMasters(WordList):
 			'Billionaire',
 			'Bitcoin Billionaire',
 			'Boss',
+			'Breeding Stud',
 			'CEO',
 			'Count',
 			'Cop',
@@ -297,6 +299,7 @@ class BookMasters(WordList):
 			'Goat Man',
 			'Goat Men',
 			'Hitman',
+			'Fire Fighter',
 			'King',
 			'Knight',
 			'Lesbian Cheerleader',
@@ -309,9 +312,10 @@ class BookMasters(WordList):
 			'Male Stripper',
 			'Man-o-taur',
 			'Manor Lord',
-			'Mantelope',
-			'Manticore',
+			'Man-telope',
+			'Man-ticore',
 			'Marquis',
+			'Mer-man',
 			'MMA Fighter',
 			'Millionaire',
 			'Mountain Man',
@@ -330,6 +334,7 @@ class BookMasters(WordList):
 			'Sex Warlock',
 			'Sheikh',
 			'Sheriff',
+			'Surfer',
 			'Trillionaire',
 			'Viking',
 			'Viking Hoard',
@@ -348,6 +353,7 @@ class BookMasterAdjs(WordList):
 			'Black',
 			'Cowboy',
 			'Dinosaur',
+			'Fire Fighter',
 			'French',
 			'Futanari',
 			'Gazillionaire',
@@ -357,7 +363,7 @@ class BookMasterAdjs(WordList):
 			'Horny',
 			'Irish',
 			'Italian',
-			'Marine',
+			'Mer-man',
 			'Millionaire',
 			'MMA Fighter',
 			'Mountain Man',
@@ -366,6 +372,7 @@ class BookMasterAdjs(WordList):
 			'Navy Seal',
 			'Older Man',
 			'Pirate',
+			'Playboy',
 			'Rock Star',
 			'Savage',
 			'Scottish',
@@ -377,8 +384,10 @@ class BookMasterAdjs(WordList):
 			'Spanish',
 			'Stay-at-Home',
 			'Stripper',
+			'Surfer',
 			'Trillionaire',
 			'Viking',
+			'Well-hung',
 			'Werewolf']
 			
 class BookVerbsBy(WordList):
@@ -386,12 +395,13 @@ class BookVerbsBy(WordList):
 			'Bound',
 			'Bred',
 			'Claimed',
+			'Claimed in Public',
 			'Conquered',
 			'Charmed',
 			'Cuckolded',
 			'Dominated',
 			'Enslaved',
-			'Exposed',
+			'Exposed in Public',
 			'Forced',
 			'Hotwifed',
 			'Humiliated',
@@ -402,14 +412,18 @@ class BookVerbsBy(WordList):
 			'Owned',
 			'Pleasured',
 			'Punished',
+			'Punished in Public',
 			'Seduced',
 			'Sexually Harrassed At My Workplace',
 			'Spanked',
+			'Spanked in Public',
 			'Shaved',
+			'Stripped',
 			'Taken',
+			'Taken in Public',
 			'Tempted',
 			'Trained',
-			'Watched']
+			'Secretly Watched']
 			
 class BookVerbsTo(WordList):
 	List = ['Bred',
@@ -498,7 +512,7 @@ class BookTitleBuilder():
 		sVerbBy = VerbsBy.GetWord()
 		sVerbTo = VerbsTo.GetWord()
 		
-		iRand = randint(1,14)
+		iRand = randint(1,15)
 		if iRand == 1:
 			#Blackmailed by the Billionaire Mountain Man 
 			sTitle = sVerbBy + " by the " + sMaster
@@ -511,8 +525,11 @@ class BookTitleBuilder():
 			#The President's Girl
 			sTitle = "The " + sMaster + "'s " + sGirl
 		elif iRand == 4:
-			#Seduced in the Bed of the Billionaire 
-			sTitle = sVerbTo + " in the Bed of the " + sMaster
+			#Seduced in the Bed of the Billionaire
+			if CoinFlip():
+				sTitle = sVerbTo + " in the Bed of the " + sMaster
+			else:
+				sTitle = sVerbBy + " in the Bed of the " + sMaster
 		elif iRand == 5:
 			#The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
 			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", And The " + sMaster + ": "
@@ -558,6 +575,12 @@ class BookTitleBuilder():
 			sTitle = "The " + sGirl + "'s First Time"
 			if CoinFlip():
 				sTitle += ": A " + self._getFMs_() + " Romance"
+		elif iRand == 15:
+			sTitle = sVerbBy + ": "
+			if CoinFlip():
+				sTitle += "The " + sGirl + " & The " + sMaster
+			else:
+				sTitle += AddArticles(sGirl).title() + " Romance"
 		else:
 			pass
 			
@@ -580,72 +603,78 @@ class Punchline():
 	FemalePunchlines = []
 	NeuterPunchlines = []
 	
+	BigEvent = None
+	Exclamation = None 
+	JobBlueCollar = None 
+	JobWhiteCollar = None 
+	JobWealthyMale = None 
+	JobWealthyFemale = None 
+	MaleFWB = None 
+	FemaleFWB = None 
+	MaleSO = None 
+	FemaleSO = None 
+	VerbSex = None 
+	
 	def __init__(self, Location = None):
-		self.Location = Location
-		BigEvent = Events()
-		Exclamation = Exclamations()
-		JobBlueCollar = people.JobBlueCollar()
-		JobWhiteCollar = people.JobWhiteCollar()
-		JobWealthyMale = people.JobWealthyMale()
-		JobWealthyFemale = people.JobWealthyFemale()
-		MaleFWB = people.MaleFWB()
-		FemaleFWB = people.FemaleFWB()
-		MaleSO = people.MaleSO()
-		FemaleSO = people.FemaleSO()
-		VerbSex = verbs.VerbSex()
+		if not Location is None:
+			self.Location = Location 
+		else:
+			self.Location = None
+			
+		self.BigEvent = Events()
+		self.Exclamation = Exclamations()
+		self.JobBlueCollar = people.JobBlueCollar()
+		self.JobWhiteCollar = people.JobWhiteCollar()
+		self.JobWealthyMale = people.JobWealthyMale()
+		self.JobWealthyFemale = people.JobWealthyFemale()
+		self.MaleFWB = people.MaleFWB()
+		self.FemaleFWB = people.FemaleFWB()
+		self.MaleSO = people.MaleSO()
+		self.FemaleSO = people.FemaleSO()
+		self.VerbSex = verbs.VerbSex()
 		
-		sHappyExclamation = Exclamation.GetWord(bHappy = True).capitalize() + " "
-		sSadExclamation = Exclamation.GetWord(bSad = True).capitalize() + " "
-		sExclamation = Exclamation.GetWord().capitalize() + " "
-		iCoinFlip = randint(1,2)
+		sHappyExclamation = ""
+		sSadExclamation = ""
+		sExclamation = ""
 		
-		if iCoinFlip == 2:
-			sHappyExclamation = ""
-			sSadExclamation = ""
-			sExclamation = ""
+		if CoinFlip():
+			sHappyExclamation = self.Exclamation.GetWord(bHappy = True).capitalize() + " "
+			sSadExclamation = self.Exclamation.GetWord(bSad = True).capitalize() + " "
+			sExclamation = self.Exclamation.GetWord().capitalize() + " "
 		
 		if not self.Location == None:
 			#Female location-specific exclamations
 			self.FemalePunchlines.append("'I've never done it " + Location.NamePrep + " before', she said.")
 			self.FemalePunchlines.append("'Do you always take your girls " + Location.NamePrep + "?', she asked.")
+			self.FemalePunchlines.append("'I'll bet you brought the last " + FemaleFWB.GetPerson() + " here too,' she said teasingly.")
 			
 			#Male location-specific exclamations
-			self.MalePunchlines.append("'I can't believe I just did it with my " + FemaleFWB.GetPerson() + " " + Location.NamePrep + "!' he said.")
 		
 		#Female exclamations 
-		self.FemalePunchlines.append("'" + sHappyExclamation + "That was amazing! What did you say your name was again?' she asked.")
-		self.FemalePunchlines.append("'This is not how I imagined spending " + BigEvent.GetWord() + "!' she said.")
-		self.FemalePunchlines.append("'This has been the best " + BigEvent.GetWord(bRemoveMy = True) + " ever!' she said.")
-		self.FemalePunchlines.append("'That was the best " + BigEvent.GetWord(bRemoveMy = True) + " gift ever!' she said.")
-		self.FemalePunchlines.append("'" + sHappyExclamation + "You're the best " + JobWhiteCollar.GetPerson() +" ever!' she said.")
-		self.FemalePunchlines.append("'My son says when he grows up he wants to be a "+ JobWhiteCollar.GetPerson() + " like you!' she said.")
-		self.FemalePunchlines.append("'" + sHappyExclamation + "You're so good, baby,' she said to her " + MaleFWB.GetPerson() + ".")
+		self.FemalePunchlines.append("'This is not how I imagined spending " + self.BigEvent.GetWord() + "!' she said.")
+		self.FemalePunchlines.append("'This has been the best " + self.BigEvent.GetWord(bRemoveMy = True) + " ever!' she said.")
+		self.FemalePunchlines.append("'That was the best " + self.BigEvent.GetWord(bRemoveMy = True) + " gift ever!' she said.")
+		self.FemalePunchlines.append("'" + sHappyExclamation + "You're the best " + self.JobWhiteCollar.GetPerson() +" ever!' she said.")
 		self.FemalePunchlines.append("'You should know I'm married,' she said.")
 		self.FemalePunchlines.append("'Don't you dare tell my mother about this,' she said.")
-		self.FemalePunchlines.append("'" + sHappyExclamation + "I can't believe I'm not a virgin anymore,' she said.")
 		self.FemalePunchlines.append("'" + sHappyExclamation + "I think I love you,' she said.")
 		self.FemalePunchlines.append("'" + sHappyExclamation + "I think I'm in love with you,' she said.")
-		self.FemalePunchlines.append("'I'll bet you brought the last " + FemaleFWB.GetPerson() + " here too,' she said teasingly.")
-		self.FemalePunchlines.append("'Is this how a " + JobWealthyMale.GetPerson() + " treats a lady?' she asked.")
-		self.FemalePunchlines.append("'You can't tell anyone that I'm a " + JobWealthyFemale.GetPerson() + ",' she said seriously.")
-		self.FemalePunchlines.append("'We can't tell my " + MaleSO.GetWord() + " about this,' she said.")
+		self.FemalePunchlines.append("'You can't tell anyone that I'm a " + self.JobWealthyFemale.GetPerson() + ",' she said seriously.")
+		self.FemalePunchlines.append("'We can't tell my " + self.MaleSO.GetWord() + " about this,' she said.")
 		self.FemalePunchlines.append("'" + sSadExclamation + "My dress is completely ruined!' she said.")
-		self.FemalePunchlines.append("'Was this your first time " + VerbSex.Gerund() + " a " + JobWealthyFemale.GetPerson() + "?' she asked him.")
-		self.FemalePunchlines.append("'Before you ask, I already have a boyfriend,' she said, 'And he's not a " + JobBlueCollar.GetPerson() + " like you.'")
-		self.FemalePunchlines.append("'" + sExclamation + "What would my mother say if she knew that I was " + VerbSex.Gerund () + " a " + JobBlueCollar.GetPerson() + "?'. she asked.")
-		self.FemalePunchlines.append("'It doesn't count as cheating on your " + MaleSO.GetWord() + " if you " + VerbSex.Present() + " a " + JobWealthyMale.GetPerson() + ", right?' she asked.")
-		self.FemalePunchlines.append("'I can't let my " + MaleSO.GetWord() + " know that I'm screwing my " + JobBlueCollar.GetPerson() + "!' she said.")
+		self.FemalePunchlines.append("'Before you ask, I already have a boyfriend,' she said, 'And he's not a " + self.JobBlueCollar.GetPerson() + " like you.'")
+		self.FemalePunchlines.append("'It doesn't count as cheating on your " + self.MaleSO.GetWord() + " if you " + self.VerbSex.Present() + " a " + self.JobWealthyMale.GetPerson() + ", right?' she asked.")
+		self.FemalePunchlines.append("'I can't let my " + self.MaleSO.GetWord() + " know that I'm screwing my " + self.JobBlueCollar.GetPerson() + "!' she said.")
 		self.FemalePunchlines.append("'Hang on,' she said, 'I need to Snap Chat this.'")
 		self.FemalePunchlines.append("'I usually only do this for money,' she said.")
-		self.FemalePunchlines.append("'Same time next Thursday?' she asked.")
+		
 		
 		#Male exclamations
-		self.MalePunchlines.append("'Happy " + BigEvent.GetWord(bRemoveMy = True) + "!' he said.")
-		self.MalePunchlines.append("'We can't tell my " + FemaleSO.GetWord() + " about this,' he said.")
+		self.MalePunchlines.append("'Happy " + self.BigEvent.GetWord(bRemoveMy = True) + "!' he said.")
+		self.MalePunchlines.append("'We can't tell my " + self.FemaleSO.GetWord() + " about this,' he said.")
 		self.MalePunchlines.append("'You should know I'm married,' he said.")
-		self.MalePunchlines.append("'You can't tell anyone that I'm a " + JobWealthyMale.GetPerson() + ",' he said, seriously.")
+		self.MalePunchlines.append("'You can't tell anyone that I'm a " + self.JobWealthyMale.GetPerson() + ",' he said, seriously.")
 		self.MalePunchlines.append("'Same time next Tuesday?' he asked.")
-		self.MalePunchlines.append("'You're even better than your sister,' he said.")
 		self.MalePunchlines.append("'You remind me so much of my ex-wife,' he said.")
 		
 	def GetPunchline(self, gender):
@@ -664,11 +693,42 @@ class Punchline():
 			pass
 			
 		return sPunchline
-			
-			
-			
 		
+class PunchlineAfterSex(Punchline):
+	def __init__(self, Location = None):
+		if not Location is None:
+			self.Location = Location 
+		else:
+			self.Location = None
+			
+		super().__init__(Location)
 		
+		sHappyExclamation = ""
+		sSadExclamation = ""
+		sExclamation = ""
+		
+		if CoinFlip():		
+			sHappyExclamation = self.Exclamation.GetWord(bHappy = True).capitalize() + " "
+			sSadExclamation = self.Exclamation.GetWord(bSad = True).capitalize() + " "
+			sExclamation = self.Exclamation.GetWord().capitalize() + " "
+		
+		if not self.Location == None:
+			#Female location-specific exclamations
+			
+			#Male location-specific exclamations
+			self.MalePunchlines.append("'I can't believe I just did it with my " + self.FemaleFWB.GetPerson() + " " + Location.NamePrep + "!' he said.")
+	
+		#Female exclamations 
+		self.FemalePunchlines.append("'" + sHappyExclamation + "That was amazing! What did you say your name was again?' she asked.")
+		self.FemalePunchlines.append("'" + sHappyExclamation + "You're so good, baby,' she said to her " + self.MaleFWB.GetPerson() + ".")	
+		self.FemalePunchlines.append("'" + sHappyExclamation + "I can't believe I'm not a virgin anymore,' she said.")	
+		self.FemalePunchlines.append("'Was this your first time " + self.VerbSex.Gerund() + " a " + self.JobWealthyFemale.GetPerson() + "?' she asked him.")	
+		self.FemalePunchlines.append("'" + sExclamation + "What would my mother say if she knew that I was " + self.VerbSex.Gerund () + " a " + self.JobBlueCollar.GetPerson() + "?'. she asked.")
+		self.FemalePunchlines.append("'Same time next Thursday?' she asked.")
+		
+		#Male exclamations 
+		self.MalePunchlines.append("'You're even better than your sister,' he said.")
+		self.MalePunchlines.append("'So is this a date?' he asked.")
 	
 		
 		

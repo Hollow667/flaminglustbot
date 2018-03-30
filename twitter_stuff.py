@@ -23,7 +23,7 @@ def InitTweepy():
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 	
-	api = tweepy.API(auth)
+	api = tweepy.API(auth, wait_on_rate_limit = True)
 	
 	return api
 	
@@ -36,11 +36,16 @@ def UpdateStatus(api, Tweet, in_reply_to_status_id = ""):
 			status = api.update_status(Tweet, in_reply_to_status_id)
 			bTryToTweet = False 
 		except tweepy.TweepError as e:
-			# if twitter throws an error message, wait a few seconds and try again
-			print("***ERROR*** [" + e.reason + "]")	
-			bTryToTweet = True
-			time.sleep(10)
-		
+			print("***TWITTER ERROR*** " + e.reason)	
+			# if twitter throws certain over capacity errors, wait a few seconds and try again
+			print(e.api_code)
+			code = e.api_code
+			if code in [88, 130, 131]:
+				bTryToTweet = True
+				time.sleep(30)
+			else:
+				bTryToTweet = False
+
 	return status 
 	
 

@@ -15,28 +15,28 @@ Q_SIZE = 5
 
 HistoryQ = []
 
-def GetTweet(bTest, iGeneratorNo = MAX_GENERATOR_NO, bAllowPromo = True):
-	sTweet = ""
+def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True):
+	Generator = None
 	iSwitch = 999
 	
 	GenSel = GeneratorSelector()
 	if bTest:
 		gen = GenSel.GetGenerator(iGeneratorNo)
 		if not gen == None:
-			sTweet = gen.GenerateTweet()
+			Generator = gen
 	else:
 		gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo)
 		while gen.ID in HistoryQ:
 			gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo)
 		if not gen == None:
-			sTweet = gen.GenerateTweet()
+			Generator = gen
 			
-			HistoryQ.insert(0, gen.ID)
+			HistoryQ.insert(0, Generator.ID)
 			
 			if len(HistoryQ) > Q_SIZE:
 				HistoryQ.pop()
 		
-	return sTweet
+	return Generator
 	
 def IsTweetTooLong(sTweet):
 	bTooLong = True
@@ -85,21 +85,25 @@ def AddHashtag(Tweets):
 
 	return Tweets
 	
-def GetChoppedTweets(bTest, iGeneratorNo = MAX_GENERATOR_NO, sPrefix = "", bAllowPromo = True):
+def GetChoppedTweets(bTest, iGeneratorNo = 0, sPrefix = "", bAllowPromo = True):
 	Tweets = [1]
+	Gen = None 
 	sTweetStr = ""
 	
 	#print("Prefix is [" + sPrefix + "]")
-	sTweetStr = GetTweet(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-	#print(sTweetStr)
-	if len(sTweetStr) > 0:
-		if IsTweetTooLong(sPrefix + sTweetStr):
-			Tweets = ChopTweet(sTweetStr, sPrefix)
-		else:
-			Tweets[0] = sPrefix + sTweetStr
-		Tweets = AddHashtag(Tweets)	
-	else: 
-		Tweets[0] = sTweetStr
+	Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+	if not Gen is None:
+		sTweetStr = Gen.GenerateTweet()
+
+		if len(sTweetStr) > 0:
+			if IsTweetTooLong(sPrefix + sTweetStr):
+				Tweets = ChopTweet(sTweetStr, sPrefix)
+			else:
+				Tweets[0] = sPrefix + sTweetStr
+			if not Gen.Type == GeneratorType.Promo:
+				Tweets = AddHashtag(Tweets)	
+		else: 
+			Tweets[0] = sTweetStr
 
 	return Tweets
 
@@ -118,6 +122,7 @@ class Generator():
 	Event = None 
 	Exclamation = None 
 	Punchline = None 
+	AfterSexPunchline = None
 	
 	MaleName = None
 	FemaleName = None
@@ -151,6 +156,7 @@ class Generator():
 		self.Event = misc.Events()
 		self.Exclamation = misc.Exclamations()
 		self.Punchline = misc.Punchline()
+		self.AfterSexPunchline = misc.PunchlineAfterSex()
 	
 		self.FemaleName = NamesFemale()
 		self.MaleName = NamesMale()
@@ -180,26 +186,30 @@ class Generator():
 		
 class GeneratorPromo(Generator):
 	ID = 0
-	Priority = 5
+	Priority = 7
 	Type = GeneratorType.Promo
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		iRand = randint(1,6)
+		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E"
+
+		iRand = randint(1,7)
 		if iRand == 1:
-			sTweet = misc.TweetReplyBuilder().GetReply() + " from F.L. Bot!"
+			sTweet = misc.TweetReplyBuilder().GetReply() + " from F.L. Bot!" 
 		elif iRand == 2:
-			sTweet = "Reply to a Flaming Lust Bot tweet with a tweet containing '#book' and it will tweet a random smutty book title at you! Use '#lovescene' instead to get your own custom filthy love scene!"
+			sTweet = "Reply to a Flaming Lust Bot tweet for a fun surprise!\n\n\U0001F539Reply \"#book\" and I'll respond with a made-up smutty book title.\n\U0001F539Reply \"#lovescene\" to get your own custom love scene!"
 		elif iRand == 3:
-			sTweet = "Tell your family, friends and lovers to follow @bot_lust for all the steamy, sweaty, silly action!😘"
+			sTweet = "Tell your family, friends and lovers to follow @bot_lust for all the steamy, sweaty, silly action!\n\U0001F346\U0001F525\U0001F923"
 		elif iRand == 4:
-			sTweet = "Flaming Lust Bot is very naughty, and NOT appropriate for anyone under 18!🔞\n\nThat includes you, kid who is hiding their phone behind their math book while they check twitter!!!"
+			sTweet = "Flaming Lust Bot is very naughty, and NOT appropriate for anyone under 18! \U0001F51E\n\nThat includes you, kid who is hiding their phone behind their math book while they check twitter!!!"
 		elif iRand == 5:
-			sTweet = "Flaming Lust Bot is a twitter bot designed to automatically generate erotic love scenes and tweet them out. Tweets might be hot, or filthy, or funny. Like and RT if you enjoy!\n\nTweets for those 18+ only! 🔞\n\nReply to @bot_lust and get a surprise!"
+			sTweet = "I am a twitter bot\U0001F916 designed to automatically generate hot\U0001F525, filthy\U0001F346, and funny\U0001F923 scenes from the world's worst smutty romance novel!\n\nReply to one of my tweets and get a surprise!"
+		elif iRand == 6:
+			sTweet = "I am bot\U0001F916!\n\nBut not the Russian kind of bot, the sexy kind of bot!\n#botlife #twitterbot"
 		else:
-			sTweet = "I love you, followers!\n\n💚💙💜"
+			sTweet = "I love you, followers!\n\n\U0001F49A\U0001F499\U0001F49C"
 			
 		return sTweet
 		
@@ -366,7 +376,24 @@ class Generator11(Generator):
 		sTweet = "'" + self.Exclamation.GetWord(bExMk = False, bHappy = True).capitalize() + ", " + self.FemaleName.FirstName() + ",' he " + self.VMoan.Past() + ", 'You are so beautiful. I love your "
 		for part in self.FemBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = False):
 			sTweet += part + ", "
-		sTweet += "and the way you look with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDescription() + ".'"
+		sTweet += "and the way you look with " 
+		if CoinFlip():
+			if CoinFlip():
+				sTweet += "my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDescription(bAllowShortDesc = True) + ".'"
+			else:
+				sTweet += "my " + self.Semen.RandomDescription(bAllowShortDesc = True) + " "
+				if CoinFlip():
+					if CoinFlip():
+						sTweet += "on your " + WordList(["angelic", "innocent", "pretty"]).GetWord() + " face."
+					else:
+						sTweet += "dripping from your chin."
+				else:
+					sTweet += "on your " + self.FemBodyParts.Breasts.RandomDescription() + "."
+		else:
+			if CoinFlip():
+				sTweet += "my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " slapping against your chin."
+			else:
+				sTweet += "your " + self.FemBodyParts.Lips.RandomDescription(bAllowShortDesc = True) + " around my " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + "."
 		
 		return sTweet
 		
@@ -652,10 +679,10 @@ class Generator24(Generator):
 			sTweet += " " + CreamPieScene.Scene() + "\n\n" 
 		if bMale:
 			sTweet += sHisName + " " + Location.PutOnMaleClothing(bBottomOnly = True) + "."
-			sTweet += " " + self.Punchline.GetPunchline(Gender.Male)
+			sTweet += " " + self.AfterSexPunchline.GetPunchline(Gender.Male)
 		else: 
 			sTweet += sHerName + " " + Location.PutOnFemaleClothing(bBottomOnly = True) + "."
-			sTweet += " " + self.Punchline.GetPunchline(Gender.Female)
+			sTweet += " " + self.AfterSexPunchline.GetPunchline(Gender.Female)
 		
 		return sTweet
 		
@@ -1002,7 +1029,7 @@ class Generator37(Generator):
 		sHerName = self.FemaleName.FirstName()
 		
 		Location = locations.LocationSelector().Location()
-		MyScene = SceneCowgirl(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		MyScene = SceneFacial(sHisName = sHisName, sHerName = sHerName, Location = Location)
 		
 		sTweet = Location.BeginDesc + " "
 		
@@ -1306,29 +1333,34 @@ class Generator44(Generator):
 		
 		return sTweet
 		
-# class Generator45(Generator):
-	# ID = 45
-	# Priority = 1
+class Generator45(Generator):
+	ID = 45
+	Priority = 2
+	Type = GeneratorType.Promo
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		Builder = misc.BookTitleBuilder()
 		
+		sBookTitle = Builder.GetTitle()
+		sSeller = misc.BookSellers().GetWord()
+		sSexyAdj = misc.SexyAdjs().GetWord()
 		
-		# return sTweet
+		sTweet = "Look for Flaming Lust Bot's " + sSexyAdj + " new story, '" + sBookTitle + "'!\n\nComing soon on " + sSeller + "!"
 		
-# class Generator46(Generator):
-	# ID = 46
-	# Priority = 1
+		return sTweet
+		
+class Generator46(Generator):
+	ID = 46
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		
-		
-		# return sTweet
+		return sTweet
 		
 # class Generator47(Generator):
 	# ID = 47

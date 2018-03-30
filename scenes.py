@@ -441,6 +441,55 @@ class SceneFacesitting(Scene):
 			
 		return sScene 
 		
+class SceneFacial(Scene):
+	Tags = [TAG_ABOVE_BELT, TAG_CLIMAX, TAG_DONE_TO_HER, TAG_NON_PEN]
+	
+	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
+		sScene = ""
+		
+		return sScene
+		
+	def Scene(self):
+		sScene = ""
+		
+		Penis = bodyparts.Penis()
+		Semen = bodyparts.Semen()
+		FemBodyParts = bodyparts.BodyFemale()
+		
+		Targets = []
+		
+		Targets.append(WordList(["angelic", "innocent", "pretty", "beautiful", "beaming", "rapturous", "surprised", "startled"]).GetWord() + " face")
+		Targets.append(FemBodyParts.Hair.RandomDescription(bAllowShortDesc = True, bAllowLongDesc = False))
+		Targets.append(FemBodyParts.Eyes.RandomDescription(bAllowShortDesc = True, bAllowLongDesc = False))
+		Targets.append(FemBodyParts.Lips.RandomDescription(bAllowShortDesc = True, bAllowLongDesc = False))
+		Targets.append("chin")
+		Targets.append("slender throat")
+		
+		Actions = []
+		
+		Actions.append("'" + misc.Exclamations().GetWord(bHappy = True).capitalize() + "!' " + self.HisName + " " + verbs.VerbMoan().Past() + ", 'I'm coming!' ")
+		
+		if CoinFlip():
+			Actions.append("The " + Penis.Head.RandomDescription(bAllowShortDesc = True) + " of his " + Penis.ShortDescription() + " " + verbs.VerbEjaculate().Past() + ", ")
+		else:
+			Actions.append("His " + Penis.RandomDescription() + " jerked and then " + verbs.VerbEjaculate().Past() + ", ")
+			
+		Actions.append(WordList(["shooting", "spurting", "squirting", "spraying", "spattering"]).GetWord() + " " + Semen.GetAdj() + " " + WordList(['beads', 'drops', 'globules', 'gobs', 'pearls', 'ropes', 'strings', 'trails']).GetWord() + " of " + Semen.RandomDescription(bAllowShortDesc = True) + " all over her ")
+			
+		for x in sorted(sample(range(0, len(Targets)), 3)):
+			Actions.append(Targets[x] + ", ")
+			
+		Actions.append("and her " + FemBodyParts.Breasts.RandomDescription())
+		if CoinFlip():
+			Actions.append(" and " + FemBodyParts.Breasts.Nipples.RandomDescription(bAllowShortDesc = True))
+			
+		Actions.append(".")
+		
+		for x in range(0, len(Actions)):
+			sScene += Actions[x]
+		
+		return sScene 
+		
 class SceneMissionary(Scene):	
 	#He spread her limber legs wide and pushed them up. Her wanton twat was wide open, exposing her pink gash. He inserted his shaft into her slick love tunnel. Then he began fucking in and out of her forcefully.
 	Tags = [TAG_PEN, TAG_POSITION, TAG_DONE_TO_HER, TAG_BELOW_BELT]

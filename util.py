@@ -9,7 +9,7 @@ MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
 TWIT_USERNAME = 'bot_lust'
 
-Q_SIZE = 5
+Q_SIZE = 6
 HISTORYQ_FILENAME = 'history_q.txt'
 
 TAG_PEN = "sex act with penetration scene"

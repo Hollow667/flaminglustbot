@@ -327,7 +327,11 @@ class Thighs(BodyParts):
 		
 class Nipples(BodyParts):
 	def __init__(self):
-		self.NounList = ['nipples']
+		self.NounList = ['nipples',
+			'nipples',
+			'nipples',
+			'nips',
+			'teats']
 			
 		self.AdjList = ['blossoming',
 			'budding',
@@ -1457,7 +1461,7 @@ class ArmsMale(BodyParts):
 			
 		self.AdjList = ['athletic',
 			'bare',
-			'brawny'
+			'brawny',
 			'bronzed',
 			'burly',
 			'long',

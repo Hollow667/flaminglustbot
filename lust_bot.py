@@ -11,6 +11,7 @@ import verbs
 import misc
 import scenes
 
+from io import BytesIO
 from random import *
 from util import *
 from generators import *
@@ -55,13 +56,17 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 			bTest = True
 		
 		for i in range(0,iTweets):
-			Tweets = [1]
+			#Tweets = [1]
+			Gen = None 
 			
-			Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
-			print("\n===Here is your " + str(len("".join(Tweets))) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
-			for tweet in Tweets:
-				print("[" + tweet + "](" + str(len(tweet)) + " chars)")
+			#Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
+			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
+			sTweet = Gen.GenerateTweet()
 			
+			print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
+			#for tweet in Tweets:
+			#print("[" + tweet + "](" + str(len(tweet)) + " chars)")
+			print("[" + sTweet + "]")
 				#print(misc.TweetReplyBuilder().GetReply())
 				
 			currentDT = datetime.datetime.now()
@@ -70,14 +75,28 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 					
 				status = None
 					
-				for tweet in Tweets:
-					if status == None:
-						#pass
-						status = UpdateStatus(api, tweet)
-								
+				sText = "'" + misc.BookTitleBuilder().GetTitle() + "' is coming soon on " + misc.BookSellers().GetWord() + "! #" + misc.Hashtags().GetWord()
+				
+				if status == None:
+					#pass
+					#status = UpdateStatus(api, tweet)
+					if Gen.Type == GeneratorType.Promo:
+						status = UpdateStatus(api, sTweet)
 					else:
-						#pass
-						status = UpdateStatus(api, tweet, status.id)
+						ImgFile = BytesIO() 
+						CreateImg(sTweet).save(ImgFile, format = 'PNG')
+						
+						status = UpdateStatusWithImage(api, sText, ImgFile)		
+				else:
+					#pass
+					#status = UpdateStatus(api, tweet, status.id)
+					if Gen.Type == GeneratorType.Promo:
+						status = UpdateStatus(api, sTweet, status.id)
+					else:
+						ImgFile = BytesIO() 
+						CreateImg(sTweet).save(ImgFile, format = 'PNG')
+						
+						status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
 								
 				#make timer slightly variable +-33%
 				if iTweetTimer > 180:
@@ -87,7 +106,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 					print("* Next tweet in " + str(iRandSecs) + " seconds (" + (currentDT + datetime.timedelta(seconds=iRandSecs)).strftime("%H:%M:%S") + ")...")
 					time.sleep(iRandSecs)
 				else:
-					print("* Next tweet in " + str(iTweetTimer) + " seconds (" + (currentDT + datetime.timedelta(seconds=iRandSecs)).strftime("%H:%M:%S") + ")...")
+					print("* Next tweet in " + str(iTweetTimer) + " seconds (" + (currentDT + datetime.timedelta(seconds=iTweetTimer)).strftime("%H:%M:%S") + ")...")
 					time.sleep(iTweetTimer)
 	except KeyboardInterrupt:
 		print("Ending program ...")

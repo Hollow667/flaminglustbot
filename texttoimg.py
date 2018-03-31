@@ -9,10 +9,14 @@ FONT = "NoticiaText-Regular.ttf"
 MAX_IMG_NUM = 30
 
 def SaveImg(img, filename = ""):
-	if filename == "":
-		img.save('test' + str(randint(0,99999999)) + '.png')
-	else:
-		img.save(filename)
+	try:
+		if filename == "":
+			img.save('test' + str(randint(0,99999999)) + '.png')
+		else:
+			img.save(filename)
+	except IOError as e:
+		print("***ERROR***\nFile save failed in SaveImg()\n" + e.reason)
+		
 		
 def WrapText(sText, font, offset_width):
 	# break string into multi-lines that fit base_width
@@ -84,23 +88,22 @@ def FormatText(sText, size, color):
 	#print("FormatText() sText length: " + str(len(sText)))
 	iTextLen = len(sText)
 	if iTextLen <= 140:
-		iFontSize = 110
+		iFontSize = 85
 	elif iTextLen <= 260:
-		iFontSize = 100
+		iFontSize = 75
 	elif iTextLen <= 380:
-		iFontSize = 90
+		iFontSize = 65
 	elif iTextLen <= 500:
-		iFontSize = 80
+		iFontSize = 55
 	elif iTextLen <= 620:
-		iFontSize = 70
+		iFontSize = 45
 	elif iTextLen <= 740:
-		iFontSize = 60
+		iFontSize = 35
 	elif iTextLen <= 860:
-		iFontSize = 50
-	elif iTextLen <= 980:
-		iFontSize = 40
+		iFontSize = 25
 	else:
-		iFontSize = 30
+		iFontSize = 15
+
 		
 	#print("FormatText() Starting font size is " + str(iFontSize))
 	
@@ -114,7 +117,7 @@ def FormatText(sText, size, color):
 	
 	#if the height of our lines exceeds the height of the image area, reduce font and try again
 	while iTotLineHeight > offset_height:
-		print("FormatText() offset_height exceeded, shrinking font by 5 and trying again")
+		#print("FormatText() offset_height exceeded, shrinking font by 5 and trying again")
 		iFontSize += (-5)
 		
 		font = ImageFont.truetype(PATH + FONT, size = iFontSize, layout_engine = ImageFont.LAYOUT_RAQM)
@@ -172,10 +175,17 @@ def DrawText(size, sText, color):
 	return ImgFrame
 	
 def GetBGImg(iPicNo = 0):
+	BGImg = None 
+	
 	if iPicNo == 0:
 		iPicNo = randint(1, MAX_IMG_NUM)
+		
+	try:
+		BGImg = Image.open(PATH + "bg_" + str(iPicNo) + ".png").convert('RGBA')
+	except IOError as e:
+		print("***ERROR***\nFile save failed in SaveImg()\n" + e.reason)
 	
-	return Image.open(PATH + "bg_" + str(iPicNo) + ".png").convert('RGBA')
+	return BGImg
 
 def CreateImg(sText):
 	# create Image object with the input image

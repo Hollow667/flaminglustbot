@@ -1,6 +1,7 @@
 # Twitter-related functions (Tweepy-based)
 
-import generators
+from io import BytesIO
+from generators import *
 import misc
 import tweepy
 import twitterauth
@@ -47,7 +48,27 @@ def UpdateStatus(api, Tweet, in_reply_to_status_id = ""):
 				bTryToTweet = False
 
 	return status 
+
+def UpdateStatusWithImage(api, Tweet, ImgFile, in_reply_to_status_id = ""):
+	status = None 
+	bTryToTweet = True 
 	
+	while bTryToTweet:
+		try:
+			status = api.update_with_media("tweet.png", Tweet, in_reply_to_status_id, file = ImgFile)
+			bTryToTweet = False 
+		except tweepy.TweepError as e:
+			print("***TWITTER ERROR*** " + e.reason)	
+			# if twitter throws certain over capacity errors, wait a few seconds and try again
+			print(e.api_code)
+			code = e.api_code
+			if code in [88, 130, 131]:
+				bTryToTweet = True
+				time.sleep(30)
+			else:
+				bTryToTweet = False
+
+	return status 
 
 def RespondToReplies(api):
 	my_userid = '973202601545273344'
@@ -88,17 +109,27 @@ def RespondToReplies(api):
 						Tweets = [1]
 			
 						sPrefix = "@" + reply.user.screen_name + " "
-						Tweets = generators.GetChoppedTweets(False, MAX_GENERATOR_NO, sPrefix, bAllowPromo = False)
+						#Tweets = generators.GetChoppedTweets(False, MAX_GENERATOR_NO, sPrefix, bAllowPromo = False)
+						Gen = GetTweet(False, bAllowPromo = False)
+						sTweet = Gen.GenerateTweet()
 
 						status = None
-						print("===Here is your " + str(len("".join(Tweets))) + " char tweet===")
-						for tweet in Tweets:
-							print("[" + tweet + "](" + str(len(tweet)) + " chars)")
+						print("===Here is your " + str(len(sTweet)) + " char tweet===")
+						#for tweet in Tweets:
+						print("[" + sTweet + "]")
+						
+						if status == None:	
+							# status = UpdateStatus(api, tweet, reply.id_str)
+							ImgFile = BytesIO() 
+							CreateImg(sTweet).save(ImgFile, format = 'PNG')
 							
-							if status == None:	
-								status = UpdateStatus(api, tweet, reply.id_str)
-							else:
-								status = UpdateStatus(api, tweet, status.id)
+							status = UpdateStatusWithImage(api, sPrefix, ImgFile, reply.id_str)	
+						else:
+							# status = UpdateStatus(api, tweet, status.id)
+							ImgFile = BytesIO() 
+							CreateImg(sTweet).save(ImgFile, format = 'PNG')
+							
+							status = UpdateStatusWithImage(api, sPrefix, ImgFile)	
 					
 					with open(REPLIES_FILE_NAME, 'a') as WriteReplyFile:
 						WriteReplyFile.write(str(reply.id_str) + "\n")

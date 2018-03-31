@@ -96,17 +96,17 @@ def GetChoppedTweets(bTest, iGeneratorNo = 0, sPrefix = "", bAllowPromo = True):
 	if not Gen is None:
 		sTweetStr = Gen.GenerateTweet()
 
-		if len(sTweetStr) > 0:
-			if not Gen.Type == GeneratorType.Promo:
-				SaveImg(CreateImg(sTweetStr))
-			if IsTweetTooLong(sPrefix + sTweetStr):
-				Tweets = ChopTweet(sTweetStr, sPrefix)
-			else:
-				Tweets[0] = sPrefix + sTweetStr
-			if not Gen.Type == GeneratorType.Promo:
-				Tweets = AddHashtag(Tweets)	
-		else: 
-			Tweets[0] = sTweetStr
+		# if len(sTweetStr) > 0:
+			# if not Gen.Type == GeneratorType.Promo:
+				# SaveImg(CreateImg(sTweetStr))
+			# if IsTweetTooLong(sPrefix + sTweetStr):
+				# Tweets = ChopTweet(sTweetStr, sPrefix)
+			# else:
+				# Tweets[0] = sPrefix + sTweetStr
+			# if not Gen.Type == GeneratorType.Promo:
+				# Tweets = AddHashtag(Tweets)	
+		# else: 
+		Tweets[0] = sTweetStr
 
 	return Tweets
 
@@ -198,18 +198,18 @@ class GeneratorPromo(Generator):
 		
 		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E"
 
-		iRand = randint(1,7)
+		iRand = randint(1,6)
+		# if iRand == 1:
+			# sTweet = misc.TweetReplyBuilder().GetReply() + " from F.L. Bot!" 
 		if iRand == 1:
-			sTweet = misc.TweetReplyBuilder().GetReply() + " from F.L. Bot!" 
-		elif iRand == 2:
 			sTweet = "Reply to a Flaming Lust Bot tweet for a fun surprise!\n\n\U0001F539Reply \"#book\" and I'll respond with a made-up smutty book title.\n\U0001F539Reply \"#lovescene\" to get your own custom love scene!"
-		elif iRand == 3:
+		elif iRand == 2:
 			sTweet = "Tell your family, friends and lovers to follow @bot_lust for all the steamy, sweaty, silly action!\n\U0001F346\U0001F525\U0001F923"
-		elif iRand == 4:
+		elif iRand == 3:
 			sTweet = "Flaming Lust Bot is very naughty, and NOT appropriate for anyone under 18! \U0001F51E\n\nThat includes you, kid who is hiding their phone behind their math book while they check twitter!!!"
-		elif iRand == 5:
+		elif iRand == 4:
 			sTweet = "I am a twitter bot\U0001F916 designed to automatically generate hot\U0001F525, filthy\U0001F346, and funny\U0001F923 scenes from the world's worst smutty romance novel!\n\nReply to one of my tweets and get a surprise!"
-		elif iRand == 6:
+		elif iRand == 5:
 			sTweet = "I am bot\U0001F916!\n\nBut not the Russian kind of bot, the sexy kind of bot!\n#botlife #twitterbot"
 		else:
 			sTweet = "I love you, followers!\n\n\U0001F49A\U0001F499\U0001F49C"
@@ -1336,34 +1336,34 @@ class Generator44(Generator):
 		
 		return sTweet
 		
-class Generator45(Generator):
-	ID = 45
-	Priority = 2
-	Type = GeneratorType.Promo
+# class Generator45(Generator):
+	# ID = 45
+	# Priority = 2
+	# Type = GeneratorType.Promo
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Builder = misc.BookTitleBuilder()
+		# Builder = misc.BookTitleBuilder()
 		
-		sBookTitle = Builder.GetTitle()
-		sSeller = misc.BookSellers().GetWord()
-		sSexyAdj = misc.SexyAdjs().GetWord()
+		# sBookTitle = Builder.GetTitle()
+		# sSeller = misc.BookSellers().GetWord()
+		# sSexyAdj = misc.SexyAdjs().GetWord()
 		
-		sTweet = "Look for Flaming Lust Bot's " + sSexyAdj + " new story, '" + sBookTitle + "'!\n\nComing soon on " + sSeller + "!"
+		# sTweet = "Look for Flaming Lust Bot's " + sSexyAdj + " new story, '" + sBookTitle + "'!\n\nComing soon on " + sSeller + "!"
 		
-		return sTweet
+		# return sTweet
 		
-class Generator46(Generator):
-	ID = 46
-	Priority = 1
+# class Generator46(Generator):
+	# ID = 46
+	# Priority = 1
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		return sTweet
+		# return sTweet
 		
 # class Generator47(Generator):
 	# ID = 47

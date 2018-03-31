@@ -1283,6 +1283,56 @@ class Penis(BodyParts):
 			return self.Testicles.RandomDescription(bAllowShortDesc = bAllowShortDesc)
 		else:
 			return self.RandomDescription(bAllowShortDesc = bAllowShortDesc)
+			
+	def GenerateLength(self):
+		sLength = ""
+		
+		sLength = str(randint(5, 13))
+		if CoinFlip():
+			sLength += " 1/2"
+		sLength += "\""
+		
+		return sLength
+			
+	def ShortDescription(self, sNot = "", bAddLen = False):
+		sDesc = super().ShortDescription(sNot = sNot)
+		
+		if bAddLen:
+			Words = sDesc.split()
+			Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
+			sDesc = " ".join(Words)
+		
+		return sDesc
+		
+	def MediumDescription(self, sNot = "", bAddLen = False):
+		sDesc = super().MediumDescription(sNot = sNot)
+		
+		if bAddLen:
+			Words = sDesc.split()
+			Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
+			sDesc = " ".join(Words)
+			
+		return sDesc 
+		
+	def FloweryDescription(self, sNot = "", bAddLen = False):
+		sDesc = super().FloweryDescription(sNot = sNot)
+		
+		if bAddLen:
+			Words = sDesc.split()
+			Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
+			sDesc = " ".join(Words)
+		
+		return sDesc 
+		
+	def RandomDescription(self, sNot = "", bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False):
+		sDesc = super().RandomDescription(sNot = sNot, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc)
+		
+		if bAddLen:
+			Words = sDesc.split()
+			Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
+			sDesc = " ".join(Words)
+		
+		return sDesc 
 	
 class Semen(BodyParts):
 	def __init__(self):

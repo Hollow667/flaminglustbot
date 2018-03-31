@@ -10,6 +10,7 @@ from scenes import *
 from names import *
 from locations import *
 from people import *
+from texttoimg import *
 
 Q_SIZE = 5
 
@@ -96,6 +97,8 @@ def GetChoppedTweets(bTest, iGeneratorNo = 0, sPrefix = "", bAllowPromo = True):
 		sTweetStr = Gen.GenerateTweet()
 
 		if len(sTweetStr) > 0:
+			if not Gen.Type == GeneratorType.Promo:
+				SaveImg(CreateImg(sTweetStr))
 			if IsTweetTooLong(sPrefix + sTweetStr):
 				Tweets = ChopTweet(sTweetStr, sPrefix)
 			else:

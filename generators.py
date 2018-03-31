@@ -422,7 +422,7 @@ class Generator11(Generator):
 		
 		sTweet = "'" + self.Exclamation.GetWord(bExMk = False, bHappy = True).capitalize() + ", " + self.FemaleName.FirstName() + ",' he " + self.VMoan.Past() + ", 'You are so beautiful. I love your "
 		for part in self.FemBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = False):
-			sTweet += part + ", "
+			sTweet += part + "; "
 		sTweet += "and the way you look with " 
 		if CoinFlip():
 			if CoinFlip():
@@ -454,14 +454,14 @@ class Generator12(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sTweet = self.FemaleName.FirstName() + "'s robe fell to the floor, and his heart skipped a beat. She had "
+		sTweet = self.FemaleName.FirstName() + "'s robe fell to the floor, and his heart skipped a beat. His lustful gaze took in her "
 		
 		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 5, bIncludeInners = False)
 		for part in Parts:
 			if not part == Parts[len(Parts) - 1]:
-				sTweet += AddArticles(part) + ", "
+				sTweet += part + "; "
 			else:
-				sTweet += "and " + AddArticles(part) 
+				sTweet += "and her " + part
 		sTweet += ".\n\n'" + self.Exclamation.GetWord(bHappy = True).capitalize() + " I can't believe you're my " + self.FFWB.GetPerson() + "!' he " + self.VMoan.Past() + "."
 		
 		return sTweet
@@ -584,9 +584,9 @@ class Generator18(Generator):
 		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 5, bIncludeInners = True)
 		for part in Parts:
 			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + ", "
+				sTweet += part + "; "
 			else:
-				sTweet += "& your " + part
+				sTweet += "and your " + part
 		sTweet += ".'\n\n"
 		sTweet += "'Oh " + self.MaleName.FirstName() + "!' she sighed."
 		
@@ -606,7 +606,7 @@ class Generator19(Generator):
 		Parts = self.MaleBodyParts.GetRandomBodyParts(iNum = 5, bIncludeInners = False)
 		for part in Parts:
 			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + ", "
+				sTweet += part + "; "
 			else:
 				sTweet += "and " + part
 		sTweet += ". But what made her mouth water was the " + self.MaleBodyParts.Penis.FloweryDescription() + " dangling between his legs."
@@ -626,7 +626,7 @@ class Generator20(Generator):
 		Parts = self.MaleBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = False)
 		for part in Parts:
 			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + ", "
+				sTweet += part + "; "
 			else:
 				sTweet += "and " + part
 		sTweet += ".\n\nShe could hardly believe that in a few minutes this man would be " + self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bAllowShortDesc = True) + "!"
@@ -647,7 +647,7 @@ class Generator21(Generator):
 		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
 		for part in Parts:
 			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + ", "
+				sTweet += part + "; "
 			else:
 				sTweet += "and her " + part + ".\n\n"
 		sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said. 'You've ruined my nice " + self.Event.GetWord(bRemoveMy = True) + " dress!'"
@@ -669,7 +669,7 @@ class Generator22(Generator):
 		Parts = self.MaleBodyParts.GetRandomBodyParts(iNum = 5, bIncludeInners = False)
 		for part in Parts:
 			if not part == Parts[len(Parts) - 1]:
-				sTweet += AddArticles(part) + ", "
+				sTweet += AddArticles(part) + "; "
 			else:
 				sTweet += "and " + AddArticles(part) 
 		sTweet += ".\n\n'" + self.Exclamation.GetWord().capitalize() + " I can't believe you're my " + self.MFWB.GetPerson() + "!' she said."
@@ -1112,7 +1112,7 @@ class Generator38(Generator):
 			Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
 			for part in Parts:
 				if not part == Parts[len(Parts) - 1]:
-					sTweet += part + ", "
+					sTweet += part + "; "
 				else:
 					sTweet += "and " + part
 			sTweet += ". 'This is a great birthday present, babe,' he said.\n\n"
@@ -1127,7 +1127,7 @@ class Generator38(Generator):
 			Parts = self.MaleBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
 			for part in Parts:
 				if not part == Parts[len(Parts) - 1]:
-					sTweet += part + ", "
+					sTweet += part + "; "
 				else:
 					sTweet += "and " + part
 			sTweet += ". 'This is a great birthday present, babe,' she said.\n\n"
@@ -1395,7 +1395,7 @@ class Generator45(Generator):
 		sBWAdj1 = BadWeatherAdjs.GetWord()
 		sBWAdj2 = BadWeatherAdjs.GetWord(sNot = sBWAdj1)
 		
-		sTweet = "It was " + sBWAdj1 + " and " + sBWAdj2 + " " + WordList(["in the forest", "in the old manor house", "on the moor", "in the ruins of the castle", "on the shore of the frozen lake", "along the rocky beach", "atop the cliff"]).GetWord() + ".\n\n'We had best huddle together for warmth, " + sHerName + ",' said " + sHisName + ". She curled up against him and he wrapped his " + self.MaleBodyParts.Arms.GetAdj() + " arms around her.\n\n'Oh! What is that?' " + sHerName + " exclaimed."
+		sTweet = "It was " + sBWAdj1 + " and " + sBWAdj2 + " " + WordList(["in the forest", "in the old manor house", "on the moor", "in the ruins of the castle", "on the shore of the frozen lake", "along the rocky beach", "atop the cliff", "among the craggy hills", "beneath the stars", "in the heart of the mountains"]).GetWord() + ".\n\n'We had best huddle together for warmth, " + sHerName + ",' said " + sHisName + ". She curled up against him and he wrapped his " + self.MaleBodyParts.Arms.GetAdj() + " arms around her.\n\n'Oh! What is that?' " + sHerName + " exclaimed."
 
 		if CoinFlip():
 			sTweet += " 'It feels long and hard!'"
@@ -1412,12 +1412,18 @@ class Generator45(Generator):
 			
 		return sTweet
 		
-# class Generator46(Generator):
-	# ID = 46
-	# Priority = 1
+class Generator46(Generator):
+	#Sable could feel the swollen head of Geoffrey's cock against the tight ring of her anus. 'Oh, go slowly Geoffrey!'\n\n'I am, my love,' he replied. Gently but firmly, he eased his turgid 8 1/2" cock into her entrance.\n\n'Oh!' Sable gasped. 'Wow! Don't stop Geoffrey, please.'\n\nGeoffrey took his time and used lots of lube until at last he was balls deep inside her tush. 'Oh god, baby, you're so tight!' he gasped as he began to piston into her.\n\n''I've let dozens of men fuck my pussy, babe,' said Sable, 'But you're the only man who will ever plough my sphincter.']
+	ID = 46
+	Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
+		# sTweet = ""
+		
+		# sHisName = self.MaleName.FirstName
+		# sHerName = self.FemaleName.FirstName
+		
 		# sTweet = ""
 		
 		# return sTweet

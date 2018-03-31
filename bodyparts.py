@@ -57,8 +57,8 @@ class BodyParts:
 		iNumAdjs = randint(1, 3)
 		x = randint(1, 6)
 		
-		if x == 6 and iNumAdjs < 3:
-			sFloweryDesc += self.DefaultAdj + " " + self.GetNoun(sNot = sNot)
+		if x == 6 and iNumAdjs < 3 and not sNot in self.DefaultAdj:
+			sFloweryDesc += self.DefaultAdj + " "
 		else:
 			for i in range(0, iNumAdjs):
 				sAdj = self.GetAdj(sNot = sNot)
@@ -68,10 +68,12 @@ class BodyParts:
 				
 				sFloweryDesc += self.GetAdj(sNot = sNot)
 								
-				if i <= iNumAdjs - 1:
+				if i < iNumAdjs - 1:
+					sFloweryDesc += ", "
+				elif i == iNumAdjs - 1:
 					sFloweryDesc += " "
 				
-			sFloweryDesc += self.GetNoun(sNot = sNot)
+		sFloweryDesc += self.GetNoun(sNot = sNot)
 			
 		return sFloweryDesc
 	

@@ -58,15 +58,21 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 		for i in range(0,iTweets):
 			#Tweets = [1]
 			Gen = None 
+			sTweet = ""
+			sText = ""
 			
 			#Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			sTweet = Gen.GenerateTweet()
+			if Gen.Type != GeneratorType.Promo:
+				sText = GetImgTweetText()
 			
 			print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
 			#for tweet in Tweets:
 			#print("[" + tweet + "](" + str(len(tweet)) + " chars)")
 			print("[" + sTweet + "]")
+			if len(sText) > 0:
+				print("Tweet text: [" + sText + "]")
 				#print(misc.TweetReplyBuilder().GetReply())
 				
 			currentDT = datetime.datetime.now()
@@ -75,8 +81,6 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 					
 				status = None
 					
-				sText = "'" + misc.BookTitleBuilder().GetTitle() + "' is coming soon on " + misc.BookSellers().GetWord() + "! #" + misc.Hashtags().GetWord()
-				
 				if status == None:
 					#pass
 					#status = UpdateStatus(api, tweet)

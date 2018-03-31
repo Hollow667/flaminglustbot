@@ -88,11 +88,11 @@ class WordList:
 			iRandIndex = randint(0, len(self.List) - 1)
 		
 			sWord = self.List[iRandIndex]
-			while not sNot == "" and sNot in sWord:
+			while sNot != "" and sNot in sWord:
 				iRandIndex = randint(0, len(self.List) - 1)
 		
 				sWord = self.List[iRandIndex]
-		
+
 		return sWord
 		
 class NounAdjList:

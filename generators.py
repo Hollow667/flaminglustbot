@@ -109,6 +109,46 @@ def GetChoppedTweets(bTest, iGeneratorNo = 0, sPrefix = "", bAllowPromo = True):
 		Tweets[0] = sTweetStr
 
 	return Tweets
+	
+def GetImgTweetText():
+	sText = ""
+	
+	TitleBuilder = misc.BookTitleBuilder()
+	BookSeller = misc.BookSellers()
+	Hashtag = misc.Hashtags()
+	SexyAdj = misc.SexyAdjs()
+	FavWord = WordList()
+	
+	iRand = randint(1, 20)
+	
+	if iRand in range(1, 5):
+		sText = "'" + TitleBuilder.GetTitle() + "' is coming soon on " + BookSeller.GetWord() + "!"
+	elif iRand in range(5, 8):
+		sText = "Check out this " + SexyAdj.GetWord() + " excerpt from '" + TitleBuilder.GetTitle() + "', available soon on " + BookSeller.GetWord() + "!"
+	elif iRand in range (8, 11):
+		sText = "Look for '" + TitleBuilder.GetTitle() + "' on " + BookSeller.GetWord() + ", by F.L. Bott"
+	elif iRand in range(11,12):
+		sText = "Don't hate Flaming Lust Bot because it's beautiful. \U0001F916"
+	elif iRand in range(12, 13):
+		sText = "This tweet brought to you by the letters 'S', 'E', and 'X', and by the number 69"
+	elif iRand in range(13, 14):
+		sText = "\U0001F525I know you like reading these.\U0001F525 Don't worry, I won't tell. \U0001F618"
+	elif iRand in range(14,15): 
+		sText = "The sex acts depicted are computer generated and have not been approved by a physician.\n\nDo not attempt."
+	else: 
+		FavWord.List += AnusFemale().NounList
+		FavWord.List += Penis().NounList
+		FavWord.List += Vagina().AdjList
+		FavWord.List += ['bunghole', 'crevice', 'fissure', 'pendulous', 'beefy', 'ravish', 'ample', 'nubile', 'panties', 'lust', 'throbbing', 'turgid', 'tumescent', 'meat', 'gooey', 'juicy', 'moist', 'taint']
+
+		if CoinFlip():
+			sText = "My favorite word is '" + FavWord.GetWord() + "'"
+		else:
+			sText = "The password is '" + FavWord.GetWord() + "'"
+		
+	sText += " #" + Hashtag.GetWord()
+	
+	return sText 
 
 class Generator():
 	ID = -1
@@ -138,6 +178,7 @@ class Generator():
 	VSex = None
 	VSexWith = None
 	VThrust = None
+	VOralMale = None
 	VSexActByMale = None
 	VSexActByFemale = None
 	
@@ -172,6 +213,7 @@ class Generator():
 		self.VSex = VerbSex()
 		self.VSexWith = VerbSexWith()
 		self.VThrust = VerbThrust()
+		self.VOralMale = VerbOralMale()
 		self.VSexActByMale = VerbSexActsByMale()
 		self.VSexActByFemale = VerbSexActsByFemale()
 		
@@ -196,7 +238,7 @@ class GeneratorPromo(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E"
+		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E Winking kiss face: \U0001F618"
 
 		iRand = randint(1,6)
 		# if iRand == 1:
@@ -475,7 +517,7 @@ class Generator15(Generator):
 		iRand = randint(1,3)
 				
 		sBoyfriendName = self.MaleName.FirstName()
-		sTweet = "'" + sBoyfriendName + ", my love, where are you?' called " + self.FemaleName.FirstName() + " from the next room.\r\n"
+		sTweet = "'" + sBoyfriendName + ", my love, where are you?' called " + self.FemaleName.FirstName() + " from the next room.\n\n"
 		sTweet += sBoyfriendName + " looked down at " + self.FemaleName.FirstName() + ". "
 		if iRand == 1:
 			sTweet += "Her head was cupped in his hands as she bobbed up and down on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
@@ -644,7 +686,7 @@ class Generator23(Generator):
 		
 		sWhiteCollar = self.WhiteCollar.GetPerson()
 		sTweet = "'My " + self.FFWB.GetPerson() + " thinks " + AddArticles(sWhiteCollar) + " and his " + self.FFWB.GetPerson() + " can never find love together,' said " + self.MaleName.FirstName() + " as " + self.FemaleName.FirstName() + " lay exhausted in his " + self.MaleBodyParts.Arms.MediumDescription() + ".\n\n"
-		sTweet += "'You're no " + sWhiteCollar + ",' she replied, panting. 'You're the mayor of " + self.VThrust.Present().title() + " My " + self.FemBodyParts.GetRandomHole(bAllowShortDesc = True).title() + " City!'"
+		sTweet += "'You're no " + sWhiteCollar + ",' she replied, panting. 'You're the mayor of " + WordList(["do", "fill", "fuck", "hammer", "hump", "jizz", "nail", "plough", "pound", "ravage", "ream", "slam", "stuff"]).GetWord().capitalize() + " My " + self.FemBodyParts.GetRandomHole(bAllowShortDesc = True, bAllowLongDesc = False, bIncludeMouth = False).title() + " City!'"
 		
 		return sTweet
 		
@@ -818,7 +860,7 @@ class Generator29(Generator):
 	#'What are you reading?' Martin asked.
 	#'Sex Slave to the Vampire Pirates,' Sabrina moaned.
 	ID = 29
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1336,24 +1378,37 @@ class Generator44(Generator):
 		
 		return sTweet
 		
-# class Generator45(Generator):
-	# ID = 45
-	# Priority = 2
-	# Type = GeneratorType.Promo
+class Generator45(Generator):
+	ID = 45
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Builder = misc.BookTitleBuilder()
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 		
-		# sBookTitle = Builder.GetTitle()
-		# sSeller = misc.BookSellers().GetWord()
-		# sSexyAdj = misc.SexyAdjs().GetWord()
+		BadWeatherAdjs = WordList(["bleak", "chilly", "cold", "damp", "dark", "freezing", "frosty", "raining", "snowing", "stormy", "tempestuous", "wet", "wild", "windswept", "windy", "wintry"])
+		sBWAdj1 = BadWeatherAdjs.GetWord()
+		sBWAdj2 = BadWeatherAdjs.GetWord(sNot = sBWAdj1)
 		
-		# sTweet = "Look for Flaming Lust Bot's " + sSexyAdj + " new story, '" + sBookTitle + "'!\n\nComing soon on " + sSeller + "!"
+		sTweet = "It was " + sBWAdj1 + " and " + sBWAdj2 + " " + WordList(["in the forest", "in the old manor house", "on the moor", "in the ruins of the castle", "on the shore of the frozen lake", "along the rocky beach", "atop the cliff"]).GetWord() + ".\n\n'We had best huddle together for warmth, " + sHerName + ",' said " + sHisName + ". She curled up against him and he wrapped his " + self.MaleBodyParts.Arms.GetAdj() + " arms around her.\n\n'Oh! What is that?' " + sHerName + " exclaimed."
+
+		if CoinFlip():
+			sTweet += " 'It feels long and hard!'"
+			
+		sTweet += "\n\n'That's my " + self.MaleBodyParts.Penis.BuildAPenis() + ", " + misc.TermsOfEndearment().GetWord() + ",' he said.\n\n'We had better keep it warm,' " + sHerName + " said. "
 		
-		# return sTweet
+		if CoinFlip():
+			if CoinFlip():
+				sTweet += "'Why don't you snuggle it against my " + self.FemBodyParts.Ass.GetNoun() + ",' she suggested."
+			else:
+				sTweet += "'I'll use my mouth,' she said. Then she scooted down and began to " + self.VOralMale.Present() + " his " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + "."
+		else:
+				sTweet += "'Why don't you put it in here?' she asked. Then " + sHisName + " felt her hands guiding his " + self.MaleBodyParts.Penis.MediumDescription() + " into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
+			
+		return sTweet
 		
 # class Generator46(Generator):
 	# ID = 46

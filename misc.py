@@ -146,6 +146,17 @@ class Exclamations(WordList):
 			
 		return sExclamation
 		
+class TermsOfEndearment(WordList):
+	List = ['babe',
+		'baby',
+		'darling',
+		'dear',
+		'honey',
+		'love',
+		'my love',
+		'sweetie',
+		'sweetheart']
+		
 class SexyAdjs(WordList):
 	List = ['dirty',
 		'filthy',
@@ -419,6 +430,7 @@ class BookVerbsBy(WordList):
 			'Spanked in Public',
 			'Shaved',
 			'Stripped',
+			'Stripped in Public',
 			'Taken',
 			'Taken in Public',
 			'Tempted',
@@ -532,7 +544,7 @@ class BookTitleBuilder():
 				sTitle = sVerbBy + " in the Bed of the " + sMaster
 		elif iRand == 5:
 			#The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", And The " + sMaster + ": "
+			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", & The " + sMaster + ": "
 			if CoinFlip():
 				sTitle += "A Hot Menage"
 			else:

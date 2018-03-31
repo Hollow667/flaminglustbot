@@ -348,7 +348,6 @@ class VerbMoan(Verb):
 					'pant',
 					'purr',
 					'says',
-					'scream',
 					'sigh',
 					'wail',
 					'whimper',
@@ -362,7 +361,6 @@ class VerbMoan(Verb):
 				'panted',
 				'purred',
 				'said',
-				'screamed',
 				'sighed',
 				'wailed',
 				'whimpered',
@@ -376,7 +374,6 @@ class VerbMoan(Verb):
 					'panting',
 					'purring',
 					'saying',
-					'screaming',
 					'sighing',
 					'wailing',
 					'whimpering',
@@ -387,19 +384,19 @@ class VerbOralMale(Verb):
 		'go down on',
 		'fellate',
 		'suck',
-		'suck off']
+		'suckle']
 	
 	PastList = ['blew'
 		'went down on',
 		'fellated',
 		'sucked'
-		'sucked off',]
+		'suckled']
 	
 	GerundList = ['blowing'
 		'fellating',
 		'going down on',
 		'sucking',
-		'sucking off']
+		'suckling']
 		
 class VerbSexActsByMale(Verb):
 	PresentList = ["ass fuck",

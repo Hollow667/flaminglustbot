@@ -1108,10 +1108,25 @@ class Penis(BodyParts):
 	PenisBackPart = []
 	
 	def BuildAPenis(self):
+		sPenis = ""
+		
 		iRandFront = 0
 		iRandBack = 0
 		
-		for i in range(0, int(len(self.NounList) * (2/3))):
+		iRandFront = randint(0,len(self.PenisFrontPart) - 1)
+		iRandBack = randint(0,len(self.PenisBackPart) - 1)
+		sFrontPart = self.PenisFrontPart[iRandFront]
+		sBackPart = self.PenisBackPart[iRandBack]
+		
+		while sFrontPart in sBackPart:
+			iRandFront = randint(0,len(self.PenisFrontPart) - 1)
+			iRandBack = randint(0,len(self.PenisBackPart) - 1)
+			sFrontPart = self.PenisFrontPart[iRandFront]
+			sBackPart = self.PenisBackPart[iRandBack]
+			
+		sPenis = sFrontPart + "-" + sBackPart
+		
+		while sPenis in self.NounList:
 			iRandFront = randint(0,len(self.PenisFrontPart) - 1)
 			iRandBack = randint(0,len(self.PenisBackPart) - 1)
 			sFrontPart = self.PenisFrontPart[iRandFront]
@@ -1125,21 +1140,7 @@ class Penis(BodyParts):
 				
 			sPenis = sFrontPart + "-" + sBackPart
 			
-			while sPenis in self.NounList:
-				iRandFront = randint(0,len(self.PenisFrontPart) - 1)
-				iRandBack = randint(0,len(self.PenisBackPart) - 1)
-				sFrontPart = self.PenisFrontPart[iRandFront]
-				sBackPart = self.PenisBackPart[iRandBack]
-				
-				while sFrontPart in sBackPart:
-					iRandFront = randint(0,len(self.PenisFrontPart) - 1)
-					iRandBack = randint(0,len(self.PenisBackPart) - 1)
-					sFrontPart = self.PenisFrontPart[iRandFront]
-					sBackPart = self.PenisBackPart[iRandBack]
-					
-				sPenis = sFrontPart + "-" + sBackPart
-			
-			self.NounList.append(sPenis)
+		return sPenis
 		
 	def __init__(self):
 		self.NounList = ['boner',
@@ -1270,7 +1271,8 @@ class Penis(BodyParts):
 		self.Head = PenisHead()
 		self.Testicles = Testicles()
 		
-		self.BuildAPenis()
+		for i in range(0, int(len(self.NounList) * (2/3))):
+			self.NounList.append(self.BuildAPenis())
 	
 	def GetRandomPenisPart(self, bAllowShortDesc = False):
 		iRand = randint(1,3)
@@ -1296,6 +1298,7 @@ class Semen(BodyParts):
 			'man-jam',
 			'man-milk',
 			'man-seed',
+			'sauce',
 			'seed',
 			'semen',
 			'sperm',

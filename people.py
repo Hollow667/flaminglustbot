@@ -35,7 +35,7 @@ class FemaleFWB(Person):
 		'boss\'s wife',
 		'CEO',
 		'co-ed student',
-		'cousin',
+		'hot cousin',
 		'cute roommate',
 		'dad\'s girlfriend',
 		'daughter',

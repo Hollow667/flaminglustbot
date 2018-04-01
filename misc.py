@@ -532,10 +532,18 @@ class BookTitleBuilder():
 			#Married to the Alpha Wolf
 			sTitle = sVerbTo + " to the " + sMaster
 			if CoinFlip():
-				sTitle += ": An " + self._getFMs_() + " Adventure"
+				if CoinFlip():
+					sTitle += ": A " + self._getFMs_() + " Romance"
+				else:
+					sTitle += ": A BDSM Romance"
 		elif iRand == 3:
 			#The President's Girl
 			sTitle = "The " + sMaster + "'s " + sGirl
+			if CoinFlip():
+				if CoinFlip():
+					sTitle += "A BDSM Romance"
+				else:
+					sTitle += "A Hot Ménage"
 		elif iRand == 4:
 			#Seduced in the Bed of the Billionaire
 			if CoinFlip():
@@ -546,7 +554,7 @@ class BookTitleBuilder():
 			#The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
 			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", & The " + sMaster + ": "
 			if CoinFlip():
-				sTitle += "A Hot Menage"
+				sTitle += "A Hot Ménage"
 			else:
 				sTitle += "A " + self._getFMs_() + " Romance"
 		elif iRand == 6:
@@ -554,9 +562,11 @@ class BookTitleBuilder():
 			sTitle = "The " + sGirl + "'s " + sMaster
 		elif iRand == 7:
 			#The Secretary and the Space Werewolf 
-			iRand2 = randint(1,2)
 			sTitle = "The " + sGirl + " & the " + sMaster
-			if iRand2 == 1:
+			if CoinFlip():
+				if CoinFlip():
+					sTitle += "A BDSM Romance"
+				else:
 					sTitle += ": A " + self._getFMs_() + " Romance"
 		elif iRand == 8:
 			#Baby for the Stay-at-Home Manticore
@@ -573,7 +583,11 @@ class BookTitleBuilder():
 			#Babysitter for the Billionaire Uniporn
 			sTitle = sGirl + " for the " + sMaster
 			if CoinFlip():
-				sTitle += ": An " + self._getFMs_() + " Adventure"
+				if CoinFlip():
+					sTitle += ": An " + self._getFMs_() + " Adventure"
+				else:
+					sTitle += ": A BDSM Romance"
+			
 		elif iRand == 12:
 			#The Virgin Call-Girl's Gang Bang
 			sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
@@ -586,7 +600,10 @@ class BookTitleBuilder():
 			#The Small-Town Virgin's First Time
 			sTitle = "The " + sGirl + "'s First Time"
 			if CoinFlip():
-				sTitle += ": A " + self._getFMs_() + " Romance"
+				if CoinFlip():
+					sTitle += ": An " + self._getFMs_() + " Romance"
+				else:
+					sTitle += ": A BDSM Romance"
 		elif iRand == 15:
 			sTitle = sVerbBy + ": "
 			if CoinFlip():

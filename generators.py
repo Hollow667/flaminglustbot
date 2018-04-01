@@ -240,9 +240,9 @@ class GeneratorPromo(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E Winking kiss face: \U0001F618"
+		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E Winking kiss face: \U0001F618 Star: \U00002B50"
 
-		iRand = randint(1,6)
+		iRand = randint(1,7)
 		# if iRand == 1:
 			# sTweet = misc.TweetReplyBuilder().GetReply() + " from F.L. Bot!" 
 		if iRand == 1:
@@ -255,6 +255,8 @@ class GeneratorPromo(Generator):
 			sTweet = "I am a twitter bot\U0001F916 designed to automatically generate hot\U0001F525, filthy\U0001F346, and funny\U0001F923 scenes from the world's worst smutty romance novel!\n\nReply to one of my tweets and get a surprise!"
 		elif iRand == 5:
 			sTweet = "I am bot\U0001F916!\n\nBut not the Russian kind of bot, the sexy kind of bot!\n#botlife #twitterbot"
+		elif iRand == 6:
+			sTweet = "Look what my followers are saying:\n\n\U00002B50'I am hooked on this ridiculous account!'\n\U00002B50'The stuff this bot comes up with is hysterical. XD'\n\U00002B50'[S]imultaneously hilarious, nauseating, and inspiring'\n\n#ThankYou! \U0001F916\U0001F618"
 		else:
 			sTweet = "I love you, followers!\n\n\U0001F49A\U0001F499\U0001F49C"
 			

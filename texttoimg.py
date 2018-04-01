@@ -6,7 +6,7 @@ from random import *
 
 PATH = "resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 30
+MAX_IMG_NUM = 34
 
 def SaveImg(img, filename = ""):
 	try:
@@ -117,8 +117,8 @@ def FormatText(sText, size, color):
 	
 	#if the height of our lines exceeds the height of the image area, reduce font and try again
 	while iTotLineHeight > offset_height:
-		#print("FormatText() offset_height exceeded, shrinking font by 5 and trying again")
-		iFontSize += (-5)
+		print("FormatText() offset_height exceeded for font size " + str(iFontSize) + ", shrinking font by 6 and trying again")
+		iFontSize += (-6)
 		
 		font = ImageFont.truetype(PATH + FONT, size = iFontSize, layout_engine = ImageFont.LAYOUT_RAQM)
 		
@@ -126,7 +126,7 @@ def FormatText(sText, size, color):
 		
 		iTotLineHeight = CalcTotalLineHeight(Lines, font)
 		
-	#print("FormatText() Final font size is " + str(iFontSize))
+	print("FormatText() Final font size is " + str(iFontSize))
 	#print(Lines)
 			
 	ImgTxt = Image.new('RGBA', (base_width, base_height), (0,0,0,95))

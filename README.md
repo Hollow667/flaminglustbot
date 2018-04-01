@@ -9,6 +9,6 @@ The bot uses the python library tweepy to access the twitter API. It requires a 
 
 To run this bot:
 
-# lust_bot [-tweet] [-numtweets NUMTWEETS] [-test TEST] [-sleeptimer SLEEPTIMER]
+# lust_bot [-tweet] [-numtweets NUMTWEETS] [-test TEST] [-tweettimer TWEETTIMER] [-replytimer REPLYTIMER]
 
 All args optional, but you must include **-tweet** if you want the bot to actually tweet what it generates.

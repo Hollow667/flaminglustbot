@@ -7,6 +7,8 @@ This bot was coded in python. It uses the **tweepy** library to access Twitter's
 ***WARNING***
 *This bot generates explicit adult content! You must be 18+ to use or modify this bot!*
 
+Flaming Lust Bot does its thing on twitter at [@bot_lust](https://twitter.com/bot_lust).
+
 ## features
 * **Bot talks back:** replies to users that reply to its tweets
 * **Creates and tweets images:** images are in memory only and not stored on drive

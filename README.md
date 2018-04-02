@@ -26,4 +26,4 @@ This is my first python program. I am more experienced with strict object-orient
 
 ## feel free to fork and steal
 
-I spent way too much time working on this silly bot. Some of the features I've implemented pretty poorly documented. Hopefully the code can be useful to other python devs. If you are forking or stealing large chunks of code wholesale, please be kind and give me credit and include a link to this repo.
+I spent way too much time working on this silly bot. Some of the features I've implemented were very poorly documented. I hope that this code can be useful to other python devs trying to do the same things I was. If you are forking or stealing large chunks of code wholesale, please be kind and give me credit and include a link to this repo.

@@ -16,6 +16,7 @@ HASHTAG_BOOKTITLE = "#book"
 def InitTweepy():
 	api = None
 	
+	# These twitter access codes are stored in a seperate file not included in the github repo. You must create your own. simply name it twitterauth.py and include the four variables below: ConsumerKey, ConsumerSecret, AccessKey, AccessSecret. you get these codes from https://apps.twitter.com/
 	CONSUMER_KEY = twitterauth.ConsumerKey
 	CONSUMER_SECRET = twitterauth.ConsumerSecret
 	ACCESS_KEY = twitterauth.AccessKey

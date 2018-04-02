@@ -12,9 +12,9 @@ from locations import *
 from people import *
 from texttoimg import *
 
-Q_SIZE = 5
+#Q_SIZE = 5
 
-HistoryQ = []
+#HistoryQ = []
 
 def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True):
 	Generator = None
@@ -27,19 +27,19 @@ def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True):
 			Generator = gen
 	else:
 		gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo)
-		while gen.ID in HistoryQ:
-			gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo)
+
 		if not gen == None:
 			Generator = gen
 			
-			HistoryQ.insert(0, Generator.ID)
+			# HistoryQ.insert(0, Generator.ID)
 			
-			if len(HistoryQ) > Q_SIZE:
-				HistoryQ.pop()
+			# if len(HistoryQ) > Q_SIZE:
+				# HistoryQ.pop()
 		
 	return Generator
 	
 def IsTweetTooLong(sTweet):
+	# This function is no longer in use since the bot was switched to tweeting images. However since it is useful for splitting text over 280 chars into multiple tweets, I'm leaving it in for future reference
 	bTooLong = True
 	
 	if len(sTweet) <= MAX_TWITTER_CHARS:
@@ -48,6 +48,7 @@ def IsTweetTooLong(sTweet):
 	return bTooLong
 	
 def ChopTweet(sTweet, sPrefix):
+	# This function is no longer in use since the bot was switched to tweeting images. However since it is useful for splitting text over 280 chars into multiple tweets, I'm leaving it in for future reference
 	Tweets = []
 	iTargetLen = MAX_TWITTER_CHARS - 4
 	iTweetNo = 1
@@ -87,6 +88,7 @@ def AddHashtag(Tweets):
 	return Tweets
 	
 def GetChoppedTweets(bTest, iGeneratorNo = 0, sPrefix = "", bAllowPromo = True):
+	# This function is no longer in use since the bot was switched to tweeting images. However since it is useful for splitting text over 280 chars into multiple tweets, I'm leaving it in for future reference
 	Tweets = [1]
 	Gen = None 
 	sTweetStr = ""
@@ -96,17 +98,17 @@ def GetChoppedTweets(bTest, iGeneratorNo = 0, sPrefix = "", bAllowPromo = True):
 	if not Gen is None:
 		sTweetStr = Gen.GenerateTweet()
 
-		# if len(sTweetStr) > 0:
-			# if not Gen.Type == GeneratorType.Promo:
-				# SaveImg(CreateImg(sTweetStr))
-			# if IsTweetTooLong(sPrefix + sTweetStr):
-				# Tweets = ChopTweet(sTweetStr, sPrefix)
-			# else:
-				# Tweets[0] = sPrefix + sTweetStr
-			# if not Gen.Type == GeneratorType.Promo:
-				# Tweets = AddHashtag(Tweets)	
-		# else: 
-		Tweets[0] = sTweetStr
+		if len(sTweetStr) > 0:
+			if not Gen.Type == GeneratorType.Promo:
+				SaveImg(CreateImg(sTweetStr))
+			if IsTweetTooLong(sPrefix + sTweetStr):
+				Tweets = ChopTweet(sTweetStr, sPrefix)
+			else:
+				Tweets[0] = sPrefix + sTweetStr
+			if not Gen.Type == GeneratorType.Promo:
+				Tweets = AddHashtag(Tweets)	
+		else: 
+			Tweets[0] = sTweetStr
 
 	return Tweets
 	
@@ -770,9 +772,12 @@ class Generator25(Generator):
 		if CoinFlip():
 			sTweet += "'Don't worry baby,' he said, " + self.VThrust.Gerund() + " into her.\n\n"
 			sTweet += Location.Caught + "\n\n"
-			sTweet += "'" + self.Exclamation.GetWord().capitalize() + " I'm gonna cum!' said " + sHisName + ".\n\n"
-			sTweet += "'Wait, not yet!' she cried.\n\n"
-			sTweet += "'Too late!' said " + sHisName + ". 'I'm " + self.VEjac.Gerund() + "!' And then, as " + Location.Consequence + ", he grabbed her by the hips and filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with " + self.Semen.RandomDescription() + "."
+			if CoinFlip():
+				sTweet += "'" + self.Exclamation.GetWord().capitalize() + " I'm gonna cum!' said " + sHisName + ".\n\n"
+				sTweet += "'Wait, not yet!' she cried.\n\n"
+				sTweet += "'Too late!' said " + sHisName + ". 'I'm " + self.VEjac.Gerund() + "!' And then, as " + Location.Consequence + ", he grabbed her by the hips and filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with " + self.Semen.RandomDescription() + "."
+			else:
+				sTweet += sHisName + " smiled at the " + Location.AuthorityFigure + ". 'It's okay if you want to watch us,' he said."
 		else:
 			sTweet += "'But you want us to get caught, don't you, baby?' he purred. 'You want me to " + self.VThrust.Present() + " your little " + self.FemBodyParts.Vagina.GetAdj(sNot ="little") + " " + self.FemBodyParts.Vagina.GetNoun() + " in front of " + Location.AuthorityFigure + ". You want me to fill your " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with my " + self.Semen.RandomDescription() + " as they watch you get fucked.\n\n"
 			sTweet += "'Ooh, fuck yes!' she " + self.VMoan.Past() + "."
@@ -1414,10 +1419,10 @@ class Generator45(Generator):
 			
 		return sTweet
 		
-class Generator46(Generator):
+# class Generator46(Generator):
 	#Sable could feel the swollen head of Geoffrey's cock against the tight ring of her anus. 'Oh, go slowly Geoffrey!'\n\n'I am, my love,' he replied. Gently but firmly, he eased his turgid 8 1/2" cock into her entrance.\n\n'Oh!' Sable gasped. 'Wow! Don't stop Geoffrey, please.'\n\nGeoffrey took his time and used lots of lube until at last he was balls deep inside her tush. 'Oh god, baby, you're so tight!' he gasped as he began to piston into her.\n\n''I've let dozens of men fuck my pussy, babe,' said Sable, 'But you're the only man who will ever plough my sphincter.']
-	ID = 46
-	Priority = 1
+	# ID = 46
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()

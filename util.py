@@ -22,6 +22,8 @@ TAG_FOREPLAY = "foreplay scene"
 TAG_ABOVE_BELT = "above-the-belt sex act scene"
 TAG_BELOW_BELT = "below-the-belt sex act scene"
 TAG_ORAL = "oral sex scene"
+
+HistoryQ = None
 	
 class Gender(Enum):
 	Male = 1
@@ -138,3 +140,58 @@ class NounAdjList:
 		sWord = self.GetAdj() + " " + self.GetNoun()
 		
 		return sWord
+		
+class HistoryQ():
+	HistoryQ = []
+	
+	def PushToHistoryQ(self, ID):
+		bPushOK = False 
+		
+		if not self.IsInQ(ID):
+			self.HistoryQ.insert(0,ID)
+			bPushOK = True
+			
+			if len(self.HistoryQ) > Q_SIZE:
+				self.HistoryQ.pop()
+		
+		return bPushOK
+		
+	def IsInQ(self, ID):
+		bIsInQ = True 
+		
+		if not ID in self.HistoryQ:
+			bIsInQ = False
+		#else:
+			#print("Collision: " + str(ID) + " found in Q:")
+			#print(self.HistoryQ)
+			
+		return bIsInQ
+			
+class HistoryQWithLog(HistoryQ):
+	LogFileName = ""
+	
+	def __init__(self, sLogFileName):
+		self.LogFileName = sLogFileName
+		#print("LogFileName is " + self.LogFileName)
+		
+		try:
+			with open(self.LogFileName, 'r') as ReadLogFile:
+				for item in ReadLogFile.read().splitlines():
+					#print(item)
+					self.HistoryQ.append(int(item))
+		except FileNotFoundError:
+			open(self.LogFileName, 'w')
+			with open(self.LogFileName, 'r') as ReadLogFile:
+				for item in ReadLogFile.read().splitlines():
+					#print(item)
+					self.HistoryQ.append(int(item))
+		#print("Loaded HistoryQ:")
+		#print(self.HistoryQ)
+			
+	def LogHistoryQ(self):
+		with open(self.LogFileName, 'w') as WriteHistoryQ:
+			for item in self.HistoryQ:
+				WriteHistoryQ.write(str(item) + "\n")
+		#print("Wrote HistoryQ:")
+		#print(self.HistoryQ)
+			

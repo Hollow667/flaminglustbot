@@ -350,8 +350,8 @@ class Nipples(BodyParts):
 			'pert',
 			'pokey',
 			'puffy',
-			'rosebud'
-			'rose-colored'
+			'rosebud',
+			'rose-colored',
 			'ripe',
 			'sensitive',
 			'shameless',
@@ -1289,7 +1289,7 @@ class Penis(BodyParts):
 	def GenerateLength(self):
 		sLength = ""
 		
-		sLength = str(randint(5, 13))
+		sLength = str(randint(6, 13))
 		if CoinFlip():
 			sLength += " 1/2"
 		sLength += "\""
@@ -1357,18 +1357,27 @@ class Semen(BodyParts):
 			'splooge',
 			'spunk']
 			
-		self.AdjList = ['glossy',
+		self.AdjList = ['creamy',
+			'delicious',
+			'glossy',
 			'gooey',
 			'milky',
 			'nasty',
+			'nourishing',
+			'oozing',
 			'pearlescent',
 			'pearly',
+			'ropy',
 			'salty',
 			'silken',
 			'silky',
+			'sloppy',
 			'sticky',
+			'tasty',
+			'thick',
 			'warm',
-			'white hot']
+			'white-hot',
+			'yummy']
 		
 		self.DefaultNoun = "semen"
 		self.DefaultAdj = "gooey"

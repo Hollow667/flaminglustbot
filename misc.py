@@ -42,6 +42,7 @@ class Events(WordList):
 		
 class Hashtags(WordList):
 	List = ['amwriting',
+			'BDSM',
 			'bitcoin',
 			'blockchain',
 			'bot',
@@ -51,16 +52,22 @@ class Hashtags(WordList):
 			'eartg',
 			'erotica',
 			'erotica',
+			'fantasy',
+			'fiftyshades',
 			'filthy',
 			'lprtg',
 			'lprtg',
+			'mrbtg',
 			'naughty',
 			'nsfw',
 			'PleaseRT',
+			'romance',
 			'smut',
 			'sorrynotsorry',
 			'ssrtg',
 			'ssrtg',
+			'taboo',
+			'truelove',
 			'twitterbot',
 			'twitterbot']
 		
@@ -117,7 +124,6 @@ class Exclamations(WordList):
 		'Jiminy Christmas',
 		'holy motherfucking shit',
 		'lord',
-		'lordy',
 		'oh goodness',
 		'oh my',
 		'shit',
@@ -137,7 +143,10 @@ class Exclamations(WordList):
 			
 		iRand = randint(1, 3)
 		if iRand == 1 and bHappy:
-			sExclamation += ", yes"
+			if CoinFlip():
+				sExclamation += ", yes"
+			else:
+				sExclamation += ", yeah"
 		elif iRand == 1 and bSad:
 			sExclamation += ", no"
 			
@@ -201,7 +210,6 @@ class BookSellers(WordList):
 			'Amazon',
 			'B&N',
 			'Kobo',
-			'Literotica',
 			'Radish Fiction',
 			'Smashwords',
 			'WattPad']

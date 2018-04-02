@@ -41,6 +41,8 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 	sTweet = ""
 	bTest = False 
 	
+	util.HistoryQ = HistoryQWithLog(util.HISTORYQ_FILENAME)
+	
 	try:
 		
 		api = InitTweepy()
@@ -63,61 +65,69 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 			
 			#Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
-			sTweet = Gen.GenerateTweet()
-			if Gen.Type != GeneratorType.Promo:
-				sText = GetImgTweetText()
+			#print("Generator ID: " + str(Gen.ID))
+			while bTweet and not util.HistoryQ.PushToHistoryQ(Gen.ID):
+				#print("Generator ID " + str(Gen.ID) + " already in Q")
+				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
+				#print("New generator ID: " + str(Gen.ID))
 			
-			print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
-			#for tweet in Tweets:
-			#print("[" + tweet + "](" + str(len(tweet)) + " chars)")
-			print("[" + sTweet + "]")
-			if len(sText) > 0:
-				print("Tweet text: [" + sText + "]")
-				#print(misc.TweetReplyBuilder().GetReply())
+			sTweet = Gen.GenerateTweet()
+			if len(sTweet) > 0:
+				if Gen.Type != GeneratorType.Promo:
+					sText = GetImgTweetText()
 				
-			currentDT = datetime.datetime.now()
-			if bTweet:
-				print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
+				print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
+				print("[" + sTweet + "]")
+				if len(sText) > 0:
+					print("Tweet text: [" + sText + "]")
+					#print(misc.TweetReplyBuilder().GetReply())
 					
-				status = None
+				currentDT = datetime.datetime.now()
+				if bTweet:
+					print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
+						
+					status = None
+						
+					if status == None:
+						#pass
+						#status = UpdateStatus(api, tweet)
+						if Gen.Type == GeneratorType.Promo:
+							status = UpdateStatus(api, sTweet)
+						else:
+							ImgFile = BytesIO() 
+							CreateImg(sTweet).save(ImgFile, format = 'PNG')
+							
+							status = UpdateStatusWithImage(api, sText, ImgFile)		
+					else:
+						#pass
+						#status = UpdateStatus(api, tweet, status.id)
+						if Gen.Type == GeneratorType.Promo:
+							status = UpdateStatus(api, sTweet, status.id)
+						else:
+							ImgFile = BytesIO() 
+							CreateImg(sTweet).save(ImgFile, format = 'PNG')
+							
+							status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
 					
-				if status == None:
-					#pass
-					#status = UpdateStatus(api, tweet)
-					if Gen.Type == GeneratorType.Promo:
-						status = UpdateStatus(api, sTweet)
+					#make timer slightly variable +-33%
+					if iTweetTimer > 180:
+						iRandSecs = iTweetTimer
+							
+						iRandSecs = randint(int(iRandSecs - (iRandSecs * (1/3))), int(iRandSecs + (iRandSecs * (1/3))))
+						print("* Next tweet in " + str(iRandSecs) + " seconds (" + (currentDT + datetime.timedelta(seconds=iRandSecs)).strftime("%H:%M:%S") + ")...")
+						time.sleep(iRandSecs)
 					else:
-						ImgFile = BytesIO() 
-						CreateImg(sTweet).save(ImgFile, format = 'PNG')
-						
-						status = UpdateStatusWithImage(api, sText, ImgFile)		
-				else:
-					#pass
-					#status = UpdateStatus(api, tweet, status.id)
-					if Gen.Type == GeneratorType.Promo:
-						status = UpdateStatus(api, sTweet, status.id)
-					else:
-						ImgFile = BytesIO() 
-						CreateImg(sTweet).save(ImgFile, format = 'PNG')
-						
-						status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
-								
-				#make timer slightly variable +-33%
-				if iTweetTimer > 180:
-					iRandSecs = iTweetTimer
-						
-					iRandSecs = randint(int(iRandSecs - (iRandSecs * (1/3))), int(iRandSecs + (iRandSecs * (1/3))))
-					print("* Next tweet in " + str(iRandSecs) + " seconds (" + (currentDT + datetime.timedelta(seconds=iRandSecs)).strftime("%H:%M:%S") + ")...")
-					time.sleep(iRandSecs)
-				else:
-					print("* Next tweet in " + str(iTweetTimer) + " seconds (" + (currentDT + datetime.timedelta(seconds=iTweetTimer)).strftime("%H:%M:%S") + ")...")
-					time.sleep(iTweetTimer)
+						print("* Next tweet in " + str(iTweetTimer) + " seconds (" + (currentDT + datetime.timedelta(seconds=iTweetTimer)).strftime("%H:%M:%S") + ")...")
+						time.sleep(iTweetTimer)
 	except KeyboardInterrupt:
 		print("Ending program ...")
 		
 		e.set()
-		print("***Goodbye***")
+		
 		sys.exit(1)	
+	finally:
+		util.HistoryQ.LogHistoryQ()
+		print("***Goodbye***")
 		
 	e.set()
 	

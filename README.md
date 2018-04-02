@@ -12,7 +12,7 @@ Flaming Lust Bot does its thing on twitter at [@bot_lust](https://twitter.com/bo
 ## features
 * **Bot talks back:** replies to users that reply to its tweets
 * **Creates and tweets images:** images are in memory only and not stored on drive
-* **Formats image text:** includes code that wraps, vertically centers, and resizes text being applied to an image
+* **Formats image text:** includes code that wraps, vertically centers, and resizes text being applied to background image
 * **Multi-threaded:** replies are handled separately from regular tweets
 
 ## running the bot

@@ -5,7 +5,7 @@ This is a twitter bot designed to tweet out steamy 'love scenes' generated from 
 This bot was coded in python. It uses the **tweepy** library to access Twitter's API. It uses the **pillow** library to create images.
 
 ***WARNING***
-This bot generates explicit adult content! You must be 18+ to use or modify this bot!
+*This bot generates explicit adult content! You must be 18+ to use or modify this bot!*
 
 ## features
 * Bot talks back: replies to users that reply to its tweets

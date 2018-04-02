@@ -22,7 +22,7 @@ All args optional, but you must include **-tweet** if you want the bot to actual
 
 ## me
 
-This is my first python program. I am more experienced with strict object-oriented languages like Java and C#. Please excuse the non-pythonic quirks of my code.
+This is my first python program. I am more experienced with strictly-typed object-oriented languages like Java and C#. Please excuse the non-pythonic quirks of my code.
 
 ## feel free to fork and steal
 

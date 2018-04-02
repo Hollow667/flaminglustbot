@@ -8,9 +8,9 @@ This bot was coded in python. It uses the **tweepy** library to access Twitter's
 *This bot generates explicit adult content! You must be 18+ to use or modify this bot!*
 
 ## features
-* Bot talks back: replies to users that reply to its tweets
-* Creates and tweets images: images are in memory only and not stored on drive
-* Multi-threaded: replies are handled separately from regular tweets
+* **Bot talks back:** replies to users that reply to its tweets
+* **Creates and tweets images:** images are in memory only and not stored on drive
+* **Multi-threaded:** replies are handled separately from regular tweets
 
 ## running the bot
 

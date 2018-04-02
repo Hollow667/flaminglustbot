@@ -41,7 +41,8 @@ class Events(WordList):
 		return sEvent
 		
 class Hashtags(WordList):
-	List = ['amwriting',
+	List = ['50shades',
+			'amwriting',
 			'BDSM',
 			'bitcoin',
 			'blockchain',
@@ -215,76 +216,130 @@ class BookSellers(WordList):
 			'WattPad']
 			
 class BookGirls(WordList):
-	List = ['Amish Maiden',
+	List = ['Airline Stewardess',
+			'Amish Maiden',
+			'Anal Virgin',
 			'Babysitter',
+			'Bikini Model',
+			'Bimbo',
+			'Blonde',
+			'Brat',
+			'Bride',
+			'Bride',
+			'Bridesmaid',
 			'BBW',
 			'Call-Girl',
 			'Co-ed',
 			'Concubine',
+			'Escort',
 			'Fashion Model',
+			'Farmer\'s Daughter',
 			'Flight Attendant',
 			'Futa',
+			'Girlfriend',
 			'Governess',
 			'Handmaiden',
 			'Harem Girl',
 			'Hotwife',
 			'Housewife',
+			'Flight Attendant',
 			'French Maid',
+			'Intern',
+			'Lady',
 			'Librarian',
+			'Lingerie Model',
+			'Maid',
 			'Maiden',
 			'Masseuse',
 			'Midwife',
 			'MILF',
 			'Milk Maid',
+			'Momma',
 			'Nanny',
 			'Nurse',
+			'Older Woman',
+			'Princess',
+			'Princess',
+			'Redhead',
+			'Sex Surrogate',
 			'Surrogate',
+			'Secretary',
 			'Secretary',
 			'Servant',
 			'Sex Slave',
 			'Sex Witch',
+			'Schoolgirl',
 			'Single Mom',
 			'Small-Town Girl',
+			'Slut',
 			'Step-Daughter',
 			'Step-Sister',
 			'Submissive',
 			'Teacher',
-			'Tutor',
 			'Virgin',
+			'Wallflower',
 			'Waitress',
-			'Wife']
+			'Wet Nurse',
+			'Whore',
+			'Wife',
+			'Woman']
 			
 class BookGirlAdjs(WordList):
 	List = ['Amish',
+		'Anal',
+		'Bashful',
 		'BBW',
 		'BDSM',
+		'Bimbo',
+		'Black',
+		'Blonde',
 		'Call-Girl',
+		'Chaste',
+		'Christian',
 		'Co-ed',
 		'Concubine',
+		'Conservative',
+		'Country',
 		'Curvy',
+		'Divorced',
+		'Ebony',
 		'Fertile',
 		'Futa',
 		'Harem',
 		'Hotwife',
 		'High-Heeled',
 		'Innocent',
+		'Innocent',
 		'Intern',
+		'Kinky',
+		'Lactating',
 		'Lesbian',
+		'Live-in',
 		'Married',
 		'MILF',
 		'Naked',
+		'Naked',
+		'Naughty',
+		'Nubile',
+		'Nude',
+		'Nudist',
+		'Nursing',
 		'Pregnant',
+		'Redhead',
 		'Sex',
+		'Shy',
 		'Single',
 		'Single Mom',
 		'Small-Town',
 		'Submissive',
 		'Taboo',
+		'Teen',
 		'Teenage',
 		'Virgin',
 		'Virgin',
 		'Virgin',
-		'Virgin']
+		'Virgin',
+		'Young']
 
 class BookMasters(WordList):
 	List = ['Alpha',
@@ -306,19 +361,25 @@ class BookMasters(WordList):
 			'Cowboy',
 			'Cowboys',
 			'Dad',
+			'Daddy',
 			'Daddy Dom',
+			'Defensive Lineman',
 			'Dildo Designer',
 			'Dinosaur',
 			'Doctor',
 			'Dom',
 			'Dominatrix',
 			'Duke',
+			'Duke',
 			'Futanari',
+			'Gay-for-Pay Porn Star',
 			'Gazillionaire',
 			'Goat Man',
 			'Goat Men',
 			'Hitman',
+			'Incubus',
 			'Fire Fighter',
+			'Jet Fighter Pilot',
 			'King',
 			'Knight',
 			'Lesbian Cheerleader',
@@ -327,6 +388,7 @@ class BookMasters(WordList):
 			'Lesbian MILF',
 			'Lipstick Lesbian',
 			'Older Man',
+			'Olympic Gold Medalist',
 			'Male Escort',
 			'Male Stripper',
 			'Man-o-taur',
@@ -345,23 +407,31 @@ class BookMasters(WordList):
 			'Pirates',
 			'Playboy Billionaire',
 			'Pope',
+			'Porn Star',
 			'President',
 			'Prince',
 			'Professor',
+			'Quarterback',
 			'Rock Star',
 			'Shah',
+			'Sex Addict',
 			'Sex Warlock',
 			'Sheikh',
 			'Sheriff',
+			'Sorcerer',
+			'Spy',
 			'Surfer',
+			'S.W.A.T. Team',
 			'Trillionaire',
 			'Viking',
 			'Viking Hoard',
 			'Uniporn',
 			'Vampire',
 			'Vampire Coven',
+			'Voyeur',
 			'Werewolf',
-			'Werewolf Pack']
+			'Werewolf Pack',
+			'Widower']
 			
 class BookMasterAdjs(WordList):
 	List = ['Alpha',
@@ -371,7 +441,9 @@ class BookMasterAdjs(WordList):
 			'Billionaire',
 			'Black',
 			'Cowboy',
+			'Defensive Lineman',
 			'Dinosaur',
+			'Ebony',
 			'Fire Fighter',
 			'French',
 			'Futanari',
@@ -389,35 +461,50 @@ class BookMasterAdjs(WordList):
 			'Multi-Millionaire',
 			'Naked',
 			'Navy Seal',
+			'Nudist',
 			'Older Man',
+			'Olympic Gold Medalist',
 			'Pirate',
 			'Playboy',
+			'Porn Star',
 			'Rock Star',
 			'Savage',
 			'Scottish',
 			'Secret',
-			'Secret',
+			'Sex Addict',
 			'Shape-Shifting',
 			'Single Dad',
 			'Space',
 			'Spanish',
 			'Stay-at-Home',
 			'Stripper',
+			'Superstar',
 			'Surfer',
+			'S.W.A.T. Team'
 			'Trillionaire',
 			'Viking',
 			'Well-hung',
-			'Werewolf']
+			'Werewolf',
+			'Wicked',
+			'Widowed']
 			
 class BookVerbsBy(WordList):
-	List = ['Blackmailed',
+	List = ['Anally Deflowered',
+			'Annally Deflowered in Public',
+			'Blackmailed',
 			'Bound',
 			'Bred',
+			'Captured',
 			'Claimed',
+			'Claimed',
+			'Claimed Hard',
 			'Claimed in Public',
 			'Conquered',
 			'Charmed',
 			'Cuckolded',
+			'Deflowered',
+			'Deflowered',
+			'Deflowered in Public',
 			'Dominated',
 			'Enslaved',
 			'Exposed in Public',
@@ -426,20 +513,28 @@ class BookVerbsBy(WordList):
 			'Humiliated',
 			'Hunted For Food',
 			'Impregnated',
+			'Kept',
 			'Knocked Up',
 			'Mastered',
 			'Owned',
 			'Pleasured',
+			'Pleasured in Public',
 			'Punished',
 			'Punished in Public',
+			'Ravished',
 			'Seduced',
 			'Sexually Harrassed At My Workplace',
+			'Sold',
+			'Sold',
 			'Spanked',
 			'Spanked in Public',
 			'Shaved',
 			'Stripped',
 			'Stripped in Public',
 			'Taken',
+			'Taken',
+			'Taken Hard',
+			'Taken Hard in Public',
 			'Taken in Public',
 			'Tempted',
 			'Trained',
@@ -532,7 +627,9 @@ class BookTitleBuilder():
 		sVerbBy = VerbsBy.GetWord()
 		sVerbTo = VerbsTo.GetWord()
 		
-		iRand = randint(1,15)
+		Titles = []
+		
+		iRand = randint(1,19)
 		if iRand == 1:
 			#Blackmailed by the Billionaire Mountain Man 
 			sTitle = sVerbBy + " by the " + sMaster
@@ -595,7 +692,6 @@ class BookTitleBuilder():
 					sTitle += ": An " + self._getFMs_() + " Adventure"
 				else:
 					sTitle += ": A BDSM Romance"
-			
 		elif iRand == 12:
 			#The Virgin Call-Girl's Gang Bang
 			sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
@@ -609,7 +705,7 @@ class BookTitleBuilder():
 			sTitle = "The " + sGirl + "'s First Time"
 			if CoinFlip():
 				if CoinFlip():
-					sTitle += ": An " + self._getFMs_() + " Romance"
+					sTitle += ": A " + self._getFMs_() + " Romance"
 				else:
 					sTitle += ": A BDSM Romance"
 		elif iRand == 15:
@@ -618,6 +714,31 @@ class BookTitleBuilder():
 				sTitle += "The " + sGirl + " & The " + sMaster
 			else:
 				sTitle += AddArticles(sGirl).title() + " Romance"
+		elif iRand == 16:
+			sTitle = "Full Frontal for the "
+			if CoinFlip():
+				sTitle += sMaster
+			else:
+				sTitle += sGirl
+			if CoinFlip():
+				if CoinFlip():
+					sTitle += ": An " + self._getFMs_() + " Adventure"
+				else:
+					sTitle += ": A BDSM Romance"
+		elif iRand == 17:
+			sTitle = "I Was " + sVerbBy
+			if not "in Public" in sMaster:
+				sTitle += " By A " + sMaster
+			sTitle += ", And I Liked It"
+		elif iRand == 18: 
+			sTitle += sVerbBy  + " by "
+			sTitle += "the " + sMaster + ": A " + sGirl + " Story"
+		elif iRand == 19:
+			sTitle = "The " + sGirl + " and the " + self.GetGirl()
+			if CoinFlip():
+				": A Lesbian Love Story"
+			else:
+				": A Secret Lesbian Affair"
 		else:
 			pass
 			

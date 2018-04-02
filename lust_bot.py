@@ -77,7 +77,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 					sText = GetImgTweetText()
 				
 				print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
-				print("[" + sTweet + "]")
+				#print("[" + sTweet + "]")
 				if len(sText) > 0:
 					print("Tweet text: [" + sText + "]")
 					#print(misc.TweetReplyBuilder().GetReply())

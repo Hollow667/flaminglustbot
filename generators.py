@@ -129,15 +129,15 @@ def GetImgTweetText():
 		sText = "'" + TitleBuilder.GetTitle() + "' is coming soon on " + BookSeller.GetWord() + "!"
 	elif iRand in range(5, 8):
 		sText = "Check out this " + SexyAdj.GetWord() + " excerpt from '" + TitleBuilder.GetTitle() + "', available soon on " + BookSeller.GetWord() + "!"
-	elif iRand in range (8, 11):
+	elif iRand in range (8, 13):
 		sText = "Look for '" + TitleBuilder.GetTitle() + "' on " + BookSeller.GetWord() + ", by F.L. Bott"
-	elif iRand in range(11,12):
+	elif iRand in range(13,14):
 		sText = "Don't hate Flaming Lust Bot because it's beautiful. \U0001F916"
-	elif iRand in range(12, 13):
+	elif iRand in range(14, 15):
 		sText = "This tweet brought to you by the letters 'S', 'E', and 'X', and by the number 69"
-	elif iRand in range(13, 14):
+	elif iRand in range(15, 16):
 		sText = "\U0001F525I know you like reading these.\U0001F525 Don't worry, I won't tell. \U0001F618"
-	elif iRand in range(14,15): 
+	elif iRand in range(16,17): 
 		sText = "The sex acts depicted are computer generated and have not been approved by a physician.\n\nDo not attempt."
 	else: 
 		FavWord.List += AnusFemale().NounList

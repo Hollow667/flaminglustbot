@@ -1,6 +1,6 @@
 # flaminglustbot
 
-This is a twitter bot designed to tweet out steamy 'love scenes' generated from word lists (the bot tweets these as images). The bot will also reply to anyone who replies to it and can change the content of its reply based on hashtags in the original reply. 
+This is a twitter bot designed to tweet out really bad steamy 'love scenes' generated from word lists (the bot tweets these as images). The bot will also reply to anyone who replies to it and can change the content of its reply based on hashtags in the original reply. 
 
 This bot was coded in python. It uses the **tweepy** library to access Twitter's API. It uses the **pillow** library to create images.
 

@@ -27,6 +27,8 @@ All args optional, but you must include **-tweet** if you want the bot to actual
 
 ## me
 
+This bot was inspired by some of the sillier and lower-quality self-published erotica that can be found on sites like smashwords and amazon. I am a self-pubbed erotica writer myself so this is all done with love ;-P
+
 This is my first python program. I am more experienced with strictly-typed object-oriented languages like Java and C#. Please excuse the non-pythonic quirks of my code.
 
 ## feel free to fork and steal

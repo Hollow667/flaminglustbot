@@ -549,9 +549,9 @@ class BookTitleBuilder():
 			sTitle = "The " + sMaster + "'s " + sGirl
 			if CoinFlip():
 				if CoinFlip():
-					sTitle += "A BDSM Romance"
+					sTitle += ": A BDSM Romance"
 				else:
-					sTitle += "A Hot Ménage"
+					sTitle += ": A Hot Ménage"
 		elif iRand == 4:
 			#Seduced in the Bed of the Billionaire
 			if CoinFlip():
@@ -573,7 +573,7 @@ class BookTitleBuilder():
 			sTitle = "The " + sGirl + " & the " + sMaster
 			if CoinFlip():
 				if CoinFlip():
-					sTitle += "A BDSM Romance"
+					sTitle += ": A BDSM Romance"
 				else:
 					sTitle += ": A " + self._getFMs_() + " Romance"
 		elif iRand == 8:

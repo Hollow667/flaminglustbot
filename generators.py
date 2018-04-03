@@ -139,6 +139,8 @@ def GetImgTweetText():
 		sText = "\U0001F525I know you like reading these.\U0001F525 Don't worry, I won't tell. \U0001F618"
 	elif iRand in range(16,17): 
 		sText = "The sex acts depicted are computer generated and have not been approved by a physician.\n\nDo not attempt."
+	elif iRand in range(17,18):
+		sText = "You have to retweet this if it made you giggle. Seriously."
 	else: 
 		FavWord.List += AnusFemale().NounList
 		FavWord.List += Penis().NounList
@@ -1417,6 +1419,26 @@ class Generator45(Generator):
 		else:
 				sTweet += "'Why don't you put it in here?' she asked. Then " + sHisName + " felt her hands guiding his " + self.MaleBodyParts.Penis.MediumDescription() + " into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
 			
+		return sTweet
+
+class Generator46(Generator):
+	#Martin walked in to see Sabrina lying on the bed. Her nose was in a book and her short nightgown was hiked up over her pert bottom. Her hand was down her panties and Martin could see that she was frigging her starfish urgently.
+	#'What are you reading?' Martin asked.
+	#'Sex Slave to the Vampire Pirates,' Sabrina moaned.
+	ID = 46
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sTweet = sHisName + " found " + sHerName + " lying on her bed in her nightgown with her nose in a book and one hand down her lacy panties. She was frigging her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bAllowShortDesc = True) + " with urgent fingers.\n\n"
+		sTweet += "'What are you reading?' he asked.\n\n"
+		sTweet += "'" + misc.BookTitleBuilder().GetTitle() + ",' " + sHerName + " " + self.VMoan.Past() + "."
+		
 		return sTweet
 		
 # class Generator46(Generator):

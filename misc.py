@@ -242,6 +242,7 @@ class BookGirls(WordList):
 			'Harem Girl',
 			'Hotwife',
 			'Housewife',
+			'House Maid',
 			'Flight Attendant',
 			'French Maid',
 			'Intern',
@@ -251,7 +252,7 @@ class BookGirls(WordList):
 			'Maid',
 			'Maiden',
 			'Masseuse',
-			'Midwife',
+			'Mature Woman',
 			'MILF',
 			'Milk Maid',
 			'Momma',
@@ -262,10 +263,8 @@ class BookGirls(WordList):
 			'Princess',
 			'Redhead',
 			'Sex Surrogate',
-			'Surrogate',
 			'Secretary',
 			'Secretary',
-			'Servant',
 			'Sex Slave',
 			'Sex Witch',
 			'Schoolgirl',
@@ -273,7 +272,6 @@ class BookGirls(WordList):
 			'Small-Town Girl',
 			'Slut',
 			'Step-Daughter',
-			'Step-Sister',
 			'Submissive',
 			'Teacher',
 			'Virgin',
@@ -290,6 +288,7 @@ class BookGirlAdjs(WordList):
 		'Bashful',
 		'BBW',
 		'BDSM',
+		'Bi-Curious',
 		'Bimbo',
 		'Black',
 		'Blonde',
@@ -311,6 +310,7 @@ class BookGirlAdjs(WordList):
 		'Innocent',
 		'Innocent',
 		'Intern',
+		'Kept',
 		'Kinky',
 		'Lactating',
 		'Lesbian',
@@ -326,6 +326,7 @@ class BookGirlAdjs(WordList):
 		'Nursing',
 		'Pregnant',
 		'Redhead',
+		'Servant',
 		'Sex',
 		'Shy',
 		'Single',
@@ -374,6 +375,7 @@ class BookMasters(WordList):
 			'Futanari',
 			'Gay-for-Pay Porn Star',
 			'Gazillionaire',
+			'Gentleman',
 			'Goat Man',
 			'Goat Men',
 			'Hitman',
@@ -480,7 +482,7 @@ class BookMasterAdjs(WordList):
 			'Stripper',
 			'Superstar',
 			'Surfer',
-			'S.W.A.T. Team'
+			'S.W.A.T. Team',
 			'Trillionaire',
 			'Viking',
 			'Well-hung',
@@ -555,6 +557,7 @@ class BookVerbsTo(WordList):
 			'Submissive',
 			'Submitting']
 			
+# I really really like the random book titles. See if you can tell! ;-P
 class BookTitleBuilder():
 	def GetMaster(self):
 		sMaster = ""
@@ -629,119 +632,193 @@ class BookTitleBuilder():
 		
 		Titles = []
 		
-		iRand = randint(1,19)
-		if iRand == 1:
-			#Blackmailed by the Billionaire Mountain Man 
-			sTitle = sVerbBy + " by the " + sMaster
-		elif iRand == 2:
-			#Married to the Alpha Wolf
-			sTitle = sVerbTo + " to the " + sMaster
-			if CoinFlip():
-				if CoinFlip():
-					sTitle += ": A " + self._getFMs_() + " Romance"
-				else:
-					sTitle += ": A BDSM Romance"
-		elif iRand == 3:
-			#The President's Girl
-			sTitle = "The " + sMaster + "'s " + sGirl
-			if CoinFlip():
-				if CoinFlip():
-					sTitle += ": A BDSM Romance"
-				else:
-					sTitle += ": A Hot Ménage"
-		elif iRand == 4:
-			#Seduced in the Bed of the Billionaire
-			if CoinFlip():
-				sTitle = sVerbTo + " in the Bed of the " + sMaster
-			else:
-				sTitle = sVerbBy + " in the Bed of the " + sMaster
-		elif iRand == 5:
-			#The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-			sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", & The " + sMaster + ": "
-			if CoinFlip():
-				sTitle += "A Hot Ménage"
-			else:
-				sTitle += "A " + self._getFMs_() + " Romance"
-		elif iRand == 6:
-			#The Virgin's Secret Daddy Dom 
-			sTitle = "The " + sGirl + "'s " + sMaster
-		elif iRand == 7:
-			#The Secretary and the Space Werewolf 
-			sTitle = "The " + sGirl + " & the " + sMaster
-			if CoinFlip():
-				if CoinFlip():
-					sTitle += ": A BDSM Romance"
-				else:
-					sTitle += ": A " + self._getFMs_() + " Romance"
-		elif iRand == 8:
-			#Baby for the Stay-at-Home Manticore
-			sTitle = "Baby for the " + sMaster 
+		# Blackmailed by the Billionaire Mountain Man 
+		sTitle = sVerbBy + " by the " + sMaster
+		Titles.append(sTitle)
+		# =========================
+
+		# Married to the Alpha Wolf
+		sTitle = sVerbTo + " to the " + sMaster
+		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": A " + self._getFMs_() + " Romance"
-		elif iRand == 9:
-			#The Millionaire Sherrif's Virgin
-			sTitle = "The " + sMaster + "'s " + sGirl
-		elif iRand == 10:
-			#Babysitter to the Billionaire Uniporn
-			sTitle = sGirl + " to the " + sMaster
-		elif iRand == 11:
-			#Babysitter for the Billionaire Uniporn
-			sTitle = sGirl + " for the " + sMaster
+			else:
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+		
+		# The President's Girl
+		sTitle = "The " + sMaster + "'s " + sGirl
+		if CoinFlip():
 			if CoinFlip():
-				if CoinFlip():
-					sTitle += ": An " + self._getFMs_() + " Adventure"
-				else:
-					sTitle += ": A BDSM Romance"
-		elif iRand == 12:
-			#The Virgin Call-Girl's Gang Bang
-			sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
-		elif iRand == 13:
-			#The Small-Town Virgin's First Porno
-			sTitle = "The " + sGirl + "'s First Porno"
+				sTitle += ": A BDSM Romance"
+			else:
+				sTitle += ": A Hot Ménage"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Seduced in the Bed of the Billionaire
+		if CoinFlip():
+			sTitle = sVerbTo + " in the Bed of the " + sMaster
+		else:
+			sTitle = sVerbBy + " in the Bed of the " + sMaster
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
+		sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", & The " + sMaster + ": "
+		if CoinFlip():
+			sTitle += "A Hot Ménage"
+		else:
+			sTitle += "A " + self._getFMs_() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Virgin's Secret Daddy Dom 
+		sTitle = "The " + sGirl + "'s " + sMaster
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Secretary and the Space Werewolf 
+		sTitle = "The " + sGirl + " & the " + sMaster
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": A BDSM Romance"
+			else:
+				sTitle += ": A " + self._getFMs_() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Baby for the Stay-at-Home Manticore
+		sTitle = "Baby for the " + sMaster 
+		if CoinFlip():
+			sTitle += ": A " + self._getFMs_() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Millionaire Sherrif's Virgin
+		sTitle = "The " + sMaster + "'s " + sGirl
+		Titles.append(sTitle)
+		# =========================
+				
+		# Babysitter to the Billionaire Uniporn
+		sTitle = sGirl + " to the " + sMaster
+		Titles.append(sTitle)
+		# =========================
+				
+		# Babysitter for the Billionaire Uniporn
+		sTitle = sGirl + " for the " + sMaster
+		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": An " + self._getFMs_() + " Adventure"
-		elif iRand == 14:
-			#The Small-Town Virgin's First Time
-			sTitle = "The " + sGirl + "'s First Time"
-			if CoinFlip():
-				if CoinFlip():
-					sTitle += ": A " + self._getFMs_() + " Romance"
-				else:
-					sTitle += ": A BDSM Romance"
-		elif iRand == 15:
-			sTitle = sVerbBy + ": "
-			if CoinFlip():
-				sTitle += "The " + sGirl + " & The " + sMaster
 			else:
-				sTitle += AddArticles(sGirl).title() + " Romance"
-		elif iRand == 16:
-			sTitle = "Full Frontal for the "
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Virgin Call-Girl's Gang Bang
+		sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Small-Town Virgin's First Porno
+		sTitle = "The " + sGirl + "'s First Porno"
+		if CoinFlip():
+			sTitle += ": An " + self._getFMs_() + " Adventure"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Small-Town Virgin's First Time
+		sTitle = "The " + sGirl + "'s First Time"
+		if CoinFlip():
 			if CoinFlip():
-				sTitle += sMaster
+				sTitle += ": A " + self._getFMs_() + " Romance"
 			else:
-				sTitle += sGirl
-			if CoinFlip():
-				if CoinFlip():
-					sTitle += ": An " + self._getFMs_() + " Adventure"
-				else:
-					sTitle += ": A BDSM Romance"
-		elif iRand == 17:
-			sTitle = "I Was " + sVerbBy
-			if not "in Public" in sMaster:
-				sTitle += " By A " + sMaster
-			sTitle += ", And I Liked It"
-		elif iRand == 18: 
-			sTitle += sVerbBy  + " by "
-			sTitle += "the " + sMaster + ": A " + sGirl + " Story"
-		elif iRand == 19:
-			sTitle = "The " + sGirl + " and the " + self.GetGirl()
-			if CoinFlip():
-				": A Lesbian Love Story"
-			else:
-				": A Secret Lesbian Affair"
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Enslaved: The Ebony Older Woman & The Duke 
+		sTitle = sVerbBy + ": "
+		if CoinFlip():
+			sTitle += "The " + sGirl + " & The " + sMaster
 		else:
-			pass
-			
+			sTitle += AddArticles(sGirl).title() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Full Frontal for the Shy Amish Virgin: A BDSM Romance
+		if CoinFlip():
+			sTitle = "Full Frontal for the "
+		else:
+			sTitle = "Naked for the "
+		if CoinFlip():
+			sTitle += sMaster
+		else:
+			sTitle += sGirl
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": An " + self._getFMs_() + " Adventure"
+			else:
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# I Was Stripped In Public, And I Liked It
+		sTitle = "I Was " + sVerbBy
+		if not "in public" in sVerbBy.lower():
+			sTitle += " By A " + sMaster
+		sTitle += ", And I Liked It"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
+		sTitle = sVerbBy  + " by "
+		sTitle += "the " + sMaster + ": A " + sGirl + " Story"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Amish Virgin and the Taboo MILF: A Lesbian Love Story 
+		sTitle = "The " + sGirl + " and the " + self.GetGirl()
+		if CoinFlip():
+			sTitle += ": A Lesbian Love Story"
+		else:
+			sTitle += ": A Secret Lesbian Affair"
+		Titles.append(sTitle)
+		# =========================
+		
+		# Deflowered Live on the Internet: An Amish Futa Princess Experience 
+		sTitle = "Deflowered Live"
+		if CoinFlip():
+			sTitle += "! "
+		else:
+			if CoinFlip():
+				sTitle += " on the Interet: "
+			else:
+				sTitle += " on Television: "
+		sTitle += AddArticles(sGirl) + " Experience"
+		Titles.append(sTitle)
+		# =========================
+		
+		# Here Cums The Bride: The Porn Star Pope & The Bi-Curious Christian Milk Maid 
+		sTitle = "Here Cums The Bride: The " + sMaster + " & The "
+		while 'bride' in sGirl.lower():
+			sGirl = self.GetGirl()
+		sTitle += sGirl
+		Titles.append(sTitle)
+		# =========================
+		
+		# Hotwife for Daddy: A BDSM Romance 
+		sTitle = sGirl + " for Daddy: "
+		if CoinFlip():
+			sTitle += "A BDSM Romance"
+		else:
+			sTitle += "An " + self._getFMs_() + " Adventure"
+		Titles.append(sTitle)
+		# =========================
+		
+		sTitle = Titles[randint(0, len(Titles) - 1)]
+		
 		return sTitle
 		
 class TweetReplyBuilder():

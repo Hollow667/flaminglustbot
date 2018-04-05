@@ -102,6 +102,41 @@ class BodyParts:
 			
 		return sRandomDesc
 
+class Face(BodyParts):
+	def __init__(self):
+		self.NounList = ['face',
+			'face',
+			'face',
+			'features']
+		
+		self.AdjList = ['adorable',
+			'angelic',
+			'beaming',
+			'beautiful',
+			'cute',
+			'delicate',
+			'elegant',
+			'excited',
+			'gorgeous',
+			'flushed',
+			'freckled',
+			'heart-shaped',
+			'innocent',
+			'lovely',
+			'oval',
+			'pale',
+			'pretty',
+			'rosy',
+			'round',
+			'sculpted',
+			'smiling',
+			'startled',
+			'surprised',
+			'sweet',
+			'wide-eyed']
+			
+		self.DefaultNoun = 'face'
+		
 class Skin(BodyParts):
 	def __init__(self):
 		self.NounList = ['skin',
@@ -168,16 +203,17 @@ class Mouth(BodyParts):
 		
 class Lips(BodyParts):
 	def __init__(self):
-		self.NounList = ['lips',
-						 'mouth']
+		self.NounList = ['lips']
 			
 		self.AdjList = ['candy-colored',
+			'collagen-injected',
 			'full',
 			'inviting',
 			'insolent',
 			'luscious',
 			'red',
 			'sensual',
+			'smooth',
 			'sweet']
 		
 		self.DefaultNoun = "lips"
@@ -668,6 +704,7 @@ class Vagina(BodyParts):
 					'entrance',
 					'flower',
 					'fuckhole',
+					'fur-burger',
 					'hole',
 					'honeypot',
 					'love-muffin',
@@ -927,6 +964,7 @@ class BodyFemale(BodyParts):
 		self.DefaultAdj = "nubile"
 		self.IsPlural = False
 		self.Hair = Hair()
+		self.Face = Face()
 		self.Eyes = Eyes()
 		self.Lips = Lips()
 		self.Mouth = Mouth()
@@ -943,6 +981,7 @@ class BodyFemale(BodyParts):
 		AllParts = []
 		
 		if bIncludeInners:
+			AllParts.append(self.Face.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Eyes.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Lips.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Hair.RandomDescription(bAllowShortDesc = bAllowShortDesc))
@@ -960,6 +999,7 @@ class BodyFemale(BodyParts):
 			AllParts.append(self.Vagina.InnerLabia.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Vagina.InnerVag.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 		else:
+			AllParts.append(self.Face.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Eyes.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Lips.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Hair.RandomDescription(bAllowShortDesc = bAllowShortDesc))

@@ -227,6 +227,34 @@ class VerbEjaculate(Verb):
 		'spurting',
 		'squirting']
 		
+class VerbDrip(Verb):
+	PresentList = ['dribble',
+		'drip',
+		'flow',
+		'gush',
+		'hang',
+		'leak',
+		'ooze',
+		'pour']
+		
+	PastList = ['dribbled', 
+		'dripped', 
+		'flowed', 
+		'gushed', 
+		'hung', 
+		'leaked', 
+		'oozed', 
+		'poured']
+		
+	GerundList = ['dribbling',
+		'dripping',
+		'flowing',
+		'gushing',
+		'hanging',
+		'oozing',
+		'leaking',
+		'pouring']
+		
 class VerbForeplay(Verb):
 	PresentList = ['caress',
 		'finger',
@@ -386,10 +414,10 @@ class VerbOralMale(Verb):
 		'suck',
 		'suckle']
 	
-	PastList = ['blew'
+	PastList = ['blew',
 		'went down on',
 		'fellated',
-		'sucked'
+		'sucked',
 		'suckled']
 	
 	GerundList = ['blowing'

@@ -1,17 +1,20 @@
 # Text-to-Image module
 
-import os, sys
+import os, sys, time
 from PIL import Image, ImageDraw, ImageFont
 from random import *
+from util import *
 
 PATH = "resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 34
+MAX_IMG_NUM = 37
+
+BGImgQ = HistoryQ(iQSize = 5)
 
 def SaveImg(img, filename = ""):
 	try:
 		if filename == "":
-			img.save('test' + str(randint(0,99999999)) + '.png')
+			img.save('test' + str(time.time()) + '.png')
 		else:
 			img.save(filename)
 	except IOError as e:
@@ -179,7 +182,10 @@ def GetBGImg(iPicNo = 0):
 	
 	if iPicNo == 0:
 		iPicNo = randint(1, MAX_IMG_NUM)
-		
+
+		while not BGImgQ.PushToHistoryQ(iPicNo):
+			iPicNo = randint(1, MAX_IMG_NUM)
+
 	try:
 		BGImg = Image.open(PATH + "bg_" + str(iPicNo) + ".png").convert('RGBA')
 	except IOError as e:

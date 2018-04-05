@@ -177,6 +177,41 @@ class SceneBlowjob(Scene):
 		
 		return sScene 
 		
+class SceneBreastPlay(Scene):	
+	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
+		#He fondled her full, ripe breasts
+		sScene = ""
+		
+		return sScene 
+
+	def Scene(self):
+		sScene = ""
+		
+		Actions = []
+		
+		FemBodyParts = bodyparts.BodyFemale()
+		Breasts = FemBodyParts.Breasts
+		Nipples = Breasts.Nipples
+		
+		if CoinFlip():
+			Actions.append(self.HisName + " grabbed " + self.HerNamePos + " " + Breasts.RandomDescription() + " and squeezed them.")
+		else:
+			Actions.append(self.HisName + " gently carressed " + self.HerNamePos + " " + Breasts.RandomDescription() + ".")
+			
+		Actions.append("He covered the " + bodyparts.Skin().RandomDescription() + " of her breasts with " + WordList(["sweet", "sloppy", "gentle", "tender", "loving", "hungry", "lustful", "tantalizing"]).GetWord() + " kisses.")
+		Actions.append("He lifted her one of her " + Breasts.MediumDescription() + " and kissed the underside of it.")
+		Actions.append("He trailed his finger around one of her " + Breasts.ShortDescription() + ", spiraling up it until he brushed her " + WordList(["tingling", "sensitive", "hardening", "yearning", "stiffening", "expectant", "perky"]).GetWord() + " nipple.")
+		Actions.append("Taking her " + Nipples.RandomDescription() + " between his fingers, he began to " + WordList(["stimulate", "tweak", "tease", "roll", "rub" "play with"]).GetWord() + " them " + WordList(["sensually", "erotically", "sensuously", "tenderly", "expertly"]).GetWord() + ".")
+		Actions.append("He kissed one of her " + Nipples.RandomDescription() + " and than began to " + WordList(["suck on it", "suckle it", "swirl his tongue around it", "nibble it", "kiss and nip it"]).GetWord() + ".")
+		
+		iRand = randint(1,3)
+		for x in sorted(sample(range(0, len(Actions)), iRand)):
+			sScene += Actions[x] + " "
+		
+		sScene = sScene.rstrip()
+			
+		return sScene 
+		
 class SceneCowgirl(Scene):	
 	#She straddled his hips. . He had an intimate view of her succulent peach and snug asshole as she lowered herself onto him. She began to grind against his mouth as he licked and sucked her hole, coating his chin in her juices.
 	Tags = [TAG_BELOW_BELT, TAG_DONE_TO_HIM, TAG_PEN, TAG_POSITION]
@@ -257,9 +292,17 @@ class SceneCreamPie(Scene):
 		Vagina = bodyparts.Vagina()
 		Anus = bodyparts.AnusFemale()
 		Thighs = bodyparts.Thighs()
+		DripVerbs = verbs.VerbDrip()
+		SemenGobs = misc.Gobs()
+		VEjac = verbs.VerbEjaculate()
 		sScene = ""
 		
-		sScene = Semen.GetAdj().capitalize() + " " + self.SemenGobs.GetWord() +" of " + Semen.GetNoun() + " " + self.DripVerbs.GetWord() + " from " + self.HerNamePos 
+		if bIsVagina:
+			sScene = "He was soon " + VEjac.Gerund() + " deep within her " + Vagina.RandomDescription() + " as an intense orgasm wracked her body."
+		else:
+			sScene = "He was soon " + VEjac.Gerund() + " deep within her " + Anus.RandomDescription() + " as an intense orgasm wracked her body."
+		
+		sScene += Semen.GetAdj().capitalize() + " " + SemenGobs.GetWord() +" of " + Semen.GetNoun() + " " + DripVerbs.Past() + " from " + self.HerNamePos 
 		
 		if bIsVagina:
 			iRandPussyDesc = randint(1, 3)
@@ -359,13 +402,6 @@ class SceneDoggy(Scene):
 		#He took her from behind, grabbing her hips as he thrust forcefully into her.
 		sScene = ""
 			
-		if Vtense == Tense.Gerund:
-			sScene = self.HisName + " eating " + self.HerNamePos + " " + Vagina.ShortDescription() + " out, tasting " + self.HerPronoun + " " + Vagina.InnerLabia.MediumDescription() + " and teasing " + self.HerPronoun + " " + Vagina.Clitoris.MediumDescription() + " with " + self.HisPronoun + " tongue."
-		elif Vtense == Tense.Present:
-			sScene = self.HisName + " eats " + self.HerNamePos + " " + Vagina.ShortDescription() + " out, tasting " + self.HerPronoun + " " + Vagina.InnerLabia.MediumDescription() + " and teasing " + self.HerPronoun + " " + Vagina.Clitoris.MediumDescription() + " with " + self.HisPronoun + " tongue."
-		else:
-			sScene = self.HisName + " ate " + self.HerNamePos + " " + Vagina.ShortDescription() + " out, tasting " + self.HerPronoun + " " + Vagina.InnerLabia.MediumDescription() + " and teasing " + self.HerPronoun + " " + Vagina.Clitoris.MediumDescription() + " with " + self.HisPronoun + " tongue."
-			
 		return sScene
 	
 	def Scene(self, Location = None):
@@ -442,52 +478,90 @@ class SceneFacesitting(Scene):
 		return sScene 
 		
 class SceneFacial(Scene):
-	Tags = [TAG_ABOVE_BELT, TAG_CLIMAX, TAG_DONE_TO_HER, TAG_NON_PEN]
+	Tags = [TAG_ABOVE_BELT, TAG_DONE_TO_HER, TAG_CLIMAX, TAG_NON_PEN]
 	
 	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
 		sScene = ""
 		
 		return sScene
-		
-	def Scene(self):
-		sScene = ""
-		
-		Penis = bodyparts.Penis()
-		Semen = bodyparts.Semen()
-		FemBodyParts = bodyparts.BodyFemale()
-		
-		Targets = []
-		
-		Targets.append(WordList(["angelic", "innocent", "pretty", "beautiful", "beaming", "rapturous", "surprised", "startled"]).GetWord() + " face")
-		Targets.append(FemBodyParts.Hair.RandomDescription(bAllowShortDesc = True, bAllowLongDesc = False))
-		Targets.append(FemBodyParts.Eyes.RandomDescription(bAllowShortDesc = True, bAllowLongDesc = False))
-		Targets.append(FemBodyParts.Lips.RandomDescription(bAllowShortDesc = True, bAllowLongDesc = False))
-		Targets.append("chin")
-		Targets.append("slender throat")
+	
+	def Scene(self, Location = None):
+		sScene =""
 		
 		Actions = []
 		
-		Actions.append("'" + misc.Exclamations().GetWord(bHappy = True).capitalize() + "!' " + self.HisName + " " + verbs.VerbMoan().Past() + ", 'I'm coming!' ")
+		Semen = bodyparts.Semen()
+		FemBodyParts = bodyparts.BodyFemale()
+		Eyes = FemBodyParts.Eyes 
+		Lips = FemBodyParts.Lips
+		Hair = FemBodyParts.Hair
+		Breasts = FemBodyParts.Breasts
+		Skin = FemBodyParts.Skin 
+		Face = FemBodyParts.Face
+		Penis = bodyparts.Penis()
+		VerbEjac = verbs.VerbEjaculate()
+		VerbDrip = verbs.VerbDrip()
+		Gobs = misc.Gobs()
+		
+		VerbSpew = WordList(["splattered", "spurted", "squirted", "spewed", "sprayed", "splashed", "spattered"])
 		
 		if CoinFlip():
-			Actions.append("The " + Penis.Head.RandomDescription(bAllowShortDesc = True) + " of his " + Penis.ShortDescription() + " " + verbs.VerbEjaculate().Past() + ", ")
+			sScene = "'" + misc.Exclamations().GetWord(bHappy = True).capitalize() + "!' " + self.HisName + " " + verbs.VerbMoan().Past() + ", 'I'm coming!' "
 		else:
-			Actions.append("His " + Penis.RandomDescription() + " jerked and then " + verbs.VerbEjaculate().Past() + ", ")
+			sScene = self.HisName + " grunted. "
 			
-		Actions.append(WordList(["shooting", "spurting", "squirting", "spraying", "spattering"]).GetWord() + " " + Semen.GetAdj() + " " + WordList(['beads', 'drops', 'globules', 'gobs', 'pearls', 'ropes', 'strings', 'trails']).GetWord() + " of " + Semen.RandomDescription(bAllowShortDesc = True) + " all over her ")
-			
-		for x in sorted(sample(range(0, len(Targets)), 3)):
-			Actions.append(Targets[x] + ", ")
-			
-		Actions.append("and her " + FemBodyParts.Breasts.RandomDescription())
 		if CoinFlip():
-			Actions.append(" and " + FemBodyParts.Breasts.Nipples.RandomDescription(bAllowShortDesc = True))
+			sScene += "The " + Penis.Head.RandomDescription(bAllowShortDesc = True) + " of his " + Penis.ShortDescription() + " " + verbs.VerbEjaculate().Past() + ". "
+		else:
+			sScene += self.HisPronoun.capitalize() + " " + Penis.RandomDescription(bAllowLongDesc = False) + " " + WordList(["jerked", "pulsed", "pulsated", "quivered", "bucked", "jumped"]).GetWord() + " and then he began " + VerbEjac.Gerund() + " all over " + self.HerNamePos + " " + Face.RandomDescription(bAllowLongDesc = False) + ". "
+		
+		Actions.append("She squeezed her eyes shut as " + Gobs.GetWord() + " of " + Semen.ShortDescription() + " " + VerbSpew.GetWord() + " across them" + WordList([", smearing her eyeliner", ""]).GetWord() + ".")
+		Actions.append(Gobs.GetWord().capitalize() + " of it got stuck in her " + Hair.RandomDescription(bAllowLongDesc = False) + ".")
+		Actions.append(Semen.RandomDescription().capitalize() + " dribbled from her " + Lips.RandomDescription(bAllowLongDesc = False) + ".")
+		Actions.append(Gobs.GetWord().capitalize() + " of " + Semen.ShortDescription() + " " + VerbDrip.Past() + " from her chin.")
+		Actions.append("A string of sticky pearls was " + VerbSpew.GetWord() + " across her slender neck.")
+		if CoinFlip():
+			Actions.append("And " + Gobs.GetWord() + " of " + Semen.ShortDescription() + " " + WordList(["glazed", "adorned", "spackled", "dripped down", "pooled on"]).GetWord() + " " + self.HerNamePos + " " + Breasts.RandomDescription())
+		else:
+			Actions.append("And a single " + WordList(["globule", "pearl", "bead", "rope"]).GetWord() + " of " + Semen.RandomDescription() + " clung to " + self.HerNamePos + " " + Breasts.Nipples.GetAdj() + " nipple.")
+		
+		iRand = randint(1,5)
+		for x in sorted(sample(range(0, len(Actions)), iRand)):
+			sScene += Actions[x] + " "
+		
+		sScene = sScene.rstrip()
 			
-		Actions.append(".")
+		return sScene
+		
+class SceneMakeOut(Scene):	
+	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
+		sScene = ""
+		
+		return sScene 
+
+	def Scene(self):
+		sScene = ""
+		
+		FemBodyParts = bodyparts.BodyFemale()
+		Lips = FemBodyParts.Lips
+		Face = FemBodyParts.Face 
+		Mouth = FemBodyParts.Mouth
+		
+		Actions = []
+		
+		if CoinFlip():
+			# he initiates
+			Actions.append(self.HisName + " leaned in and " + WordList(["kissed", "pecked", "brushed"]).GetWord() + " " + self.HerName + " on her " + Lips.RandomDescription() + ". She returned his kiss with " + WordList(["a fiery", "an impassioned", "a red-hot", "an ardent", "an intense"]).GetWord() + " one of her own. ")
+			Actions.append("Passions ingited. Before she knew it they were locked in a " + WordList(["lustful", "sensual", "wanton", "wild"]).GetWord() + " embrace. His hands were roaming all over her body, and he was exploring her " + Mouth.RandomDescription(bAllowShortDesc = True) + " with his talented tongue.")
+		else:
+			# she initiates
+			Actions.append(self.HerName + " reached up and caressed " + self.HisNamePos + " " + bodyparts.BodyMale().Jaw.MediumDescription() + ", then she suddenly kissed him with her " + Lips.MediumDescription() + ". He returned her kiss with " + WordList(["a fiery", "an impassioned", "a red-hot", "an ardent", "an intense"]).GetWord() + " one of his own. ")
+			Actions.append("Passions ingited. Before he knew it they were locked in a " + WordList(["lustful", "sensual", "wanton", "wild"]).GetWord() + " embrace. Her hands were roaming all over his body, and she was exploring his mouth with her talented tongue.")
+		
 		
 		for x in range(0, len(Actions)):
 			sScene += Actions[x]
-		
+			
 		return sScene 
 		
 class SceneMissionary(Scene):	
@@ -537,6 +611,43 @@ class SceneMissionary(Scene):
 		for x in range(0, len(Actions)):
 			sScene += Actions[x]
 		
+		return sScene 
+		
+class Scene69(Scene):	
+	Tags = [TAG_BELOW_BELT, TAG_ORAL, TAG_POSITION]
+	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
+		#He took her from behind, grabbing her hips as he thrust forcefully into her.
+		sScene = ""
+		
+		return sScene 
+
+	def Scene(self):
+		sScene = ""
+		
+		FemBodyParts = bodyparts.BodyFemale()
+		MaleBodyParts = bodyparts.BodyMale()
+		Penis = MaleBodyParts.Penis 
+		Vagina = FemBodyParts.Vagina
+		Ass = FemBodyParts.Ass 
+		
+		Actions = []
+		sText = ""
+		
+		if CoinFlip():
+			Actions.append(self.HisName + " straddled " + self.HerNamePos + " " + FemBodyParts.Face.GetAdj() + " face. ")
+		else:
+			sText = self.HerName + " straddled " + self.HisNamePos + " face so that he had an intimate view of her " + Vagina.MediumDescription() + " and "
+			if CoinFlip():
+				sText += Ass.MediumDescription() + ". "
+			else:
+				sText += Ass.Anus.MediumDescription() + ". "
+			Actions.append(sText)
+		Actions.append(self.HisName + " began to " + WordList(["eat out", "lick", "suck on"]).GetWord() + " " + self.HerNamePos + " " + FemBodyParts.GetRandomHole(bIncludeMouth = False, bAllowShortDesc = True) + " while she took his " + Penis.RandomDescription() + " into her " + FemBodyParts.Mouth.RandomDescription(bAllowShortDesc = True) + " and " + verbs.VerbOralMale().Past() + " him " + WordList(["passionately", "enthusiastically", "sloppily", "noisily", "eagerly", "expertly", "vigorously"]).GetWord() + ".")
+		
+		
+		for x in range(0, len(Actions)):
+			sScene += Actions[x]
+			
 		return sScene 
 		
 # class SceneX(Scene):	
@@ -599,17 +710,14 @@ class SceneTitFuck(Scene):
 		
 		return sScene
 		
+
 		
-		
-#class SceneTitPlay(Scene):
+
 #class SceneFingerHer(Scene):
 #class SceneRubOnHim(Scene):
 #class ScenePullOutFront(Scene):
 #class ScenePullOutBack(Scene):
-#class SceneFacial(Scene)
-#class Scene69(Scene):
 #class SceneForeplay(Scene):
-#class SceneMakeOut(Scene):
 
 #class SceneSexAct(Scene):
 		

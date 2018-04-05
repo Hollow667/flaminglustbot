@@ -44,8 +44,8 @@ class Hashtags(WordList):
 	List = ['50shades',
 			'amwriting',
 			'BDSM',
-			'bitcoin',
-			'blockchain',
+			#'bitcoin',
+			#'blockchain',
 			'bot',
 			'botlife',
 			'botlove',
@@ -56,6 +56,8 @@ class Hashtags(WordList):
 			'fantasy',
 			'fiftyshades',
 			'filthy',
+			#'litecoin',
+			'lovestory',
 			'lprtg',
 			'lprtg',
 			'mrbtg',
@@ -70,7 +72,8 @@ class Hashtags(WordList):
 			'taboo',
 			'truelove',
 			'twitterbot',
-			'twitterbot']
+			'twitterbot',
+			'wprtg']
 		
 class BadGirlNames(WordList):
 	List = ['hussy',
@@ -167,6 +170,16 @@ class TermsOfEndearment(WordList):
 		'sweetie',
 		'sweetheart']
 		
+class Gobs(WordList):
+	List = ['beads', 
+		'drops', 
+		'globules', 
+		'gobs', 
+		'pearls', 
+		'ropes', 
+		'strings', 
+		'trails']
+		
 class SexyAdjs(WordList):
 	List = ['dirty',
 		'filthy',
@@ -259,6 +272,7 @@ class BookGirls(WordList):
 			'Nanny',
 			'Nurse',
 			'Older Woman',
+			'Pastor\'s Wife',
 			'Princess',
 			'Princess',
 			'Redhead',
@@ -391,6 +405,7 @@ class BookMasters(WordList):
 			'Lipstick Lesbian',
 			'Older Man',
 			'Olympic Gold Medalist',
+			'Outlaw',
 			'Male Escort',
 			'Male Stripper',
 			'Man-o-taur',
@@ -466,9 +481,11 @@ class BookMasterAdjs(WordList):
 			'Nudist',
 			'Older Man',
 			'Olympic Gold Medalist',
+			'Outlaw',
 			'Pirate',
 			'Playboy',
 			'Porn Star',
+			'Rebel',
 			'Rock Star',
 			'Savage',
 			'Scottish',
@@ -749,13 +766,13 @@ class BookTitleBuilder():
 				
 		# Full Frontal for the Shy Amish Virgin: A BDSM Romance
 		if CoinFlip():
-			sTitle = "Full Frontal for the "
+			sTitle = "Full Frontal Nudity for the "
+			if CoinFlip():
+				sTitle += sMaster
+			else:
+				sTitle += sGirl
 		else:
-			sTitle = "Naked for the "
-		if CoinFlip():
-			sTitle += sMaster
-		else:
-			sTitle += sGirl
+			sTitle = "Naked for the " + sMaster
 		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": An " + self._getFMs_() + " Adventure"

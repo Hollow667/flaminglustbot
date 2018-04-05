@@ -56,7 +56,7 @@ def UpdateStatusWithImage(api, Tweet, ImgFile, in_reply_to_status_id = ""):
 	
 	while bTryToTweet:
 		try:
-			status = api.update_with_media("tweet.png", Tweet, in_reply_to_status_id, file = ImgFile)
+			status = api.update_with_media(GenerateFileName(), Tweet, in_reply_to_status_id, file = ImgFile)
 			bTryToTweet = False 
 		except tweepy.TweepError as e:
 			print("***TWITTER ERROR*** " + e.reason)	
@@ -76,6 +76,9 @@ def RespondToReplies(api):
 	max_id = None
 	max_tweets = 60
 	
+	sTweet = ""
+	sPrefix = ""
+	
 	HistoricReplies = []
 	with open(REPLIES_FILE_NAME) as ReadReplyFile:
 		HistoricReplies = ReadReplyFile.read().splitlines()
@@ -91,46 +94,47 @@ def RespondToReplies(api):
 		for reply in replies:
 			if not reply.user.id_str == my_userid:
 				if len(HistoricReplies) == 0 or not reply.id_str in HistoricReplies:
-					print("Reply found: " + reply.text)
-					iFlag = 0
+					print("Reply found (ID# " + reply.id_str + "): " + reply.text)
+					iFlag = 1
 					if HASHTAG_BOOKTITLE in reply.text.lower():
 						iFlag = 1
 					elif HASHTAG_LOVESCENE in reply.text.lower():
 						iFlag = 2
 					else:
-						iCoinFlip = randint(1,2)
-						if iCoinFlip == 2:
+						if CoinFlip():
 							iFlag  = 2
-						else:
-							iFlag = 1
 					
 					if iFlag == 1: 
-						api.update_status("@" + reply.user.screen_name + " " + misc.TweetReplyBuilder().GetReply(), in_reply_to_status_id = reply.id_str)	
-					elif iFlag == 2:
-						Tweets = [1]
-			
-						sPrefix = "@" + reply.user.screen_name + " "
-						#Tweets = generators.GetChoppedTweets(False, MAX_GENERATOR_NO, sPrefix, bAllowPromo = False)
-						Gen = GetTweet(False, bAllowPromo = False)
+						sPrefix = "@" + reply.user.screen_name + " thanks for replying to me! Here is your #book title."
+						Gen = GetTweet(False, bAllowPromo = False, Type = GeneratorType.BookTitle)
 						sTweet = Gen.GenerateTweet()
 
 						status = None
-						print("===Here is your " + str(len(sTweet)) + " char tweet===")
-						#for tweet in Tweets:
+						print("===Here is your " + str(len(sTweet)) + " char tweet reply to #book===")
 						print("[" + sTweet + "]")
+						print("Tweet text: [" + sPrefix + "]")
 						
-						if status == None:	
-							# status = UpdateStatus(api, tweet, reply.id_str)
+						if sTweet != "" and sPrefix != "":
 							ImgFile = BytesIO() 
 							CreateImg(sTweet).save(ImgFile, format = 'PNG')
 							
 							status = UpdateStatusWithImage(api, sPrefix, ImgFile, reply.id_str)	
-						else:
-							# status = UpdateStatus(api, tweet, status.id)
+					else:
+						sPrefix = "@" + reply.user.screen_name + " thanks for replying to me! Here is your #lovescene."
+
+						Gen = GetTweet(False, bAllowPromo = False)
+						sTweet = Gen.GenerateTweet()
+
+						status = None
+						print("===Here is your " + str(len(sTweet)) + " char tweet reply to #lovescene===")
+						print("[" + sTweet + "]")
+						print("Tweet text: [" + sPrefix + "]")
+						
+						if sTweet != "" and sPrefix != "":
 							ImgFile = BytesIO() 
 							CreateImg(sTweet).save(ImgFile, format = 'PNG')
 							
-							status = UpdateStatusWithImage(api, sPrefix, ImgFile)	
+							status = UpdateStatusWithImage(api, sPrefix, ImgFile, reply.id_str)	
 					
 					with open(REPLIES_FILE_NAME, 'a') as WriteReplyFile:
 						WriteReplyFile.write(str(reply.id_str) + "\n")

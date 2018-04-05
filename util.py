@@ -49,6 +49,7 @@ class GeneratorType(Enum):
 	Normal = 1
 	Promo = 2
 	Test = 3
+	BookTitle = 4
 
 def AddArticles(sNounPhrase):
 	sUpdatedPhrase = ""
@@ -63,6 +64,26 @@ def AddArticles(sNounPhrase):
 			sUpdatedPhrase = sNounPhrase
 			
 	return sUpdatedPhrase
+	
+HeartEmoji = ['\U00002764','\U0001F49A','\U0001F499','\U0001F49C','\U0001F49B','\U0001F9E1','\U0001F5A4']
+
+def GetHeartEmoji(iNum = 1):
+	sHearts = ""
+	
+	for i in range(0, iNum):
+		sHearts += HeartEmoji[randint(0, len(HeartEmoji) - 1)]
+		
+	return sHearts
+	
+Emoji = ['\U0001F346','\U0001F525','\U0001F923','\U0001F916','\U0001F618','\U00002B50','\U0001F601','\U0001F603','\U0001F604','\U0001F609','\U0001F61C','\U0001F643','\U0001F60E','\U0001F607','\U0001F920','\U0001F608','\U0001F31E','\U0001F351',GetHeartEmoji()]
+
+def GetEmoji(iNum = 1):
+	sEmoji = ""
+	
+	for i in range(0, iNum):
+		sEmoji += Emoji[randint(0, len(Emoji) - 1)]
+		
+	return sEmoji
 
 def CoinFlip():
 	bHeads = True 
@@ -71,6 +92,32 @@ def CoinFlip():
 		bHeads = False
 		
 	return bHeads 
+	
+def GenerateFileName():
+	# if bot uses same filename every time, twitter might think its spamming. this function randomizes the filename.
+	sFileName = ""
+	sFileType = "png"
+	
+	#first part of filename is 5-12 alphanumeric chars
+	sAlphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+	
+	for i in range(5, randint(7,13)):
+		sFileName += sAlphaNum[randint(0, len(sAlphaNum) - 1)]
+		
+	#append current time in seconds, remove '.' that seperates miliseconds
+	sFileName += str(time.time()).replace(".", "")
+	
+	sFileName += "." + sFileType
+	
+	return sFileName
+	
+def IsTweetTooLong(sTweet):
+	bTooLong = True
+	
+	if len(sTweet) <= MAX_TWITTER_CHARS:
+		bTooLong = False 
+	
+	return bTooLong
 	
 class WordList:
 	List = []
@@ -143,6 +190,10 @@ class NounAdjList:
 		
 class HistoryQ():
 	HistoryQ = []
+	MaxQSize = Q_SIZE
+	
+	def __init__(self, iQSize = Q_SIZE):
+		self.MaxQSize = iQSize
 	
 	def PushToHistoryQ(self, ID):
 		bPushOK = False 
@@ -151,7 +202,7 @@ class HistoryQ():
 			self.HistoryQ.insert(0,ID)
 			bPushOK = True
 			
-			if len(self.HistoryQ) > Q_SIZE:
+			if len(self.HistoryQ) > self.MaxQSize:
 				self.HistoryQ.pop()
 		
 		return bPushOK

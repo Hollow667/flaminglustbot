@@ -91,7 +91,7 @@ def FormatText(sText, size, color):
 	#print("FormatText() sText length: " + str(len(sText)))
 	iTextLen = len(sText)
 	if iTextLen <= 140:
-		iFontSize = 85
+		iFontSize = 95
 	elif iTextLen <= 260:
 		iFontSize = 75
 	elif iTextLen <= 380:
@@ -120,8 +120,8 @@ def FormatText(sText, size, color):
 	
 	#if the height of our lines exceeds the height of the image area, reduce font and try again
 	while iTotLineHeight > offset_height:
-		print("FormatText() offset_height exceeded for font size " + str(iFontSize) + ", shrinking font by 6 and trying again")
-		iFontSize += (-6)
+		print("FormatText() offset_height exceeded for font size " + str(iFontSize) + ", shrinking font by 3 and trying again")
+		iFontSize += (-3)
 		
 		font = ImageFont.truetype(PATH + FONT, size = iFontSize, layout_engine = ImageFont.LAYOUT_RAQM)
 		

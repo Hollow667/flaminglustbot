@@ -16,9 +16,9 @@ class Scene():
 
 	HisPronoun = "his"
 	HerPronoun = "her"
-	SceneShortDescPresent = ""
-	SceneShortDescPast = ""
-	SceneShortDescGerund = ""
+	SceneShortDesc3P = ""
+	SceneShortDesc1PHim = ""
+	SceneShortDesc1PHer = ""
 	
 	def __init__(self, sHisName = "", sHerName = "", Location = None):
 		if not sHisName == "":
@@ -44,28 +44,16 @@ class Scene():
 		sScene = ""
 		
 		return sScene
-		
-	def ShortScene(Vtense = Tense.Past, bFirstPerson = False):
-		pass
 	
 class SceneAnal(Scene):
 	Tags = [TAG_DONE_TO_HER, TAG_PEN, TAG_BELOW_BELT]
-
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
+	
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		Penis = bodyparts.Penis()
-		Anus = bodyparts.AnusFemale()
-		VerbThrust = verbs.VerbThrust()
-		
-		if Vtense == Tense.Gerund:
-			sScene = self.HisName + " was " + VerbThrust.Gerund() + " " + self.HerNamePos + " " + Anus.RandomDescription(bAllowShortDesc) + " with " + self.HisNamePos + " " + Penis.RandomDescription(bAllowShortDesc = True)
-		elif Vtense == Tense.Present:
-			sScene = self.HisName + " proceeded to " + VerbThrust.Present() + " " + self.HerNamePos + " " + Anus.RandomDescription(bAllowShortDesc) + " with " + self.HisNamePos + " " + Penis.RandomDescription(bAllowShortDesc = True)
-		else:
-			sScene = self.HisName + " " + VerbThrust.Past() + " " + self.HerNamePos + " " + Anus.RandomDescription(bAllowShortDesc = True) + " with " + self.HisNamePos + " " + Penis.RandomDescription(bAllowShortDesc = True)
-			
-		return sScene
+		self.SceneShortDesc3P = "he " + WordList(["ass-fucked", "had anal sex with", "anally penetrated"]).GetWord() + " her"
+		self.SceneShortDesc1PHim = "I " + WordList(["ass-fucked", "had anal sex with", "anally penetrated"]).GetWord() + " you"
+		self.SceneShortDesc1PHer = "you " + WordList(["ass-fucked", "had anal sex with", "anally penetrated"]).GetWord() + " me"
 		
 	def Scene(self, Location = None):
 		sScene = ""
@@ -120,20 +108,13 @@ class SceneAnal(Scene):
 
 class SceneBlowjob(Scene):
 	Tags = [TAG_NON_PEN, TAG_DONE_TO_HIM, TAG_BELOW_BELT, TAG_ORAL]
-
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
+	
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		Penis = bodyparts.Penis()
-		
-		if Vtense == Tense.Gerund:
-			sScene = self.HerName + " was " + verbs.VerbOralMale().Gerund() + " " + self.HisNamePos + " " + Penis.MediumDescription()
-		elif Vtense == Tense.Present:
-			sScene = self.HerName + " proceeded to " + verbs.VerbOralMale().Present() + " " + self.HisNamePos + " " + Penis.MediumDescription()
-		else:
-			sScene = self.HerName + " was " + verbs.VerbOralMale().Past() + " " + self.HisNamePos + " " + Penis.MediumDescription()
-			
-		return sScene
+		self.SceneShortDesc3P = "she " + WordList(["gave him a blow-job", "sucked his cock"]).GetWord() 
+		self.SceneShortDesc1PHim = "you " + WordList(["gave me a blow-job", "sucked my cock"]).GetWord() 
+		self.SceneShortDesc1PHer = "I " + WordList(["gave you a blow-job", "sucked your cock"]).GetWord() 
 	
 	def Scene(self, Location = None):
 		sScene = ""
@@ -178,11 +159,16 @@ class SceneBlowjob(Scene):
 		return sScene 
 		
 class SceneBreastPlay(Scene):	
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		#He fondled her full, ripe breasts
-		sScene = ""
+	Tags = [TAG_ABOVE_BELT, TAG_DONE_TO_HER, TAG_FOREPLAY, TAG_NON_PEN]
+	
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		return sScene 
+		sTits = bodyparts.Breasts().ShortDescription()
+		
+		self.SceneShortDesc3P = "he " + WordList(["played with her " + sTits, "sucked on her " + sTits]).GetWord() 
+		self.SceneShortDesc1PHim = "I " + WordList(["played with your " + sTits, "sucked on your " + sTits]).GetWord()  
+		self.SceneShortDesc1PHer = "you " + WordList(["played with my " + sTits, "sucked on my " + sTits]).GetWord()  
 
 	def Scene(self):
 		sScene = ""
@@ -215,10 +201,14 @@ class SceneBreastPlay(Scene):
 class SceneCowgirl(Scene):	
 	#She straddled his hips. . He had an intimate view of her succulent peach and snug asshole as she lowered herself onto him. She began to grind against his mouth as he licked and sucked her hole, coating his chin in her juices.
 	Tags = [TAG_BELOW_BELT, TAG_DONE_TO_HIM, TAG_PEN, TAG_POSITION]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		return sScene 
+		sTits = bodyparts.Breasts().ShortDescription()
+		
+		self.SceneShortDesc3P = "she straddled him and rode his cock" 
+		self.SceneShortDesc1PHim = "you straddled me and rode my cock" 
+		self.SceneShortDesc1PHer = "I straddled you and rode your cock" 
 
 	def Scene(self):
 		sScene = ""
@@ -262,29 +252,16 @@ class SceneCowgirl(Scene):
 
 class SceneCreamPie(Scene):
 	Tags = [TAG_PEN, TAG_DONE_TO_HER, TAG_CLIMAX, TAG_BELOW_BELT]
-	SemenGobs = WordList(['beads', 'drops', 'globules', 'gobs', 'pearls', 'ropes', 'strings', 'trails'])
-	DripVerbs = WordList(['dribbled', 'dripped', 'flowed', 'gushed', 'hung', 'leaked', 'oozed', 'poured'])
 	
-	def ShortScene(Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
-		Hole = None
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		if bIsPussy:
-			Hole = bodyparts.BodyFemale().Vagina
-		else:
-			Hole = bodyparts.BodyFemale().Ass.Anus
+		sVagina = bodyparts.Vagina().ShortDescription()
+		sSemen = bodyparts.Semen().ShortDescription()
 		
-		if Vtense == Tense.Gerund:
-			sScene = self.HisName + " was cream pie-ing " + self.HerNamePos + " " + Hole.MediumDescription()
-		elif Vtense == Tense.Past:
-			sScene = self.HisName + " cream-pied " + self.HerNamePos + " " + Hole.MediumDescription()
-		else:
-			sScene = self.HisName + " cream-pies " + self.HerNamePos + " " + Hole.MediumDescription()
-			
-		if not self.Location is None:
-			sScene += " on the " + Location.Ground
-			
-		return sScene
+		self.SceneShortDesc3P = "he " + WordList(["came inside her " + sVagina, "filled her " + sVagina + " with his " + sSemen]).GetWord() 
+		self.SceneShortDesc1PHim = "I " + WordList(["came inside your " + sVagina, "filled your " + sVagina + " with my " + sSemen]).GetWord() 
+		self.SceneShortDesc1PHer = "you " + WordList(["came inside my " + sVagina, "filled my " + sVagina + " with your " + sSemen]).GetWord()  
 	
 	def Scene(self, Location = None, bIsVagina = True):
 		Penis = bodyparts.Penis()
@@ -336,20 +313,14 @@ class SceneCreamPie(Scene):
 		
 class SceneCunnilingus(Scene):	
 	Tags = [TAG_NON_PEN, TAG_DONE_TO_HER, TAG_BELOW_BELT, TAG_ORAL]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		#He went down on her, tasting her meaty lips and teasing her clit with his tongue.
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		Vagina = bodyparts.Vagina()
+		sVagina = bodyparts.Vagina().ShortDescription()
 		
-		if Vtense == Tense.Gerund:
-			sScene = self.HisName + " eating " + self.HerNamePos + " " + Vagina.ShortDescription() + " out, tasting " + self.HerPronoun + " " + Vagina.InnerLabia.MediumDescription() + " and teasing " + self.HerPronoun + " " + Vagina.Clitoris.MediumDescription() + " with " + self.HisPronoun + " tongue."
-		elif Vtense == Tense.Present:
-			sScene = self.HisName + " eats " + self.HerNamePos + " " + Vagina.ShortDescription() + " out, tasting " + self.HerPronoun + " " + Vagina.InnerLabia.MediumDescription() + " and teasing " + self.HerPronoun + " " + Vagina.Clitoris.MediumDescription() + " with " + self.HisPronoun + " tongue."
-		else:
-			sScene = self.HisName + " ate " + self.HerNamePos + " " + Vagina.ShortDescription() + " out, tasting " + self.HerPronoun + " " + Vagina.InnerLabia.MediumDescription() + " and teasing " + self.HerPronoun + " " + Vagina.Clitoris.MediumDescription() + " with " + self.HisPronoun + " tongue."
-			
-		return sScene
+		self.SceneShortDesc3P = "he " + WordList(["went down on her", "ate out her " + sVagina, "licked her " + sVagina]).GetWord() 
+		self.SceneShortDesc1PHim = "I " + WordList(["went down on you", "ate out your " + sVagina, "licked your " + sVagina]).GetWord() 
+		self.SceneShortDesc1PHer = "you " + WordList(["went down on me", "ate out my " + sVagina, "licked my " + sVagina]).GetWord() 
 	
 	def Scene(self, Location = None):
 		sScene = ""
@@ -398,11 +369,12 @@ class SceneCunnilingus(Scene):
 		
 class SceneDoggy(Scene):	
 	Tags = [TAG_PEN, TAG_DONE_TO_HER, TAG_POSITION, TAG_BELOW_BELT]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		#He took her from behind, grabbing her hips as he thrust forcefully into her.
-		sScene = ""
-			
-		return sScene
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
+		
+		self.SceneShortDesc3P = "he " + WordList(["took her hard from behind", "fucked her from behind", "fucked her doggy-style"]).GetWord() 
+		self.SceneShortDesc1PHim = "I " + WordList(["took you hard from behind", "fucked you from behind", "fucked you doggy-style"]).GetWord() 
+		self.SceneShortDesc1PHer = "you " + WordList(["took me hard from behind", "fucked me from behind", "fucked me doggy-style"]).GetWord()  
 	
 	def Scene(self, Location = None):
 		sScene = ""
@@ -444,12 +416,13 @@ class SceneDoggy(Scene):
 		return sScene 
 		
 class SceneFacesitting(Scene):	
-	#She straddled his face. He had an intimate view of her succulent peach and snug asshole as she lowered herself onto him. She began to grind against his mouth as he licked and sucked her hole, coating his chin in her juices.
 	Tags = [TAG_BELOW_BELT, TAG_DONE_TO_HIM, TAG_NON_PEN, TAG_ORAL]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		return sScene 
+		self.SceneShortDesc3P = "she sat on his face"
+		self.SceneShortDesc1PHim = "you sat on my face"
+		self.SceneShortDesc1PHer = "I sat on his face"  
 
 	def Scene(self):
 		sScene = ""
@@ -480,10 +453,14 @@ class SceneFacesitting(Scene):
 class SceneFacial(Scene):
 	Tags = [TAG_ABOVE_BELT, TAG_DONE_TO_HER, TAG_CLIMAX, TAG_NON_PEN]
 	
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		return sScene
+		VerbEjac = verbs.VerbEjaculate()
+		
+		self.SceneShortDesc3P = "he " + VerbEjac.Past() + " all over her face"
+		self.SceneShortDesc1PHim = "I " + VerbEjac.Past() + " on your face"
+		self.SceneShortDesc1PHer = "you " + VerbEjac.Past() + "  on my face"
 	
 	def Scene(self, Location = None):
 		sScene =""
@@ -534,10 +511,12 @@ class SceneFacial(Scene):
 		return sScene
 		
 class SceneMakeOut(Scene):	
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		return sScene 
+		self.SceneShortDesc3P = "they " + WordList(["kissed", "french kissed", "made out"]).GetWord()
+		self.SceneShortDesc1PHim = "I " + WordList(["kissed", "french kissed", "made out with"]).GetWord() + " you"
+		self.SceneShortDesc1PHer = "I " + WordList(["kissed", "french kissed", "made out with"]).GetWord() + " you"
 
 	def Scene(self):
 		sScene = ""
@@ -565,13 +544,13 @@ class SceneMakeOut(Scene):
 		return sScene 
 		
 class SceneMissionary(Scene):	
-	#He spread her limber legs wide and pushed them up. Her wanton twat was wide open, exposing her pink gash. He inserted his shaft into her slick love tunnel. Then he began fucking in and out of her forcefully.
-	Tags = [TAG_PEN, TAG_POSITION, TAG_DONE_TO_HER, TAG_BELOW_BELT]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
+	Tags = [TAG_DONE_TO_HER, TAG_BELOW_BELT, TAG_POSITION, TAG_PEN]
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		sScene = ""
-		
-		return sScene 
+		self.SceneShortDesc3P = "she spread her legs for him and he fucked her on her back"
+		self.SceneShortDesc1PHim = "you spread your legs for me and I fucked you on your back"
+		self.SceneShortDesc1PHer = "I spread my legs for you and you fucked me on my back"
 
 	def Scene(self, Location = None):
 		sScene = ""
@@ -615,11 +594,12 @@ class SceneMissionary(Scene):
 		
 class Scene69(Scene):	
 	Tags = [TAG_BELOW_BELT, TAG_ORAL, TAG_POSITION]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		#He took her from behind, grabbing her hips as he thrust forcefully into her.
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		return sScene 
+		self.SceneShortDesc3P = "they sixty-nined" 
+		self.SceneShortDesc1PHim = "we sixty-nined"
+		self.SceneShortDesc1PHer = "we sixty-nined"
 
 	def Scene(self):
 		sScene = ""
@@ -651,11 +631,12 @@ class Scene69(Scene):
 		return sScene 
 		
 # class SceneX(Scene):	
-	# def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		#He took her from behind, grabbing her hips as he thrust forcefully into her.
-		# sScene = ""
+	# def __init__(self, sHisName = "", sHerName = "", Location = None):
+		# super().__init__(sHisName, sHerName, Location)
 		
-		# return sScene 
+		# SceneShortDesc3P = "he "
+		# SceneShortDesc1PHim = "I " 
+		# SceneShortDesc1PHer = "you " 
 
 	# def Scene(self):
 		# sScene = ""
@@ -669,22 +650,12 @@ class Scene69(Scene):
 		
 class SceneTitFuck(Scene):	
 	Tags = [TAG_NON_PEN, TAG_DONE_TO_HER, TAG_FOREPLAY, TAG_ABOVE_BELT]
-	def ShortScene(self, Vtense = Tense.Past, bFirstPerson = False):
-		#She squeezed her generous, succulent titties together and he began sliding his lengthy stalk up and down between them.
-		sScene = ""
+	def __init__(self, sHisName = "", sHerName = "", Location = None):
+		super().__init__(sHisName, sHerName, Location)
 		
-		Breasts = bodyparts.Breasts()
-		Penis = bodyparts.Penis()
-		sBreastAdj1 = Breasts.GetAdj()
-		
-		if Vtense == Tense.Gerund:
-			sScene = self.HerName + " is squeezing " + self.HerPronoun + " " + sBreastAdj1 + ", " + Breasts.GetAdj(sNot=sBreastAdj1) + " " + Breasts.GetNoun() + " together and " + self.HisName + " began sliding " + self.HisPronoun + " " + Penis.RandomDescription() + " up and down between them."
-		elif Vtense == Tense.Present:
-			sScene = self.HerName + " squeezes " + self.HerPronoun + " " + sBreastAdj1 + ", " + Breasts.GetAdj(sNot=sBreastAdj1) + " " + Breasts.GetNoun() + " together and " + self.HisName + " slides " + self.HisPronoun + " " + Penis.RandomDescription() + " up and down between them."
-		else:
-			sScene = self.HerName + " squeezed " + self.HerPronoun + " " + sBreastAdj1 + ", " + Breasts.GetAdj(sNot=sBreastAdj1) + " " + Breasts.GetNoun() + " together and " + self.HisName + " began sliding " + self.HisPronoun + " " + Penis.RandomDescription() + " " + Penis.ShortDescription() + " up and down between them."
-			
-		return sScene
+		self.SceneShortDesc3P = "he " + WordList(["tit-fucked, titty-fucked"]).GetWord() + " her"
+		self.SceneShortDesc1PHim = "I " + WordList(["tit-fucked, titty-fucked"]).GetWord() + " you"
+		self.SceneShortDesc1PHer = "you " + WordList(["tit-fucked, titty-fucked"]).GetWord() + " me"
 	
 	def Scene(self):
 		sScene = ""
@@ -720,20 +691,38 @@ class SceneTitFuck(Scene):
 #class SceneForeplay(Scene):
 
 #class SceneSexAct(Scene):
+
+
+# TAG_PEN = "sex act with penetration scene"
+# TAG_NON_PEN = "non-penetrative sex act scene"
+# TAG_DONE_TO_HER = "done to her scene"
+# TAG_DONE_TO_HIM = "done to him scene"
+# TAG_CLIMAX = "orgasm scene"
+# TAG_POSITION = "sex position scene"
+# TAG_FOREPLAY = "foreplay scene"
+# TAG_ABOVE_BELT = "above-the-belt sex act scene"
+# TAG_BELOW_BELT = "below-the-belt sex act scene"
+# TAG_ORAL = "oral sex scene"
 		
 class SceneSelector():
 	Scenes = []
 	
-	def GetScene(self, Tags = None, sHisName = "", sHerName = "", Location = None):
+	def GetScene(self, Tags = None, NotTags = None, sHisName = "", sHerName = "", Location = None):
 		ThisScene = None
 		ThisLocation = None
 		MatchingScenes = []
 		MatchingTags = []
+		MatchingNotTags = []
 		
 		if not Tags is None:
 			MatchingTags = Tags 
 		else:
-			MatchingTags = None
+			MatchingTags = []
+			
+		if not NotTags is None:
+			MatchingNotTags = NotTags 
+		else:
+			MatchingNotTags = []
 			
 		if not Location is None:
 			ThisLocation = Location 
@@ -745,14 +734,11 @@ class SceneSelector():
 		
 		if not self.Scenes is None and len(self.Scenes) > 0:
 			for scene in self.Scenes:
-				if not MatchingTags is None and MatchingTags.issubset(scene.Tags):
-					MatchingScenes.append(scene)
-				elif MatchingTags is None:
+				if set(MatchingTags).issubset(set(scene.Tags)) and not set(MatchingNotTags).issubset(set(scene.Tags)):
 					MatchingScenes.append(scene)
 			
-			if len(MatchingScenes) > 0:
-				iRand = randint(0, len(MatchingScenes) - 1)
-				ThisScene = MatchingScenes[iRand]
+		if len(MatchingScenes) > 0:
+			ThisScene = MatchingScenes[randint(0, len(MatchingScenes) - 1)]
 		
 		return ThisScene
 

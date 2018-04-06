@@ -2,6 +2,8 @@
 
 import people
 import verbs
+import names 
+
 from random import *
 from util import *
 		
@@ -64,6 +66,7 @@ class Hashtags(WordList):
 			'naughty',
 			'nsfw',
 			'PleaseRT',
+			'scifi',
 			'romance',
 			'smut',
 			'sorrynotsorry',
@@ -244,6 +247,7 @@ class BookGirls(WordList):
 			'Call-Girl',
 			'Co-ed',
 			'Concubine',
+			'Dominatrix',
 			'Escort',
 			'Fashion Model',
 			'Farmer\'s Daughter',
@@ -301,7 +305,6 @@ class BookGirlAdjs(WordList):
 		'Anal',
 		'Bashful',
 		'BBW',
-		'BDSM',
 		'Bi-Curious',
 		'Bimbo',
 		'Black',
@@ -315,6 +318,7 @@ class BookGirlAdjs(WordList):
 		'Country',
 		'Curvy',
 		'Divorced',
+		'Dominatrix',
 		'Ebony',
 		'Fertile',
 		'Futa',
@@ -364,6 +368,7 @@ class BookMasters(WordList):
 			'Barbarian',
 			'Barbarians',
 			'BBC',
+			'BDSM',
 			'Biker',
 			'Biker Gang',
 			'Billionaire',
@@ -576,7 +581,7 @@ class BookVerbsTo(WordList):
 			
 # I really really like the random book titles. See if you can tell! ;-P
 class BookTitleBuilder():
-	def GetMaster(self):
+	def GetMaster(self, bLong = False):
 		sMaster = ""
 		
 		Masters = BookMasters()
@@ -584,15 +589,20 @@ class BookTitleBuilder():
 		
 		iRand = randint(1,2)
 		sMaster = Masters.GetWord()
+		
 		sMasterAdj = MasterAdjs.GetWord()
-		if iRand == 2:
-			while sMasterAdj in sMaster:
+		while sMasterAdj in sMaster:
 				sMasterAdj = MasterAdjs.GetWord()
+		
+		if CoinFlip():
+			if bLong:
+				sMaster = sMasterAdj + " " + sMaster
+		else:
 			sMaster = sMasterAdj + " " + sMaster
 			
 		return sMaster
 		
-	def GetGirl(self):
+	def GetGirl(self, bLong = False):
 		sGirl = ""
 		
 		Girls = BookGirls()
@@ -601,18 +611,21 @@ class BookTitleBuilder():
 		iRand = randint(1,7)
 		sGirl = Girls.GetWord()
 		sGirlAdj = GirlAdjs.GetWord()
-		if iRand > 3 and iRand < 7:
-			while sGirlAdj in sGirl:
-				sGirlAdj = GirlAdjs.GetWord() 
+		while sGirlAdj in sGirl:
+			sGirlAdj = GirlAdjs.GetWord()
+			
+		if iRand <= 3:
+			if bLong:
+				sGirl = sGirlAdj + " " + sGirl
+		elif iRand > 3 and iRand < 7:
 			sGirl = sGirlAdj + " " + sGirl
 		elif iRand == 7:
-			while sGirlAdj in sGirl:
-				sGirlAdj = GirlAdjs.GetWord()
 			sGirl = sGirlAdj + " " + sGirl
 			
 			sGirlAdj = GirlAdjs.GetWord()
 			while sGirlAdj in sGirl:
 				sGirlAdj = GirlAdjs.GetWord()
+				
 			sGirl = sGirlAdj + " " + sGirl
 			
 		return sGirl
@@ -642,20 +655,31 @@ class BookTitleBuilder():
 		VerbsBy = BookVerbsBy()
 		VerbsTo = BookVerbsTo()
 		
-		sGirl = self.GetGirl()
-		sMaster = self.GetMaster()
 		sVerbBy = VerbsBy.GetWord()
 		sVerbTo = VerbsTo.GetWord()
+		sHerName = names.NamesFemale().FirstName()
 		
 		Titles = []
+		
+		sGirl = self.GetGirl()
+		sMaster = self.GetMaster()
+		# make sure that both the girl and the master arent just one word b/c thats usually boring
+		while len(sGirl.split(" ")) < 2 and len(sMaster.split(" ")) < 2:
+			sGirl = self.GetGirl()
+			sMaster = self.GetMaster()
 		
 		# Blackmailed by the Billionaire Mountain Man 
 		sTitle = sVerbBy + " by the " + sMaster
 		Titles.append(sTitle)
 		# =========================
+		
+		# Veonica Gets Blackmailed by the Billionaire Mountain Man 
+		sTitle = sHerName + " Gets " + sVerbBy + " by the " + sMaster
+		Titles.append(sTitle)
+		# =========================
 
 		# Married to the Alpha Wolf
-		sTitle = sVerbTo + " to the " + sMaster
+		sTitle = sVerbTo + " to the " + self.GetMaster(bLong = True)
 		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": A " + self._getFMs_() + " Romance"
@@ -664,8 +688,13 @@ class BookTitleBuilder():
 		Titles.append(sTitle)
 		# =========================
 		
+		# Veronica Gets Married to the Alpha Wolf
+		sTitle = sHerName + " Gets " + sVerbTo + " to the " + self.GetMaster(bLong = True)
+		Titles.append(sTitle)
+		# =========================
+		
 		# The President's Girl
-		sTitle = "The " + sMaster + "'s " + sGirl
+		sTitle = "The " + self.GetMaster(bLong = True) + "'s " + sGirl
 		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": A BDSM Romance"
@@ -676,14 +705,14 @@ class BookTitleBuilder():
 				
 		# Seduced in the Bed of the Billionaire
 		if CoinFlip():
-			sTitle = sVerbTo + " in the Bed of the " + sMaster
+			sTitle = sVerbTo + " in the Bed of the " + self.GetMaster(bLong = True)
 		else:
-			sTitle = sVerbBy + " in the Bed of the " + sMaster
+			sTitle = sVerbBy + " in the Bed of the " + self.GetMaster(bLong = True)
 		Titles.append(sTitle)
 		# =========================
 				
 		# The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-		sTitle = "The " + Masters.GetWord() + ", The " + sGirl + ", & The " + sMaster + ": "
+		sTitle = "The " + sGirl + ", The " + Masters.GetWord() + ", & The " + sMaster + ": "
 		if CoinFlip():
 			sTitle += "A Hot Ménage"
 		else:
@@ -707,7 +736,7 @@ class BookTitleBuilder():
 		# =========================
 				
 		# Baby for the Stay-at-Home Manticore
-		sTitle = "Baby for the " + sMaster 
+		sTitle = "Baby for the " + self.GetMaster(bLong = True) 
 		if CoinFlip():
 			sTitle += ": A " + self._getFMs_() + " Romance"
 		Titles.append(sTitle)
@@ -734,19 +763,19 @@ class BookTitleBuilder():
 		# =========================
 				
 		# The Virgin Call-Girl's Gang Bang
-		sTitle = "The " + sGirl + "'s Gang Bang: A " + self._getFMs_() + " Romance"
+		sTitle = "The " + self.GetGirl(bLong = True) + "'s Gang Bang: A " + self._getFMs_() + " Romance"
 		Titles.append(sTitle)
 		# =========================
 				
 		# The Small-Town Virgin's First Porno
-		sTitle = "The " + sGirl + "'s First Porno"
+		sTitle = "The " + self.GetGirl(bLong = True) + "'s First Porno"
 		if CoinFlip():
 			sTitle += ": An " + self._getFMs_() + " Adventure"
 		Titles.append(sTitle)
 		# =========================
 				
 		# The Small-Town Virgin's First Time
-		sTitle = "The " + sGirl + "'s First Time"
+		sTitle = "The " + self.GetGirl(bLong = True) + "'s First Time"
 		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": A " + self._getFMs_() + " Romance"
@@ -768,11 +797,11 @@ class BookTitleBuilder():
 		if CoinFlip():
 			sTitle = "Full Frontal Nudity for the "
 			if CoinFlip():
-				sTitle += sMaster
+				sTitle += self.GetMaster(bLong = True)
 			else:
-				sTitle += sGirl
+				sTitle += self.GetGirl(bLong = True)
 		else:
-			sTitle = "Naked for the " + sMaster
+			sTitle = "Naked for the " + self.GetMaster(bLong = True)
 		if CoinFlip():
 			if CoinFlip():
 				sTitle += ": An " + self._getFMs_() + " Adventure"
@@ -784,7 +813,7 @@ class BookTitleBuilder():
 		# I Was Stripped In Public, And I Liked It
 		sTitle = "I Was " + sVerbBy
 		if not "in public" in sVerbBy.lower():
-			sTitle += " By A " + sMaster
+			sTitle += " By " + AddArticles(sMaster).title()
 		sTitle += ", And I Liked It"
 		Titles.append(sTitle)
 		# =========================
@@ -813,7 +842,7 @@ class BookTitleBuilder():
 				sTitle += " on the Interet: "
 			else:
 				sTitle += " on Television: "
-		sTitle += AddArticles(sGirl) + " Experience"
+		sTitle += AddArticles(self.GetGirl(bLong = True)).title() + " Experience"
 		Titles.append(sTitle)
 		# =========================
 		
@@ -826,7 +855,7 @@ class BookTitleBuilder():
 		# =========================
 		
 		# Hotwife for Daddy: A BDSM Romance 
-		sTitle = sGirl + " for Daddy: "
+		sTitle = self.GetGirl(bLong = True) + " for Daddy: "
 		if CoinFlip():
 			sTitle += "A BDSM Romance"
 		else:
@@ -834,6 +863,7 @@ class BookTitleBuilder():
 		Titles.append(sTitle)
 		# =========================
 		
+		#print(Titles)
 		sTitle = Titles[randint(0, len(Titles) - 1)]
 		
 		return sTitle

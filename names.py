@@ -168,6 +168,7 @@ class NamesFemale(Names):
 			'Felicia',
 			'Felicity',
 			'Fiona',
+			'Francesca',
 			'Georgina',
 			'Ginger',
 			'Gisele',

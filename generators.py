@@ -1541,8 +1541,136 @@ class Generator49(Generator):
 		
 		return sTweet
 
-# class Generator50(Generator):
-	# ID = 50
+class Generator50(Generator):
+	# 'Did you miss me, Francesca?' asked Veronica. She was wearing a blue tank-top and daisy dukes that rode high, showing off her tanned thighs and her bubble butt. Her pert nipples poking through the thin fabric of her top. Pablo could see that she was bra-less. He swallowed the lump in his throat. 
+	# 'Go away, Francesca,' he said. 'I'm a successful veterinarian now. I'm married to a beautiful opthamalogist. We have (2-14) children!' Pablo said. 
+	# 'That's too bad,' she said. 'Then I guess you have no interest in *this*.' She pulled the crotch of her tight shorts aside. Her pussy lips were tanned and hairless, and a metal piercing gleamed in her clit.
+	# 'Oh, fuck!' moaned Pablo.
+	ID = 50
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		DressAdj = WordList(["little", "slinky", "skimpy", "scanty", "revealing", "sparkly", "sheer", "clingy"]).GetWord()
+		DressColor = WordList(["black", "red", "blue", "white", "sheer"]).GetWord()
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sWhiteCollarHim = self.WhiteCollar.GetPerson()
+		sWhiteCollarHer = self.WhiteCollar.GetPerson()
+		sExclaim = self.Exclamation.GetWord()
+		
+		Ass = self.FemBodyParts.Ass
+		Breasts = self.FemBodyParts.Breasts
+		Vag = self.FemBodyParts.Vagina
+		Hips = self.FemBodyParts.Hips
+		
+		Teases = []
+		sText1 = "She was wearing a " + DressColor + " tank-top. Her daisy dukes rode high, showing off her tanned thighs and her " + Ass.RandomDescription() + ". Her " + Breasts.Nipples.MediumDescription() + " poked through the thin fabric of her top. Pablo could see that she was bra-less. "
+		sText2 = "She pulled the crotch of her tight shorts aside. Her " + Vag.OuterLabia.RandomDescription(bAllowShortDesc = True) + " were tanned and hairless, and a metal piercing gleamed in her clit"
+		
+		#---------
+		sText1 = "She had poured herself into a " + DressAdj + " " + DressColor + " dress that hugged her " + Hips.MediumDescription() + " and left little to the imagination. "
+		sText2 = "She pulled down the zipper on the back of the little " + DressAdj + " dress, and it slipped from her shoulders and pooled about her feet. She was naked except for her high heels. Her " + Breasts.ShortDescription() + " were tanned and " + Breasts.GetAdj(sNot = "tanned") + " and her " + Vag.ShortDescription() + " was shaved bare."
+		Teases.append([sText1, sText2])
+		#---------
+		
+		#---------
+		sText1 = "She was wearing a " + WordList(["skimpy", "tiny", "little", "sexy", "revealing", "sparkly", "itty-bitty"]).GetWord() + " " + DressColor + " bikini top that barely contained her " + Breasts.RandomDescription() + " and a pair of very short shorts. "
+		sText2 = "She wiggled her shorts down over her " + Hips.RandomDescription(bAllowLongDesc = False) + " and let them fall to the ground. The narrow " + DressColor + " g-string she had on underneath plunged between her " + WordList(["hairless", "shaved", "smoothly shaven", "naked", "bare"]).GetWord() + " " + Vag.OuterLabia.RandomDescription() + "."
+		Teases.append([sText1, sText2])
+		#---------
+		
+		#---------
+		sText1 = "She had poured herself into a " + DressColor + " dress with a plunging neckline that showed off her " + Breasts.RandomDescription() + " nicely. "
+		sText2 = "She unzipped her dress and let it slide off her shoulders. Underneath she was wearing lacey, " + DressAdj + " lingerie. Her " + Breasts.Nipples.RandomDescription() + " were clearly visible through the thin bra and her " + Vag.RandomDescription() + " peeked from her crotchless panties."
+		Teases.append([sText1, sText2])
+		#---------
+		
+		#---------
+		sText1 = "She was wearing a " + DressColor + " spandex sports bra and a very tight pair of little running shorts. He could not help but admire her " + self.FemBodyParts.RandomDescription() + " and her "
+		if CoinFlip():
+			sText1 += Ass.RandomDescription() + ". "
+		else:
+			sText1 += Breasts.RandomDescription() + ". The sports bra could not conceal the fact that she had pierced her nipples. "
+		sText2 = "She peeled the shorts down off her " + Hips.RandomDescription(bAllowShortDesc = True) + ". She was not wearing any panties. She had shaved her bush into " + WordList(["a narrow landing strip", "a heart", "an arrow pointing downward", "a narrow 'V'"]).GetWord() + " and her " + Vag.RandomDescription(sNot = 'glistening') + " glistened with moisture."
+		Teases.append([sText1, sText2])
+		#---------
+		
+		#---------
+		BodyParts = WordList([Breasts.RandomDescription(), Hips.RandomDescription(), self.FemBodyParts.Legs.RandomDescription(), Ass.RandomDescription(), Vag.RandomDescription(), Vag.OuterLabia.RandomDescription(), Vag.InnerLabia.RandomDescription()])
+		sText1 = "A " + DressAdj + " " + DressColor + " dress hugged her " + self.FemBodyParts.RandomDescription() + " and she was wearing sheer stockings and red high-heels. "
+		sText2 = "She shrugged the " + DressColor + " dress from her bare shoulders and let it fall to the floor. " + sHisName + " realized that what he had taken to be pantyhose was in fact a sheer bodystocking. His hungry eyes took in her "
+		i = 0
+		for x in sorted(sample(range(0, len(BodyParts.List)), 3)): 
+			if i == 2:
+				sText2 += "and "
+			sText2 += BodyParts.List[x]
+			if i < 2:
+				sText2 += ", "
+			i += 1
+		sText2 += "."
+		Teases.append([sText1, sText2])
+		#---------
+		
+		iRand = randint(0, len(Teases) - 1)
+		
+		sTweet = "'Did you miss me, " + sHisName + "?' asked " + sHerName + ". "
+		sTweet += Teases[iRand][0]
+		sTweet += "He swallowed the lump in his throat.\n\n"
+		sTweet += "'" + WordList(["Go away", "Leave me alone", "Get out of here", "I'm not interested"]).GetWord() + ", " + sHerName + ",' he said. 'I'm a successful " + sWhiteCollarHim + " now. I'm married to a beautiful " + sWhiteCollarHer + ". We have " + str(randint(2,14)) + " children!'\n\n"
+		sTweet += "'That's too bad,' she said. 'I suppose that means you have no interest in *this.*' "
+		sTweet += Teases[iRand][1]
+		sTweet += "\n\n'" + sExclaim.capitalize() + "' " + self.VMoan.Past() + " " + sHisName + "."
+		
+		
+		return sTweet
+		
+# class Generator51(Generator):
+	# ID = 51
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator52(Generator):
+	# ID = 52
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator53(Generator):
+	# ID = 53
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator54(Generator):
+	# ID = 51
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+
+# class Generator55(Generator):
+	# ID = 55
 	# Priority = 1
 	
 	# def GenerateTweet(self):
@@ -1553,8 +1681,38 @@ class Generator49(Generator):
 		
 		# return sTweet
 		
-# class Generator51(Generator):
-	# ID = 51
+# class Generator56(Generator):
+	# ID = 56
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator57(Generator):
+	# ID = 57
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator58(Generator):
+	# ID = 58
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator59(Generator):
+	# ID = 59
 	# Priority = 1
 	
 	# def GenerateTweet(self):

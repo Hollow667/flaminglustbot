@@ -92,20 +92,22 @@ def FormatText(sText, size, color):
 	iTextLen = len(sText)
 	if iTextLen <= 140:
 		iFontSize = 95
-	elif iTextLen <= 260:
-		iFontSize = 75
-	elif iTextLen <= 380:
-		iFontSize = 65
-	elif iTextLen <= 500:
-		iFontSize = 55
-	elif iTextLen <= 620:
-		iFontSize = 45
-	elif iTextLen <= 740:
-		iFontSize = 35
-	elif iTextLen <= 860:
-		iFontSize = 25
-	else:
-		iFontSize = 15
+	elif iTextLen <= 185:	#(+  45)
+		iFontSize = 80
+	elif iTextLen <= 255:	#(+  70)
+		iFontSize = 70
+	elif iTextLen <= 335:	#(+  80)
+		iFontSize = 60
+	elif iTextLen <= 520:	#(+ 185)
+		iFontSize = 50
+	elif iTextLen <= 685:
+		iFontSize = 44
+	elif iTextLen <= 1000:
+		iFontSize = 36
+	elif iTextLen <= 1400:
+		iFontSize = 34
+	else: 
+		iFontSize = 30
 
 		
 	#print("FormatText() Starting font size is " + str(iFontSize))

@@ -8,12 +8,15 @@ from random import *
 from util import *
 		
 class Events(WordList):
-	List = ['Ash Wednesday',
+	def __init__(self):
+		super().__init__(['Ash Wednesday',
 		'Christmas Eve',
 		'Easter Sunday',
+		'Friday',
 		'Halloween',
 		'Highschool Graduation',
 		'Homecoming',
+		'Hump Day',
 		'Independence Day',
 		'International Women\'s Day',
 		'Junior Prom',
@@ -27,7 +30,7 @@ class Events(WordList):
 		'St. Patrick\'s Day',
 		'Superbowl Sunday',
 		'teacher planning day',
-		'Valentine\'s Day']
+		'Valentine\'s Day'])
 		
 	def RemoveMy(self, sWord):
 		return sWord.replace('my ','')
@@ -43,12 +46,14 @@ class Events(WordList):
 		return sEvent
 		
 class Hashtags(WordList):
-	List = ['50shades',
+	def __init__(self):
+		super().__init__(['50shades',
 			'amwriting',
 			'BDSM',
 			#'bitcoin',
 			#'blockchain',
 			'bot',
+			'botally'
 			'botlife',
 			'botlove',
 			'eartg',
@@ -62,7 +67,7 @@ class Hashtags(WordList):
 			'lovestory',
 			'lprtg',
 			'lprtg',
-			'mrbtg',
+			'mrbrtg',
 			'naughty',
 			'nsfw',
 			'PleaseRT',
@@ -76,10 +81,13 @@ class Hashtags(WordList):
 			'truelove',
 			'twitterbot',
 			'twitterbot',
-			'wprtg']
+			'wprtg'])
 		
-class BadGirlNames(WordList):
-	List = ['hussy',
+class BadGirlNames(NounAdjList):
+	DefaultNoun = 'slut'
+	DefaultAdj = 'little'
+	
+	NounList = ['hussy',
 		'minx',
 		'nympho',
 		'skank',
@@ -102,18 +110,9 @@ class BadGirlNames(WordList):
 		'shameless',
 		'wanton']
 		
-	def GetAdj(self):
-		sAdj = ""
-		
-		if len(self.AdjList) > 0:
-			iRand = randint(0, len(self.AdjList) - 1)
-			
-			sAdj = self.AdjList[iRand]
-		
-		return sAdj
-		
 class Exclamations(WordList):
-	List = ['baby',
+	def __init__(self):
+		super().__init__(['baby',
 		'damn',
 		'fuck',
 		'fuck',
@@ -136,7 +135,7 @@ class Exclamations(WordList):
 		'shit',
 		'shit',
 		'sweet Mother Mary',
-		'tits']
+		'tits'])
 		
 	def GetWord(self, bHappy = False, bSad = False, bExMk = True):
 		sExclamation = ""
@@ -163,7 +162,8 @@ class Exclamations(WordList):
 		return sExclamation
 		
 class TermsOfEndearment(WordList):
-	List = ['babe',
+	def __init__(self):
+		super().__init__(['babe',
 		'baby',
 		'darling',
 		'dear',
@@ -171,29 +171,31 @@ class TermsOfEndearment(WordList):
 		'love',
 		'my love',
 		'sweetie',
-		'sweetheart']
+		'sweetheart'])
 		
 class Gobs(WordList):
-	List = ['beads', 
+	def __init__(self):
+		super().__init__(['beads', 
 		'drops', 
 		'globules', 
 		'gobs', 
 		'pearls', 
 		'ropes', 
 		'strings', 
-		'trails']
+		'trails'])
 		
 class SexyAdjs(WordList):
-	List = ['dirty',
+	def __init__(self):
+		super().__init__(['dirty',
 		'filthy',
 		'hot',
 		'naughty',
 		'sexy',
-		'steamy']
+		'steamy'])
 		
 class WomanAdjs(WordList):
 	def __init__(self):
-		self.List = ['beautiful',
+		super().__init__(['beautiful',
 			'busty',
 			'buxom',
 			'comely',
@@ -220,19 +222,23 @@ class WomanAdjs(WordList):
 			'teenage',
 			'voluptuous',
 			'young',
-			'youthful']
+			'youthful'])
 
 class BookSellers(WordList):
-	List = ['Apple Books',
+	def __init__(self):
+		super().__init__(['Apple Books',
 			'Amazon',
 			'B&N',
 			'Kobo',
 			'Radish Fiction',
 			'Smashwords',
-			'WattPad']
+			'WattPad'])
 			
 class BookGirls(WordList):
-	List = ['Airline Stewardess',
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(['Airline Stewardess',
 			'Amish Maiden',
 			'Anal Virgin',
 			'Babysitter',
@@ -298,10 +304,13 @@ class BookGirls(WordList):
 			'Wet Nurse',
 			'Whore',
 			'Wife',
-			'Woman']
+			'Woman'])
 			
 class BookGirlAdjs(WordList):
-	List = ['Amish',
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(['Amish',
 		'Anal',
 		'Bashful',
 		'BBW',
@@ -332,7 +341,6 @@ class BookGirlAdjs(WordList):
 		'Kinky',
 		'Lactating',
 		'Lesbian',
-		'Live-in',
 		'Married',
 		'MILF',
 		'Naked',
@@ -358,10 +366,13 @@ class BookGirlAdjs(WordList):
 		'Virgin',
 		'Virgin',
 		'Virgin',
-		'Young']
+		'Young'])
 
 class BookMasters(WordList):
-	List = ['Alpha',
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(['Alpha',
 			'Alpha Wolf',
 			'Assassin',
 			'Baby Daddies',
@@ -435,6 +446,7 @@ class BookMasters(WordList):
 			'Professor',
 			'Quarterback',
 			'Rock Star',
+			'Roommate',
 			'Shah',
 			'Sex Addict',
 			'Sex Warlock',
@@ -453,10 +465,13 @@ class BookMasters(WordList):
 			'Voyeur',
 			'Werewolf',
 			'Werewolf Pack',
-			'Widower']
+			'Widower'])
 			
 class BookMasterAdjs(WordList):
-	List = ['Alpha',
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(['Alpha',
 			'Bad Boy',
 			'Bitcoin Billionaire',
 			'Biker',
@@ -510,11 +525,15 @@ class BookMasterAdjs(WordList):
 			'Well-hung',
 			'Werewolf',
 			'Wicked',
-			'Widowed']
+			'Widowed'])
 			
 class BookVerbsBy(WordList):
-	List = ['Anally Deflowered',
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(['Anally Deflowered',
 			'Annally Deflowered in Public',
+			'Beaten',
 			'Blackmailed',
 			'Bound',
 			'Bred',
@@ -562,37 +581,45 @@ class BookVerbsBy(WordList):
 			'Taken in Public',
 			'Tempted',
 			'Trained',
-			'Secretly Watched']
+			'Secretly Watched'])
 			
 class BookVerbsTo(WordList):
-	List = ['Bred',
-			'Bound',
-			'Cuckquean',
-			'Engaged',
-			'Enslaved',
-			'Hotwife',
-			'Hotwifed',
-			'Lolita',
-			'Married',
-			'Mated',
-			'Sold',
-			'Submissive',
-			'Submitting']
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(['Bred',
+				'Bound',
+				'Cuckquean',
+				'Engaged',
+				'Enslaved',
+				'Hotwife',
+				'Hotwifed',
+				'Lolita',
+				'Married',
+				'Mated',
+				'Sold',
+				'Submissive',
+				'Submitting'])
 			
 # I really really like the random book titles. See if you can tell! ;-P
 class BookTitleBuilder():
+	def __init__(self):
+		self.Girls = BookGirls()
+		self.GirlAdjs = BookGirlAdjs()
+		self.Masters = BookMasters()
+		self.MasterAdjs = BookMasterAdjs()
+		self.VerbsBy = BookVerbsBy()
+		self.VerbsTo = BookVerbsTo()
+
+	
 	def GetMaster(self, bLong = False):
 		sMaster = ""
 		
-		Masters = BookMasters()
-		MasterAdjs = BookMasterAdjs()
+		sMaster = self.Masters.GetWord()
 		
-		iRand = randint(1,2)
-		sMaster = Masters.GetWord()
-		
-		sMasterAdj = MasterAdjs.GetWord()
-		while sMasterAdj in sMaster:
-				sMasterAdj = MasterAdjs.GetWord()
+		sMasterAdj = self.MasterAdjs.GetWord()
+		while sMasterAdj != "" and sMasterAdj in sMaster:
+			sMasterAdj = self.MasterAdjs.GetWord()
 		
 		if CoinFlip():
 			if bLong:
@@ -605,14 +632,11 @@ class BookTitleBuilder():
 	def GetGirl(self, bLong = False):
 		sGirl = ""
 		
-		Girls = BookGirls()
-		GirlAdjs = BookGirlAdjs()
-		
 		iRand = randint(1,7)
-		sGirl = Girls.GetWord()
-		sGirlAdj = GirlAdjs.GetWord()
-		while sGirlAdj in sGirl:
-			sGirlAdj = GirlAdjs.GetWord()
+		sGirl = self.Girls.GetWord()
+		sGirlAdj = self.GirlAdjs.GetWord()
+		while sGirlAdj != "" and sGirlAdj in sGirl:
+			sGirlAdj = self.GirlAdjs.GetWord()
 			
 		if iRand <= 3:
 			if bLong:
@@ -622,9 +646,9 @@ class BookTitleBuilder():
 		elif iRand == 7:
 			sGirl = sGirlAdj + " " + sGirl
 			
-			sGirlAdj = GirlAdjs.GetWord()
-			while sGirlAdj in sGirl:
-				sGirlAdj = GirlAdjs.GetWord()
+			sGirlAdj = self.GirlAdjs.GetWord()
+			while sGirlAdj != "" and sGirlAdj in sGirl:
+				sGirlAdj = self.GirlAdjs.GetWord()
 				
 			sGirl = sGirlAdj + " " + sGirl
 			
@@ -650,13 +674,10 @@ class BookTitleBuilder():
 		
 	def GetTitle(self):
 		sTitle = ""
+
+		sVerbBy = self.VerbsBy.GetWord()
+		sVerbTo = self.VerbsTo.GetWord()
 		
-		Masters = BookMasters()
-		VerbsBy = BookVerbsBy()
-		VerbsTo = BookVerbsTo()
-		
-		sVerbBy = VerbsBy.GetWord()
-		sVerbTo = VerbsTo.GetWord()
 		sHerName = names.NamesFemale().FirstName()
 		
 		Titles = []
@@ -712,7 +733,7 @@ class BookTitleBuilder():
 		# =========================
 				
 		# The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-		sTitle = "The " + sGirl + ", The " + Masters.GetWord() + ", & The " + sMaster + ": "
+		sTitle = "The " + sGirl + ", The " + self.Masters.GetWord() + ", & The " + sMaster + ": "
 		if CoinFlip():
 			sTitle += "A Hot Ménage"
 		else:

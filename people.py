@@ -12,23 +12,22 @@ class Person(WordList):
 		return sPerson
 		
 class MaleSO(Person):
-	List = ['boyfriend',
+	def __init__(self):
+		super().__init__(['boyfriend',
 			'fiancé',
 			'hubby',
-			'husband',
-			'man',
-			'partner']
+			'husband'])
 			
 class FemaleSO(Person):
-	List = ['bride',
+	def __init__(self):
+		super().__init__(['bride',
 			'girlfriend',
 			'fiancé',
-			'wife',
-			'partner',
-			'woman']
+			'wife'])
 		
 class FemaleFWB(Person):
-	List = ['aunt',
+	def __init__(self):
+		super().__init__(['aunt',
 		'babysitter',
 		'barista',
 		'boss',
@@ -59,6 +58,7 @@ class FemaleFWB(Person):
 		'life drawing model',
 		'English lit student',
 		'maid',
+		'math teacher',
 		'marriage counselor',
 		'masseuse',
 		'math tutor',
@@ -86,10 +86,11 @@ class FemaleFWB(Person):
 		'wedding planner',
 		'wife',
 		'wife\'s Avon Lady',
-		'wife\'s pregnancy surrogate']
+		'wife\'s pregnancy surrogate'])
 		
 class MaleFWB(Person):
-	List = ['attorney',
+	def __init__(self):
+		super().__init__(['attorney',
 			'attractive male masseuse',
 			'baby daddy',
 			'bank teller',
@@ -144,6 +145,7 @@ class MaleFWB(Person):
 			'proctologist',
 			'professor',
 			'psychiatrist',
+			'roommate',
 			'shift supervisor',
 			'sister\'s boyfriend',
 			'son-in-law',
@@ -153,10 +155,11 @@ class MaleFWB(Person):
 			'uber driver',
 			'vice-principal',
 			'volleyball coach',
-			'yoga teacher']
+			'yoga teacher'])
 			
 class JobBlueCollar(Person):
-	List = ['aluminum can recycler',
+	def __init__(self):
+		super().__init__(['aluminum can recycler',
 		'bag boy',
 		'baggage handler',
 		'ball boy',
@@ -237,10 +240,11 @@ class JobBlueCollar(Person):
 		'Wal-Mart greeter',
 		'wedding DJ',
 		'writer of erotic romances',
-		'zoo keeper']
+		'zoo keeper'])
 		
 class JobWhiteCollar(Person):
-	List = ['accountant',
+	def __init__(self):
+		super().__init__(['accountant',
 		'actuary',
 		'airline pilot',
 		'Apple Store genius',
@@ -308,10 +312,11 @@ class JobWhiteCollar(Person):
 		'web designer',
 		'Wendy\'s franchise owner',
 		'yoga teacher',
-		'YouTube personality']
+		'YouTube personality'])
 		
 class JobWealthyMale(Person):
-	List = ['archduke',
+	def __init__(self):
+		super().__init__(['archduke',
 		'baron',
 		'Bitcoin billionaire',
 		'billionaire',
@@ -331,7 +336,6 @@ class JobWealthyMale(Person):
 		'Nobel Prize winner',
 		'Dalai Lama',
 		'pope',
-		'porn star',
 		'president',
 		'prime minister',
 		'prince',
@@ -344,10 +348,11 @@ class JobWealthyMale(Person):
 		'sultan',
 		'surgeon general',
 		'titan of industry',
-		'viscount']
+		'viscount'])
 
 class JobWealthyFemale(Person): 
-	List = ['actress',
+	def __init__(self):
+		super().__init__(['actress',
 		'archduchess',
 		'baroness',
 		'CEO',
@@ -374,4 +379,4 @@ class JobWealthyFemale(Person):
 		'supermodel',
 		'surgeon general',
 		'viscountess',
-		'wealthy MILF']
+		'wealthy MILF'])

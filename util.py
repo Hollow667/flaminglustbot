@@ -9,7 +9,7 @@ MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
 TWIT_USERNAME = 'bot_lust'
 
-Q_SIZE = 6
+Q_SIZE = 10
 HISTORYQ_FILENAME = 'history_q.txt'
 
 TAG_PEN = "sex act with penetration scene"
@@ -22,8 +22,9 @@ TAG_FOREPLAY = "foreplay scene"
 TAG_ABOVE_BELT = "above-the-belt sex act scene"
 TAG_BELOW_BELT = "below-the-belt sex act scene"
 TAG_ORAL = "oral sex scene"
+TAG_CLOTHED = "scene where they still have clothes on"
 
-HistoryQ = None
+TweetHistoryQ = None
 	
 class Gender(Enum):
 	Male = 1
@@ -118,88 +119,17 @@ def IsTweetTooLong(sTweet):
 		bTooLong = False 
 	
 	return bTooLong
-	
-class WordList:
-	List = []
-	DefaultWord = ""
-	
-	def __init__(self, NewList = None):
-		if NewList == None:
-			pass
-		else:
-			self.List = NewList
-	
-	def GetWord(self, sNot = ""):
-		sWord = ""
-		iRandIndex = 0
-			
-		if not self.List == None and len(self.List) > 0:
-			iRandIndex = randint(0, len(self.List) - 1)
-		
-			sWord = self.List[iRandIndex]
-			while sNot != "" and sNot in sWord:
-				iRandIndex = randint(0, len(self.List) - 1)
-		
-				sWord = self.List[iRandIndex]
-
-		return sWord
-		
-class NounAdjList:
-	NounList = []
-	AdjList = []
-	DefaultNoun = ""
-	DefaultAdj = ""
-	
-	def __init__(self, NewNounList = None, NewAdjList = None):
-		if NewNounList == None:
-			pass
-		else:
-			self.NounList = NewNounList
-			
-		if NewAdjList == None:
-			pass
-		else:
-			self.AdjList = NewAdjList
-	
-	def GetNoun(self):
-		sNoun = ""
-		
-		iRandNounIndex = 0
-		
-		if not self.NounList == None and len(self.NounList) > 0:
-			iRandNounIndex = randint(0, len(self.NounList) - 1)
-			
-		sNoun = self.NounList[iRandNounIndex]
-		
-	def GetAdj(self):
-		sAdj = ""
-		
-		iRandAdjIndex = 0
-		
-		if not self.AdjList == None and len(self.AdjList) > 0:
-			iRandAdjIndex = randint(0, len(self.AdjList) - 1)
-			
-		sNoun = self.AdjList[iRandAdjIndex]
-	
-	def GetWord(self):
-		sWord = ""
-					
-		sWord = self.GetAdj() + " " + self.GetNoun()
-		
-		return sWord
 		
 class HistoryQ():
-	HistoryQ = []
-	MaxQSize = Q_SIZE
-	
 	def __init__(self, iQSize = Q_SIZE):
 		self.MaxQSize = iQSize
+		self.HistoryQ = []
 	
-	def PushToHistoryQ(self, ID):
+	def PushToHistoryQ(self, item):
 		bPushOK = False 
-		
-		if not self.IsInQ(ID):
-			self.HistoryQ.insert(0,ID)
+
+		if not self.IsInQ(item):
+			self.HistoryQ.insert(0,item)
 			bPushOK = True
 			
 			if len(self.HistoryQ) > self.MaxQSize:
@@ -207,21 +137,17 @@ class HistoryQ():
 		
 		return bPushOK
 		
-	def IsInQ(self, ID):
+	def IsInQ(self, item):
 		bIsInQ = True 
 		
-		if not ID in self.HistoryQ:
+		if len(self.HistoryQ) == 0 or not item in self.HistoryQ:
 			bIsInQ = False
-		#else:
-			#print("Collision: " + str(ID) + " found in Q:")
-			#print(self.HistoryQ)
-			
+
 		return bIsInQ
 			
 class HistoryQWithLog(HistoryQ):
-	LogFileName = ""
-	
-	def __init__(self, sLogFileName):
+	def __init__(self, sLogFileName, iQSize = Q_SIZE):
+		super().__init__(iQSize)
 		self.LogFileName = sLogFileName
 		#print("LogFileName is " + self.LogFileName)
 		
@@ -246,3 +172,80 @@ class HistoryQWithLog(HistoryQ):
 		#print("Wrote HistoryQ:")
 		#print(self.HistoryQ)
 			
+class WordList:
+	def __init__(self, NewList = None):
+		if NewList == None:
+			self.List = []
+		else:
+			self.List = NewList
+			
+		self.DefaultWord = ""
+		self.WordHistoryQ = HistoryQ(3)
+	
+	def GetWord(self, sNot = ""):
+		sWord = ""
+		
+		if not self.List == None and len(self.List) > 0:
+			sWord = self.List[randint(0, len(self.List) - 1)]
+			while not self.WordHistoryQ.PushToHistoryQ(sWord) and (sNot != "" and sNot in sWord):
+				sWord = self.List[randint(0, len(self.List) - 1)]
+				
+		return sWord
+		
+class NounAdjList:
+	def __init__(self, NewNounList = None, NewAdjList = None):
+		if NewNounList == None:
+			self.NounList = []
+		else:
+			self.NounList = NewNounList
+			
+		if NewAdjList == None:
+			self.AdjList = []
+		else:
+			self.AdjList = NewAdjList
+			
+		self.NounHistoryQ = HistoryQ(3)
+		self.AdjHistoryQ = HistoryQ(3)
+			
+		self.DefaultNoun = ""
+		self.DefaultAdj = ""
+	
+	def GetNoun(self, NotList = None):
+		sNoun = ""
+		
+		if NotList is None:
+			NotList = []
+		
+		iRandNounIndex = 0
+		
+		if not self.NounList == None and len(self.NounList) > 0:
+			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
+			while not self.NounHistoryQ.PushToHistoryQ(sNoun) or sNoun in NotList:
+				sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
+			
+		return sNoun
+		
+	def GetAdj(self, NotList = None):
+		sAdj = ""
+		
+		if NotList is None:
+			NotList = []
+		
+		iRandAdjIndex = 0
+		
+		if not self.AdjList == None and len(self.AdjList) > 0:
+			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
+			while not self.AdjHistoryQ.PushToHistoryQ(sAdj) or sAdj in NotList:
+				sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
+			
+		return sAdj
+	
+	def GetWord(self, NotList = None):
+		sWord = ""
+		
+		if NotList is None:
+			NotList = []
+					
+		sWord = self.GetAdj(NotList) + " " + self.GetNoun(NotList)
+		
+		return sWord

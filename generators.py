@@ -725,7 +725,7 @@ class Generator24(Generator):
 			sHisName = "the man"
 			sHerName = self.FemaleName.FirstName()
 		
-		CreamPieScene = SceneCreamPie(sHerName = sHerName, Location = Location)
+		CreamPieScene = SceneCreamPie("", sHerName, Location = Location)
 		
 		sTweet = Location.BeginDesc 
 		
@@ -1094,16 +1094,52 @@ class Generator37(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
+		Penis = self.MaleBodyParts.Penis 
+		
+		sManEyes = ""
+		sManPenis = ""
+		sManTip = ""
+		sManBalls = ""
+		sManSize = str(randint(7,12))
+		sWealthyMan = self.WealthyMan.GetPerson()
+		sManAdjs = WordList(["tall", "muscular", "bearded"])
+		
+		if CoinFlip():
+			#wealthy man is a BBC
+			sWealthyMan = "black " + sWealthyMan
+			sManEyes = "dark, smoldering eyes"
+			sManPenis = "black, " + Penis.GetAdj(sNot="black") + " " + Penis.ShortDescription()
+			sManTip = "dark, " + Penis.Head.GetAdj(sNot="dark") + " " + Penis.Head.ShortDescription()
+			sManBalls = "ebony " + Penis.Testicles.ShortDescription()
+		else:
+			sManEyes = self.MaleBodyParts.Eyes.RandomDescription()
+			sManPenis = Penis.RandomDescription()
+			sManTip = Penis.Head.RandomDescription()
+			sManBalls = Penis.Testicles.ShortDescription()
+			
+		if CoinFlip():
+			sManSize += " & 1/2\""
+		else:
+			sManSize += "\""
+		
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
 		
-		Location = locations.LocationSelector().Location()
-		MyScene = SceneMakeOut(sHisName = sHisName, sHerName = sHerName, Location = Location)
-		
-		sTweet = Location.BeginDesc + " "
-		
-		sTweet += MyScene.Scene()
-		#sTweet += "\n\n" + TitFuckScene.ShortScene()
+		sTweet = "'I'm afraid, Miss " + sHerName + ",' said the " + sWealthyMan + ", 'that I'm going to have to tell your " + self.MaleSO.GetPerson() + " about your little... indiscretion.'\n\n"
+		sTweet += "'Please don't tell him,' she said, looking up at him " + WordList(["pitifully", "hopefully", "wretchedly", "wistfully", "dejectedly", "breathlessly"]).GetWord() + ". He had " + sManEyes + " and his " + WordList(['brawny','broad','mighty','muscular','powerful','rugged','strong','sturdy','well-built','wide']).GetWord() + " shoulders filled out his sharply-tailored " + WordList(["tuxedo", "three-piece suit", "black suit", "button-down silk shirt", "sport coat", "gray suit"]).GetWord() + " nicely. 'I'll do anything.'\n\n"
+		if CoinFlip():
+			sTweet += "'You must be punished, Miss " + sHerName + ",' he said. 'Will you do as I say?' She nodded.\n\n"
+			sTweet += "'Then bend over and lift your skirt.' " + sHerName + " flushed, but she knew she had no choice. She bent lifted the hem, exposing her bare " + self.FemBodyParts.Ass.MediumDescription(sNot = "bare") + " and her " + self.FemBodyParts.Vagina.RandomDescription() + ". 'No panties?' said the " + sWealthyMan + ", 'My, my, you *are* a " + self.BadGirlName.GetWord() + ".' He unbuckled his belt and pulled it off. She tensed as he approached. He put one hand on her " + self.FemBodyParts.Ass.RandomDescription() + " and raised the belt in his fist.\n\n"
+			sTweet += "'I'd tell you this will only sting a little,' he said, 'But " + WordList(["we both know that it is going to hurt", "that would be a lie", "I would never lie to a beautiful woman", "this will definitely leave a mark", "but if it didn't hurt, it wouldn't be a punishment"]).GetWord() + ".'"
+		else:
+			sTweet += "'Anything?' he asked, arching an eyebrow. She nodded mutely. 'On your knees, then,' he said. "
+			if CoinFlip():
+				sTweet += "He slowly unbuckled his belt. Then he "
+			else:
+				sTweet += "He "
+			sTweet += "unzipped his trousers. "	+ sHerName + "'s eyes widened as his " + sManSize + " " + sManPenis + " unfurled. His " + sManBalls + " was " + Penis.Testicles.GetAdj() + " and " + Penis.Testicles.GetAdj() + ", and his " + sManTip + " was inches from her face.\n\n"
+			sTweet += WordList(["'You can start by sucking my " + Penis.ShortDescription() + ",' he said.", "'You can start by deep-throating this,' he said.", "'Now suck on my " + Penis.Testicles.MediumDescription() + ",' he said.", "'You will do what I say,' he said, 'and right now I say suck my " + Penis.ShortDescription() + ".'"]).GetWord()
+			
 		
 		return sTweet
 		
@@ -1528,7 +1564,7 @@ class Generator49(Generator):
 		sTweet = ""
 		
 		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
-		Scene = SceneSelector().GetScene(Tags = [TAG_DONE_TO_HER], NotTags = [TAG_CLIMAX], Location = Location)
+		Scene = SceneSelector().GetScene("", "", Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, Location = Location)
 		sShortScene = Scene.SceneShortDesc1PHer
 		
 		sHisName = self.MaleName.FirstName()
@@ -1622,42 +1658,158 @@ class Generator50(Generator):
 		sTweet += Teases[iRand][0]
 		sTweet += "He swallowed the lump in his throat.\n\n"
 		sTweet += "'" + WordList(["Go away", "Leave me alone", "Get out of here", "I'm not interested"]).GetWord() + ", " + sHerName + ",' he said. 'I'm a successful " + sWhiteCollarHim + " now. I'm married to a beautiful " + sWhiteCollarHer + ". We have " + str(randint(2,14)) + " children!'\n\n"
-		sTweet += "'That's too bad,' she said. 'I suppose that means you have no interest in *this.*' "
+		sTweet += "'That's too bad,' she said. 'I suppose that means you have no interest in *this.*'\n\n"
 		sTweet += Teases[iRand][1]
 		sTweet += "\n\n'" + sExclaim.capitalize() + "' " + self.VMoan.Past() + " " + sHisName + "."
 		
 		
 		return sTweet
 		
-# class Generator51(Generator):
-	# ID = 51
-	# Priority = 1
+class Generator51(Generator):
+	ID = 51
+	Priority = 1
+	Type = GeneratorType.Test
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator52(Generator):
-	# ID = 52
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 		
-# class Generator53(Generator):
-	# ID = 53
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
+		SceneForeplay = SceneSelector().GetScene(Tags = [TAG_FOREPLAY], sHisName = sHisName, sHerName = sHerName, Location = Location)
+		ScenePosition = SceneSelector().GetScene(Tags = [TAG_POSITION], sHisName = sHisName, sHerName = sHerName, Location = Location)
+		SceneClimax = SceneSelector().GetScene(Tags = [TAG_CLIMAX], sHisName = sHisName, sHerName = sHerName, Location = Location)
+		
+		print(SceneForeplay)
+		print(ScenePosition)
+		print(SceneClimax)
+		
+		sTweet += Location.BeginDesc + " " 
+		sTweet += SceneForeplay.Scene() + " "
+		sTweet += ScenePosition.Scene() + " "
+		sTweet += SceneClimax.Scene() + "\n\n"
+		sTweet += self.AfterSexPunchline.GetPunchline(Gender.Male)
+		
+		
+		
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 
-		# return sTweet
+		return sTweet
+		
+class Generator52(Generator):
+	ID = 52
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Actions = []
+		
+		Interruptors = WordList(["mom", "mother", "dad", "daddy", "aunt", "grandma", "grandpa", "husband", "boyfriend", "fiancé", "brother", "step-brother", "sister", "step-sister", "brother-in-law", "baby-sitter"])
+		
+		Colors = WordList(["pink", "lavender", "mauve", "crimson", "sky-blue", "foam-green", "rose-colored", "maroon", "peach-colored", "teal", "periwinkle-colored", "violet"])
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sTweet = sHisName + " and " + sHerName + " tumbled onto the " + WordList(["thick", "frilly", "downy", "florid"]).GetWord() + " " + Colors.GetWord() + " bedspread together"
+		if CoinFlip():
+			sTweet += ", scattering " + Colors.GetWord() + " pillows everywhere"
+		sTweet += ". "
+		
+		sInterruptText = "Suddenly, there was a pounding on the bedroom door. 'What are you two doing in there?' demanded " + WordList(["a muffled", "an angry", "a suspicious", "a loud"]).GetWord() + " voice.\n\n'" + self.Exclamation.GetWord(bSad = True).capitalize() + " It's my " + Interruptors.GetWord() + "!' she said to him. "
+		
+		sText = ""
+		
+		# Done-to-her
+		sText = ""
+		Scene1 = None 
+		Scene1 = SceneSelector().GetScene(sHisName = sHisName, sHerName = sHerName, Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_PEN, TAG_CLIMAX},)
+		#print("\n))) Generator sHisName = " + sHisName + " and sHerName = " + sHerName + ", but for Scene 1 HisName = " + Scene1.HisName + ", HerName = " + Scene1.HerName + " (((")
+		if TAG_ABOVE_BELT in Scene1.Tags:
+			sText += "She giggled and playfully struggled with him as he tried to " + WordList(["unbutton her blouse", "pull her top down", "pull her shirt up", "pull the straps of her dress down"]).GetWord() + ". "
+		elif TAG_BELOW_BELT in Scene1.Tags:
+			sText += "She giggled and playfully fought him as he tried to " + WordList(["unzip her bluejeans", "pull her skirt down", "pull her panties off", "slide her shorts down"]).GetWord() + ". "
+		else:
+			sText += "He began urgently undressing her. "
+
+		if not Scene1 is None:
+			sText += Scene1.Scene() + "\n\n"
+			sText += sInterruptText
+			sText += "'It's okay!' she called, '" + sHisName + " was only " + Scene1.VerbGerund + " me!'"
+			
+			for _ in range(3):
+				Actions.append(sText)
+		#==================
+		
+		# Both equally
+		sText = ""
+		Scene2 = None
+		Scene2 = SceneSelector().GetScene(sHisName = sHisName, sHerName = sHerName, NotTags = {TAG_PEN, TAG_DONE_TO_HER, TAG_DONE_TO_HIM, TAG_CLIMAX})
+		#print("\n))) Generator sHisName = " + sHisName + " and sHerName = " + sHerName + ", but for Scene 2 HisName = " + Scene2.HisName + ", HerName = " + Scene2.HerName + " (((")
+		sText += "They were giggling and hushing each other as they " + WordList(["tore each other's clothes off", "stripped down to their underwear"]).GetWord() + ". "
+
+		if not Scene2 is None:
+			sText += Scene2.Scene() + "\n\n"
+			sText += sInterruptText
+			sText += "'It's okay!' she " + WordList(["called", "called out", "shouted", "yelled", "shouted out"]).GetWord() + ", 'We were only " + Scene2.VerbGerund + "!'"
+			
+			for _ in range(3):
+				Actions.append(sText)
+		#==================
+		
+		# Done-to-him
+		sText = ""
+		Scene3 = None
+		Scene3 = SceneSelector().GetScene(sHisName = sHisName, sHerName = sHerName, Tags = {TAG_DONE_TO_HIM}, NotTags = {TAG_PEN, TAG_CLIMAX})
+		#print("\n))) Generator sHisName = " + sHisName + " and sHerName = " + sHerName + ", but for Scene 3 HisName = " + Scene3.HisName + ", HerName = " + Scene3.HerName + " (((")
+		if TAG_ABOVE_BELT in Scene3.Tags:
+			sText += "He laughed as she tried to " + WordList(["wrestle his t-shirt off of him", "unbutton his shirt",]).GetWord() + ". "
+		elif TAG_BELOW_BELT in Scene3.Tags:
+			sText += "He laughed as she tried to " + WordList(["unzip his bluejeans", "unbutton his trousers", "unbuckle his belt", "pull his shorts down", "slide his boxers down", "slide his briefs down"]).GetWord() + ". "
+		else:
+			sText += "She began tearing his clothes off. "
+		
+		if not Scene3 is None:
+			sText += Scene3.Scene() + "\n\n"
+			sText += sInterruptText
+			sText += "'It's okay!' she called, 'I was only " + Scene3.VerbGerund + " " + sHisName + "!'"
+			
+			for _ in range(1):
+				Actions.append(sText)
+		#==================
+		
+		if len(Actions) > 0:
+			sTweet += Actions[randint(0, len(Actions) - 1)]
+
+		return sTweet
+		
+class Generator53(Generator):
+	ID = 53
+	Priority = 1
+	Type = GeneratorType.Test
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Location = locations.LocationSelector().Location()
+		MyScene = SceneMakeOut(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		
+		sTweet = Location.BeginDesc + " "
+		
+		sTweet += MyScene.Scene()
+		#sTweet += "\n\n" + TitFuckScene.ShortScene()
+		
+		return sTweet
 		
 # class Generator54(Generator):
 	# ID = 51
@@ -1797,6 +1949,7 @@ def GetImgTweetText(gen):
 	FavWord.List += AnusFemale().NounList
 	FavWord.List += Penis().NounList
 	FavWord.List += Vagina().AdjList
+	FavWord.List += Testicles().NounList 
 	FavWord.List += ['bunghole', 'crevice', 'fissure', 'pendulous', 'beefy', 'ravish', 'ample', 'nubile', 'panties', 'lust', 'throbbing', 'turgid', 'tumescent', 'meat', 'gooey', 'juicy', 'moist', 'taint', 'labia', 'pubes', 'scrotal']
 
 	if CoinFlip():
@@ -1807,14 +1960,15 @@ def GetImgTweetText(gen):
 		TweetText.append(sText)
 	#=============================
 
-	if CoinFlip():
-		sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-		while IsTweetTooLong(sText):
-			sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-	else:
+	# it seems that adding any kind of hashtag at all to a bot may lead to shadowbans. so for now I'm not using this.
+	# if CoinFlip():
+		# sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
+		# while IsTweetTooLong(sText):
+			# sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
+	# else:
+	sText = TweetText[randint(0, len(TweetText) - 1)] 
+	while IsTweetTooLong(sText):
 		sText = TweetText[randint(0, len(TweetText) - 1)] 
-		while IsTweetTooLong(sText):
-			sText = TweetText[randint(0, len(TweetText) - 1)] 
 	
 	return sText 
 				

@@ -5,36 +5,33 @@ from util import *
 
 
 class BodyParts:
-	NounList = []
-	AdjList = []
-	DefaultNoun = ""
-	DefaultAdj = "naked"
-	IsPlural = True
+	def __init__(self):
+		self.NounList = []
+		self.AdjList = []
+		self.DefaultNoun = ""
+		self.DefaultAdj = "naked"
+		
+		self.NounHistoryQ = HistoryQ(3)
+		self.AdjHistoryQ = HistoryQ(3)
 	
 	def GetNoun(self, sNot = ""):
 		sNoun = ""
-		#print("GetNoun sNot = " + str(sNot))
-		
+
 		if len(self.NounList) > 0:
-			iNounIndex = randint(0, len(self.NounList) - 1)
-			sNoun = self.NounList[iNounIndex]
-			while len(sNot) > 0 and sNot in sNoun:
-				iNounIndex = randint(0, len(self.NounList) - 1)
-				sNoun = self.NounList[iNounIndex]
+			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
+			while not self.NounHistoryQ.PushToHistoryQ(sNoun) and (len(sNot) > 0 and sNot in sNoun):
+				sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
 				
 		return sNoun
 	
 	def GetAdj(self, sNot = ""):
 		sAdj = ""
-		#print("GetAdj sNot = " + str(sNot))
-		
+
 		if len(self.AdjList) > 0:
-			iAdjIndex = randint(0, len(self.AdjList) - 1)
-			sAdj = self.AdjList[iAdjIndex]
+			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
 			
-			while len(sNot) > 0 and sNot in sAdj:
-				iAdjIndex = randint(0, len(self.AdjList) - 1)
-				sAdj = self.AdjList[iAdjIndex]
+			while not self.AdjHistoryQ.PushToHistoryQ(sAdj) or (len(sNot) > 0 and sNot in sAdj):
+				sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
 			
 		return sAdj
 
@@ -104,6 +101,8 @@ class BodyParts:
 
 class Face(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['face',
 			'face',
 			'face',
@@ -139,6 +138,8 @@ class Face(BodyParts):
 		
 class Skin(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['skin',
 			'flesh']
 			
@@ -181,6 +182,8 @@ class Skin(BodyParts):
 		
 class Mouth(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['mouth',
 						 'mouth',
 						 'mouth',
@@ -203,6 +206,8 @@ class Mouth(BodyParts):
 		
 class Lips(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['lips']
 			
 		self.AdjList = ['candy-colored',
@@ -221,6 +226,8 @@ class Lips(BodyParts):
 		
 class Eyes(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['eyes']
 			
 		self.AdjList = ['alluring',
@@ -243,6 +250,8 @@ class Eyes(BodyParts):
 		
 class Hips(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['hips']
 			
 		self.AdjList = ['curvy',
@@ -264,6 +273,8 @@ class Hips(BodyParts):
 		
 class Hair(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['hair',
 			'hair',
 			'hair',
@@ -297,6 +308,8 @@ class Hair(BodyParts):
 		
 class Legs(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['legs',
 			'legs',
 			'legs',
@@ -323,6 +336,8 @@ class Legs(BodyParts):
 		
 class Thighs(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['thighs']
 			
 		self.AdjList = ['athletic',
@@ -365,6 +380,8 @@ class Thighs(BodyParts):
 		
 class Nipples(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['nipples',
 			'nipples',
 			'nipples',
@@ -403,9 +420,11 @@ class Nipples(BodyParts):
 		self.DefaultAdj = "erect"
 		
 class Breasts(BodyParts):
-	Nipples = []
-	
 	def __init__(self):
+		super().__init__()
+		
+		self.Nipples = []
+		
 		self.NounList = ['boobies',
 			'boobs',
 			'bosoms',
@@ -485,6 +504,8 @@ class Breasts(BodyParts):
 		
 class Clitoris(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['clit',
 			'clit',
 			'clitoris',
@@ -518,7 +539,9 @@ class Clitoris(BodyParts):
 class VaginaInner(BodyParts):
 
 	def __init__(self):
-			self.NounList = ['cherry',
+		super().__init__()
+		
+		self.NounList = ['cherry',
 				'cleft',
 				'chamber',
 				'chasm',
@@ -542,7 +565,7 @@ class VaginaInner(BodyParts):
 				'vaginal canal',
 				'vestibule',
 				'womanhood']
-			self.AdjList = ['cherry',
+		self.AdjList = ['cherry',
 				'cherry red',
 				'clenched',
 				'deep',
@@ -574,13 +597,15 @@ class VaginaInner(BodyParts):
 				'wanton',
 				'well-used']
 			
-			self.DefaultNoun = "vaginal canal"
-			self.IsPlural = False
+		self.DefaultNoun = "vaginal canal"
+		self.IsPlural = False
 	
 class VaginaOuterLabia(BodyParts):
 
 	def __init__(self):
-			self.NounList = ['labia',
+		super().__init__()
+		
+		self.NounList = ['labia',
 							 'lips',
 							 'mons pubis',
 							 'mound',
@@ -589,7 +614,7 @@ class VaginaOuterLabia(BodyParts):
 							 'outer pussy lips',
 							 'pussy lips',
 							 'vulva']
-			self.AdjList = ['bare',
+		self.AdjList = ['bare',
 							'dewy',
 							'downy',
 							'down-thatched',
@@ -628,12 +653,14 @@ class VaginaOuterLabia(BodyParts):
 							'trim',
 							'wet']
 			
-			self.DefaultNoun = "mons pubis"
+		self.DefaultNoun = "mons pubis"
 
 class VaginaInnerLabia(BodyParts):
 
 	def __init__(self):
-			self.NounList = ['beef-curtains',
+		super().__init__()
+		
+		self.NounList = ['beef-curtains',
 							 'butterfly wings',
 							 'cunt-lips',
 							 'cunt-flaps',
@@ -652,7 +679,7 @@ class VaginaInnerLabia(BodyParts):
 							 'pussy lips',
 							 'sex-lips',
 							 'wizard sleeve']
-			self.AdjList = ['beefy',
+		self.AdjList = ['beefy',
 							'chewy',
 							'dangling',
 							'dark',
@@ -687,7 +714,7 @@ class VaginaInnerLabia(BodyParts):
 							'tender',
 							'trim',
 							'velvet']
-			self.DefaultNoun = "inner labia"
+		self.DefaultNoun = "inner labia"
 			
 class Vagina(BodyParts):
 	InnerVag = []
@@ -696,6 +723,8 @@ class Vagina(BodyParts):
 	Clitoris = []
 	
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['cherry pie',
 					'cooch',
 					'coochie',
@@ -784,6 +813,8 @@ class Vagina(BodyParts):
 
 class AnusFemale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['anus',
 			'anus',
 			'anus',
@@ -846,9 +877,11 @@ class AnusFemale(BodyParts):
 		self.IsPlural = False
 		
 class AssFemale(BodyParts):
-	Anus = []
-	
 	def __init__(self):
+		super().__init__()
+		
+		self.Anus = AnusFemale()
+		
 		self.NounList = ['ass',
 			'backside',
 			'behind',
@@ -900,23 +933,11 @@ class AssFemale(BodyParts):
 			'womanly']
 		
 		self.DefaultNoun = "ass"
-		self.Anus = AnusFemale() 
 		
 class BodyFemale(BodyParts):
-	Hair = []
-	Face = []
-	Eyes = []
-	Lips = []
-	Mouth = []
-	Skin = []
-	Hips = []
-	Legs = []
-	Thighs = []
-	Breasts = []
-	Vagina = []
-	Ass = []
-	
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['anatomy',
 			'body',
 			'body',
@@ -1086,6 +1107,8 @@ class BodyFemale(BodyParts):
 		
 class PenisHead(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['cock-head',
 			'head',
 			'head',
@@ -1113,6 +1136,8 @@ class PenisHead(BodyParts):
 		
 class Testicles(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['balls',
 			'ballsack',
 			'bollocks',
@@ -1144,11 +1169,6 @@ class Testicles(BodyParts):
 		self.DefaultNoun = "testicles"
 
 class Penis(BodyParts):
-	Head = []
-	Testicles = []
-	PenisFrontPart = []
-	PenisBackPart = []
-	
 	def BuildAPenis(self):
 		sPenis = ""
 		
@@ -1185,6 +1205,8 @@ class Penis(BodyParts):
 		return sPenis
 		
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['boner',
 			'cock',
 			'cock',
@@ -1378,6 +1400,8 @@ class Penis(BodyParts):
 	
 class Semen(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['cock milk',
 			'cock-snot',
 			'cream',
@@ -1424,6 +1448,8 @@ class Semen(BodyParts):
 		
 class AssMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['ass',
 			'backside',
 			'behind',
@@ -1465,6 +1491,8 @@ class AssMale(BodyParts):
 		
 class SkinMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['skin',
 			'skin',
 			'skin',
@@ -1495,6 +1523,8 @@ class SkinMale(BodyParts):
 		
 class ShouldersMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['shoulders']
 			
 		self.AdjList = ['bare',
@@ -1518,6 +1548,8 @@ class ShouldersMale(BodyParts):
 		
 class ChestMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['chest',
 			'chest',
 			'chest',
@@ -1557,6 +1589,8 @@ class ChestMale(BodyParts):
 		
 class ArmsMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['arms',
 			'arms',
 			'arms',
@@ -1591,6 +1625,8 @@ class ArmsMale(BodyParts):
 		
 class EyesMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['eyes']
 			
 		self.AdjList = ['beautiful',
@@ -1616,6 +1652,8 @@ class EyesMale(BodyParts):
 		
 class LegsMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['legs',
 			'legs',
 			'legs',
@@ -1650,6 +1688,8 @@ class LegsMale(BodyParts):
 		
 class JawMale(BodyParts):
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['jaw']
 			
 		self.AdjList = ['bearded',
@@ -1668,20 +1708,10 @@ class JawMale(BodyParts):
 		self.DefaultNoun = "jaw"
 		self.DefaultAdj = "chiseled"
 		
-class BodyMale(BodyParts):
-	Hair = []
-	Face = []
-	Eyes = []
-	Jaw = []
-	Skin = []
-	Shoulders = []
-	Arms = []
-	Chest = []
-	Legs = []
-	Ass = []
-	Penis = []
-	
+class BodyMale(BodyParts):	
 	def __init__(self):
+		super().__init__()
+		
 		self.NounList = ['body',
 			'form',
 			'physique',

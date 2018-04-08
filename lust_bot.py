@@ -41,7 +41,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 	sTweet = ""
 	bTest = False 
 	
-	util.HistoryQ = HistoryQWithLog(util.HISTORYQ_FILENAME)
+	util.TweetHistoryQ = HistoryQWithLog(util.HISTORYQ_FILENAME)
 	
 	try:
 		
@@ -66,7 +66,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 			#Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			#print("Generator ID: " + str(Gen.ID))
-			while bTweet and not util.HistoryQ.PushToHistoryQ(Gen.ID):
+			while bTweet and not util.TweetHistoryQ.PushToHistoryQ(Gen.ID):
 				#print("Generator ID " + str(Gen.ID) + " already in Q")
 				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 				#print("New generator ID: " + str(Gen.ID))
@@ -126,7 +126,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, iGeneratorNo =
 		
 		sys.exit(1)	
 	finally:
-		util.HistoryQ.LogHistoryQ()
+		util.TweetHistoryQ.LogHistoryQ()
 		print("***Goodbye***")
 		
 	e.set()
@@ -136,7 +136,7 @@ def SetGetArgs():
 	Parser.add_argument('-tweet', action='store_true', help='send generated tweets to Twitter? (default is False)')
 	Parser.add_argument('-numtweets', type=int, default=1, help='number of tweets to generate before quitting (default is 1)')
 	Parser.add_argument('-test', type=int, default=-1, help='type of tweet to generate for testing purposes')
-	Parser.add_argument('-tweettimer', type=int, default=1200, help='num of seconds to wait before next tweet')
+	Parser.add_argument('-tweettimer', type=int, default=1800, help='num of seconds to wait before next tweet')
 	Parser.add_argument('-replytimer', type=int, default=90, help='num of seconds to wait before running reply routine')
 	
 	return Parser.parse_args()

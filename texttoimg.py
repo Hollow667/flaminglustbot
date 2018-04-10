@@ -28,6 +28,8 @@ def WrapText(sText, font, offset_width):
 	bEndOfText = False
 	iLastWhtSpc = 0
 	iLineStart = 0
+	
+	#this loop is complex and very carefully engineered. don't fuck with it unless you're confident
 	while not bEndOfText:
 		width_of_line = 0
 		iLastWhtSpc = iLineStart
@@ -35,31 +37,27 @@ def WrapText(sText, font, offset_width):
 		for x in range(iLineStart, len(sText)):
 			if sText[x].isspace() or sText[x] == "-":
 				iLastWhtSpc = x
-			#print("WrapText() x = " + str(x) + ", iLastWhtSpc = " + str(iLastWhtSpc))
-			#print("WrapText() sTest[" + str(x) + "] is '" + sText[x] + "'")
+
 			char_size = font.getsize(sText[x])
 			width_of_line += char_size[0]
 			
 			if sText[x] == "\n" or width_of_line >= offset_width:
 				if iLastWhtSpc >= iLineStart:
-					#print("WrapText() iLastWhtSpc > iLineStart and line is too wide. Break and append to Lines[]")
+					#line is too wide, break at last white space and append to Lines
 					Lines.append(sText[iLineStart:iLastWhtSpc])
-					#print("WrapText() current line is [" + sText[iLineStart:iLastWhtSpc] + "]")
 					iLineStart = iLastWhtSpc + 1
 					break
 				else:
-					#print("WrapText() iLastWhtSpc <= iLineStart and line is too wide. Break and append to Lines[]")
+					#word too wide, break in the middle and append to Lines
 					iLastWhtSpc = int((x - iLineStart)/2) 
 					Lines.append(sText[iLineStart:iLastWhtSpc])
-					#print("WrapText() current line is [" + sText[iLineStart:iLastWhtSpc] + "]")
 					iLineStart = iLastWhtSpc + 1
 					break
 			else:
-				#print("WrapText() line is not too wide.")
+				#line is not too wide, keep going
 				if x == len(sText) - 1:
 					bEndOfText = True
 					Lines.append(sText[iLineStart:len(sText)])
-					#print("WrapText() current line is [" + sText[iLineStart:len(sText)] + "]")
 					break 
 	
 	return Lines
@@ -71,7 +69,6 @@ def CalcTotalLineHeight(Lines, font):
 			iTotLineHeight += font.getsize("a")[1] / 2
 		else:
 			iTotLineHeight += font.getsize(line)[1]
-		#print("CalcTotalLineHeight() iTotLineHeight is now " + str(iTotLineHeight))
 		
 	return iTotLineHeight
 		
@@ -88,17 +85,16 @@ def FormatText(sText, size, color):
 	
 	iFontSize = 30
 	
-	#print("FormatText() sText length: " + str(len(sText)))
 	iTextLen = len(sText)
 	if iTextLen <= 140:
 		iFontSize = 95
-	elif iTextLen <= 185:	#(+  45)
+	elif iTextLen <= 185:	
 		iFontSize = 80
-	elif iTextLen <= 255:	#(+  70)
+	elif iTextLen <= 255:	
 		iFontSize = 70
-	elif iTextLen <= 335:	#(+  80)
+	elif iTextLen <= 335:	
 		iFontSize = 60
-	elif iTextLen <= 520:	#(+ 185)
+	elif iTextLen <= 520:	#
 		iFontSize = 50
 	elif iTextLen <= 685:
 		iFontSize = 44
@@ -109,7 +105,6 @@ def FormatText(sText, size, color):
 	else: 
 		iFontSize = 30
 
-		
 	#print("FormatText() Starting font size is " + str(iFontSize))
 	
 	font = ImageFont.truetype(PATH + FONT, size = iFontSize, layout_engine = ImageFont.LAYOUT_RAQM)
@@ -132,36 +127,21 @@ def FormatText(sText, size, color):
 		iTotLineHeight = CalcTotalLineHeight(Lines, font)
 		
 	print("FormatText() Final font size is " + str(iFontSize))
-	#print(Lines)
 			
 	ImgTxt = Image.new('RGBA', (base_width, base_height), (0,0,0,95))
 	draw = ImageDraw.Draw(ImgTxt)
-			
-	#print("FormatText() Base Height = " + str(base_height) + ", Total Line Height = " + str(iTotLineHeight))
-	#print("FormatText() Vertical offset = " + str(round(((offset_height - iTotLineHeight)/2))))
-																		#47.952
-																		#1284.048
+
 	y_text = 0
 	for x in range(0, len(Lines)):
 		width, height = (0, 0)
 		if Lines[x].isspace() or Lines[x] == "":
 			width, height = font.getsize("a")
 			height = height / 2
-			#print("FormatText() Empty line found, adding height of " + str(width) + " to vertical offset")
 		else:
 			width, height = font.getsize(Lines[x])
 
 			draw.text((int(base_width * xOffset), round((offset_height - iTotLineHeight)/2) + y_text), Lines[x], font=font, fill=color)
 		y_text += height
-		
-	# y_text = 0
-	# for line in Lines:
-		# if line.isspace() or line == "":
-			# width, height = font.getsize(".")
-		# else:
-			# width, height = font.getsize(line)
-		# draw.text(((base_width - width) / 2, y_text), line, font=font, fill=color)
-		# y_text += height
 	
 	return ImgTxt
 
@@ -170,7 +150,6 @@ def DrawText(size, sText, color):
 	bck_height = size[1]
 	
 	stest = "d e"
-	#print(stest[1].isspace())
 	ImgTxt = FormatText(sText, (bck_width - int(bck_width * .075), bck_height - int(bck_height * .075)), color)
 	
 	ImgFrame = Image.new('RGBA', size, (255,255,255,0))
@@ -198,8 +177,6 @@ def GetBGImg(iPicNo = 0):
 def CreateImg(sText):
 	# create Image object with the input image
 	
-	#for i in range(1, MAX_IMG_NUM + 1):
-	#ImgBase = GetBGImg(iPicNo = i)
 	ImgBase = GetBGImg()
 	
 	color = 'rgb(255, 255, 255)' # black color

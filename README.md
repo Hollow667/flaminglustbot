@@ -26,9 +26,9 @@ lust_bot [-tweet] [-numtweets NUMTWEETS] [-loop] [-test TEST] [-tweettimer TWEET
 All args optional, but you must include **-tweet** if you want the bot to actually tweet what it generates.
 
 Standard command line:
-...
+```
 $ lust_bot -tweet -loop
-...
+```
 
 ## me
 

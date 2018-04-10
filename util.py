@@ -97,7 +97,7 @@ def CoinFlip():
 def GenerateFileName():
 	# if bot uses same filename every time, twitter might think its spamming. this function randomizes the filename.
 	sFileName = ""
-	sFileType = "png"
+	sFileType = "jpg"
 	
 	#first part of filename is 5-12 alphanumeric chars
 	sAlphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -216,10 +216,9 @@ class NounAdjList:
 		if NotList is None:
 			NotList = []
 		
-		iRandNounIndex = 0
-		
 		if not self.NounList == None and len(self.NounList) > 0:
 			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
+			print(sNoun)
 			while not self.NounHistoryQ.PushToHistoryQ(sNoun) or sNoun in NotList:
 				sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
 			
@@ -230,11 +229,11 @@ class NounAdjList:
 		
 		if NotList is None:
 			NotList = []
-		
-		iRandAdjIndex = 0
-		
+			
 		if not self.AdjList == None and len(self.AdjList) > 0:
 			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
+			
+			print(sAdj)
 			while not self.AdjHistoryQ.PushToHistoryQ(sAdj) or sAdj in NotList:
 				sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
 			

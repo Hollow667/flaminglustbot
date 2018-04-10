@@ -579,7 +579,7 @@ class VaginaInner(BodyParts):
 				'lustful',
 				'pink',
 				'pink',
-				'pink'
+				'pink',
 				'secret',
 				'silken',
 				'slick',

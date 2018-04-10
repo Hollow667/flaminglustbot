@@ -84,31 +84,34 @@ class Hashtags(WordList):
 			'wprtg'])
 		
 class BadGirlNames(NounAdjList):
-	DefaultNoun = 'slut'
-	DefaultAdj = 'little'
-	
-	NounList = ['hussy',
-		'minx',
-		'nympho',
-		'skank',
-		'slut',
-		'slut',
-		'slut',
-		'tart',
-		'tramp',
-		'trollop',
-		'whore',
-		'whore']
+	def __init__(self):
+		super().__init__()
 		
-	AdjList = ['brazen',
-		'cheeky',
-		'filthy',
-		'little',
-		'nasty',
-		'outrageous',
-		'saucy',
-		'shameless',
-		'wanton']
+		DefaultNoun = 'slut'
+		DefaultAdj = 'little'
+		
+		self.NounList = ['hussy',
+			'minx',
+			'nympho',
+			'skank',
+			'slut',
+			'slut',
+			'slut',
+			'tart',
+			'tramp',
+			'trollop',
+			'whore',
+			'whore']
+			
+		self.AdjList = ['brazen',
+			'cheeky',
+			'filthy',
+			'little',
+			'nasty',
+			'outrageous',
+			'saucy',
+			'shameless',
+			'wanton']
 		
 class Exclamations(WordList):
 	def __init__(self):
@@ -471,7 +474,8 @@ class BookMasterAdjs(WordList):
 	WordHistoryQ = HistoryQ(3)
 	
 	def __init__(self):
-		super().__init__(['Alpha',
+		super().__init__(['Alien',
+			'Alpha',
 			'Bad Boy',
 			'Bitcoin Billionaire',
 			'Biker',
@@ -506,12 +510,14 @@ class BookMasterAdjs(WordList):
 			'Playboy',
 			'Porn Star',
 			'Rebel',
+			'Renegade',
 			'Rock Star',
 			'Savage',
 			'Scottish',
 			'Secret',
 			'Sex Addict',
 			'Shape-Shifting',
+			'Shifter',
 			'Single Dad',
 			'Space',
 			'Spanish',

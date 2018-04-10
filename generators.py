@@ -112,40 +112,6 @@ class Generator():
 	Type = GeneratorType.Normal
 	# most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
 	
-	MaleBodyparts = None 
-	FemBodyParts = None 
-	Semen = None
-	
-	Event = None 
-	Exclamation = None 
-	Punchline = None 
-	AfterSexPunchline = None
-	
-	MaleName = None
-	FemaleName = None
-	BadGirlName = None
-	
-	VEjac = None 
-	VForeplay = None
-	VMakeLove = None 
-	VMoan = None
-	VSex = None
-	VSexWith = None
-	VThrust = None
-	VOralMale = None
-	VSexActByMale = None
-	VSexActByFemale = None
-	
-	MaleSO = None 
-	FemaleSO = None
-	MFWB = None 
-	FFWB = None 
-	
-	BlueCollar = None 
-	WhiteCollar = None 
-	WealthyMan = None 
-	WealthyWoman = None
-	
 	def GenerateTweet(self):
 		self.MaleBodyParts = BodyMale()
 		self.FemBodyParts = BodyFemale()
@@ -824,7 +790,7 @@ class Generator27(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sBadGirlName = self.BadGirlName.GetAdj() + " " + self.BadGirlName.GetWord() 
+		sBadGirlName = self.BadGirlName.GetWord() 
 		Location = locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()

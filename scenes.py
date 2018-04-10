@@ -645,6 +645,66 @@ class SceneMissionary(Scene):
 			sScene += Actions[x]
 		
 		return sScene 
+
+# class SceneRimjobHim(Scene):
+	# Tags = {TAG_NON_PEN, TAG_DONE_TO_HIM, TAG_BELOW_BELT, TAG_ORAL, TAG_FOREPLAY}
+	
+	# def __init__(self, sHisName, sHerName, Location = None):
+		# super().__init__(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		
+		# self.VerbPast = "rimmed" 
+		# self.VerbPresent = "rim"
+		# self.VerbGerund = "rimming"
+		
+		# sAnus = bodyparts.AnusFemale().ShortDescription()
+		
+		# self.SceneShortDesc3P = "she " + WordList(["gave him a rim-job", "rimmed his " + sAnus, "licked his " + sAnus]).GetWord() 
+		# self.SceneShortDesc1PHim = "you " + WordList(["gave me a rim-job", "rimmed my " + sAnus, "licked my " + sAnus]).GetWord() 
+		# self.SceneShortDesc1PHer = "I " + WordList(["gave you a rim-job", "rimmed your " + sAnus, "licked your" + sAnus]).GetWord() 
+	
+	# def Scene(self, Location = None):
+		# sScene = ""
+		
+		# Actions = []
+		
+		# Ass = bodyparts.AssMale()
+		# Anus = bodyparts.AnusFemale()
+		# Penis = bodyparts.Penis()
+		# Breasts = bodyparts.Breasts()
+		
+		# sScene = self.HerName.capitalize() + " turned him around and sank down to his waist.  " + verbs.VerbOralMale().Present() + " him. "
+		
+		# if CoinFlip():
+			# Actions.append("She tenderly kissed his " + Penis.Head.RandomDescription() + ". ")
+			
+		# if CoinFlip():
+			# Actions.append("She rubbed his " + Penis.MediumDescription() + " between her " + Breasts.RandomDescription() + ". ")
+			
+		# if CoinFlip():
+			# Actions.append("She gave the underside of his " + Penis.ShortDescription() + " a long, loving stroke with her tongue. ")
+			
+		# if CoinFlip():
+			# Actions.append("She lovingly cupped his " + Penis.Testicles.RandomDescription(bAllowShortDesc = True)+ ". ")
+			
+		# if CoinFlip():
+			# Actions.append("She was licking and kissing every inch of " + self.HisNamePos + " " + Penis.RandomDescription(bAllowShortDesc = True) + ". ")
+			
+		# Actions.append("She took his " + Penis.ShortDescription() + " into her mouth and began to suck it enthusiastically")
+		
+		# if CoinFlip():
+			# Actions.append(", taking it so deep into her throat that " + self.HisNamePos + " " + Penis.Testicles.ShortDescription() + " were slapping against her chin. ")
+		# else:
+			# Actions.append(". ")
+			
+		# if CoinFlip():
+			# Actions.append("She caressed and sucked on his " + Penis.Testicles.ShortDescription() + ". ")
+			
+		# for x in range(0, len(Actions)):
+			# sScene += Actions[x]
+			
+		# sScene += "Before long, thick strands of her saliva were hanging from the length of his " + Penis.ShortDescription() + "."
+		
+		# return sScene 
 		
 class Scene69(Scene):	
 	Tags = {TAG_BELOW_BELT, TAG_ORAL, TAG_POSITION}
@@ -750,7 +810,9 @@ class SceneTitFuck(Scene):
 #class SceneRubOnHim(Scene):
 #class ScenePullOutFront(Scene):
 #class ScenePullOutBack(Scene):
-#class SceneForeplay(Scene):
+#class DryHump(Scene):
+#class FootJob(Scene):
+#class RimJobHim(Scene):
 
 #class SceneSexAct(Scene):
 

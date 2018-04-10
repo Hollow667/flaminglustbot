@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Utilities module
 
 import os, time, sys, random
@@ -147,7 +149,7 @@ class HistoryQ():
 			
 class HistoryQWithLog(HistoryQ):
 	def __init__(self, sLogFileName, iQSize = Q_SIZE):
-		super().__init__(iQSize)
+		super().__init__(iQSize = iQSize)
 		self.LogFileName = sLogFileName
 		#print("LogFileName is " + self.LogFileName)
 		

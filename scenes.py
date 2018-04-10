@@ -1,4 +1,6 @@
-# Locations module
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Scenes module
 
 import bodyparts
 import locations

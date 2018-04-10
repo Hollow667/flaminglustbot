@@ -1,4 +1,6 @@
-# Utilities module
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Generators module
 
 import sys, threading, traceback
 from random import *

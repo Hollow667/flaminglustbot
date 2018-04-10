@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# launcher code for flaminglustbot. run this.
  
 import sys, argparse, datetime, threading, traceback
 

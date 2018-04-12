@@ -35,7 +35,7 @@ def ReplyResponder(e, api, iReplyTimer):
 			if not ResponderThread.parent_thread.is_alive():
 				break
 	
-def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = MAX_GENERATOR_NO):
+def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1):
 	print("=*=*=*= FLAMING LUST BOT IS RUNNING (@bot_lust) =*=*=*=\n\n")
 	
 	sTweet = ""

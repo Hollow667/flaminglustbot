@@ -13,7 +13,7 @@ def is_lock_free():
     global lock_socket
     lock_socket = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
     try:
-        lock_id = "my-username.my-task-name"   # this should be unique. using your username as a prefix is a convention
+        lock_id = "zadieblack.twitterbot1"   # this should be unique. using your username as a prefix is a convention
         lock_socket.bind('\0' + lock_id)
         logging.debug("Acquired lock %r" % (lock_id,))
         return True
@@ -23,6 +23,7 @@ def is_lock_free():
         return False
 
 if not is_lock_free():
+	logging.info("Bot already running.")
     sys.exit()
 
 # then, either include the rest of your script below,

@@ -60,7 +60,6 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, bLoop = False,
 		
 		i = 0
 		while i in range(0,iTweets) or bLoop:
-			i += 1
 			#Tweets = [1]
 			Gen = None 
 			sTweet = ""
@@ -122,6 +121,8 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, bLoop = False,
 					else:
 						print("* Next tweet in " + str(iTweetTimer) + " seconds (" + (currentDT + datetime.timedelta(seconds=iTweetTimer)).strftime("%H:%M:%S") + ")...")
 						time.sleep(iTweetTimer)
+						
+			i += 1
 	except KeyboardInterrupt:
 		print("Ending program ...")
 		
@@ -144,9 +145,9 @@ def SetGetArgs():
 	Parser.add_argument('-replytimer', type=int, default=300, help='num of seconds to wait before running reply routine')
 	
 	return Parser.parse_args()
-			
+	
 Args = SetGetArgs()	
-print(Args)
+print(Args)	
 
 InitBot(Args.tweettimer, Args.replytimer, bTweet = Args.tweet, iTweets = Args.numtweets, bLoop = Args.loop, iGeneratorNo = Args.test)
 

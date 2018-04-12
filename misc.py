@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
 # Misc module
 
@@ -245,23 +245,17 @@ class BookGirls(WordList):
 	def __init__(self):
 		super().__init__(['Airline Stewardess',
 			'Amish Maiden',
-			'Anal Virgin',
 			'Babysitter',
 			'Bikini Model',
 			'Bimbo',
 			'Blonde',
 			'Brat',
 			'Bride',
-			'Bride',
 			'Bridesmaid',
 			'BBW',
 			'Call-Girl',
 			'Co-ed',
 			'Concubine',
-			'Dominatrix',
-			'Escort',
-			'Fashion Model',
-			'Farmer\'s Daughter',
 			'Flight Attendant',
 			'Futa',
 			'Girlfriend',
@@ -276,38 +270,28 @@ class BookGirls(WordList):
 			'Intern',
 			'Lady',
 			'Librarian',
-			'Lingerie Model',
 			'Maid',
 			'Maiden',
 			'Masseuse',
 			'Mature Woman',
-			'MILF',
 			'Milk Maid',
 			'Momma',
 			'Nanny',
 			'Nurse',
 			'Older Woman',
-			'Pastor\'s Wife',
 			'Princess',
 			'Princess',
 			'Redhead',
 			'Sex Surrogate',
 			'Secretary',
 			'Secretary',
-			'Sex Slave',
-			'Sex Witch',
-			'Schoolgirl',
 			'Single Mom',
-			'Small-Town Girl',
-			'Slut',
 			'Step-Daughter',
 			'Submissive',
 			'Teacher',
 			'Virgin',
 			'Wallflower',
-			'Waitress',
-			'Wet Nurse',
-			'Whore',
+			'Waitress'
 			'Wife',
 			'Woman'])
 			
@@ -316,20 +300,14 @@ class BookGirlAdjs(WordList):
 	
 	def __init__(self):
 		super().__init__(['Amish',
-		'Anal',
-		'Bashful',
 		'BBW',
-		'Bi-Curious',
 		'Bimbo',
 		'Black',
 		'Blonde',
 		'Call-Girl',
 		'Chaste',
-		'Christian',
 		'Co-ed',
 		'Concubine',
-		'Conservative',
-		'Country',
 		'Curvy',
 		'Divorced',
 		'Dominatrix',
@@ -343,8 +321,6 @@ class BookGirlAdjs(WordList):
 		'Innocent',
 		'Intern',
 		'Kept',
-		'Kinky',
-		'Lactating',
 		'Lesbian',
 		'Married',
 		'MILF',
@@ -380,13 +356,10 @@ class BookMasters(WordList):
 		super().__init__(['Alpha',
 			'Alpha Wolf',
 			'Assassin',
-			'Baby Daddies',
 			'Barbarian',
-			'Barbarians',
 			'BBC',
 			'BDSM',
 			'Biker',
-			'Biker Gang',
 			'Billionaire',
 			'Bitcoin Billionaire',
 			'Boss',
@@ -395,22 +368,15 @@ class BookMasters(WordList):
 			'Count',
 			'Cop',
 			'Cowboy',
-			'Cowboys',
 			'Dad',
 			'Daddy',
-			'Daddy Dom',
-			'Defensive Lineman',
 			'Dildo Designer',
 			'Dinosaur',
 			'Doctor',
 			'Dom',
-			'Dominatrix',
 			'Duke',
 			'Duke',
 			'Futanari',
-			'Gay-for-Pay Porn Star',
-			'Gazillionaire',
-			'Gentleman',
 			'Goat Man',
 			'Goat Men',
 			'Hitman',
@@ -421,8 +387,6 @@ class BookMasters(WordList):
 			'Knight',
 			'Lesbian Cheerleader',
 			'Lesbian Dominatrix',
-			'Lesbian Harem',
-			'Lesbian MILF',
 			'Lipstick Lesbian',
 			'Older Man',
 			'Olympic Gold Medalist',
@@ -452,24 +416,18 @@ class BookMasters(WordList):
 			'Quarterback',
 			'Rock Star',
 			'Roommate',
-			'Shah',
 			'Sex Addict',
 			'Sex Warlock',
-			'Sheikh',
 			'Sheriff',
 			'Sorcerer',
 			'Spy',
 			'Surfer',
-			'S.W.A.T. Team',
 			'Trillionaire',
 			'Viking',
-			'Viking Hoard',
 			'Uniporn',
 			'Vampire',
-			'Vampire Coven',
 			'Voyeur',
 			'Werewolf',
-			'Werewolf Pack',
 			'Widower'])
 			
 class BookMasterAdjs(WordList):
@@ -484,13 +442,11 @@ class BookMasterAdjs(WordList):
 			'Billionaire',
 			'Black',
 			'Cowboy',
-			'Defensive Lineman',
 			'Dinosaur',
 			'Ebony',
 			'Fire Fighter',
 			'French',
 			'Futanari',
-			'Gazillionaire',
 			'Goat Man',
 			'Highlander',
 			'Hitman',
@@ -506,20 +462,16 @@ class BookMasterAdjs(WordList):
 			'Navy Seal',
 			'Nudist',
 			'Older Man',
-			'Olympic Gold Medalist',
 			'Outlaw',
 			'Pirate',
 			'Playboy',
 			'Porn Star',
 			'Rebel',
 			'Renegade',
-			'Rock Star',
 			'Savage',
 			'Scottish',
 			'Secret',
 			'Sex Addict',
-			'Shape-Shifting',
-			'Shifter',
 			'Single Dad',
 			'Space',
 			'Spanish',
@@ -527,8 +479,6 @@ class BookMasterAdjs(WordList):
 			'Stripper',
 			'Superstar',
 			'Surfer',
-			'S.W.A.T. Team',
-			'Trillionaire',
 			'Viking',
 			'Well-hung',
 			'Werewolf',
@@ -539,70 +489,48 @@ class BookVerbsBy(WordList):
 	WordHistoryQ = HistoryQ(3)
 	
 	def __init__(self):
-		super().__init__(['Anally Deflowered',
-			'Annally Deflowered in Public',
-			'Beaten',
+		super().__init__(['Beaten',
 			'Blackmailed',
 			'Bound',
-			'Bred',
 			'Captured',
 			'Claimed',
-			'Claimed',
-			'Claimed Hard',
-			'Claimed in Public',
 			'Conquered',
 			'Charmed',
-			'Cuckolded',
-			'Deflowered',
-			'Deflowered',
-			'Deflowered in Public',
+			'Deflowered'
 			'Dominated',
 			'Enslaved',
 			'Exposed in Public',
 			'Forced',
 			'Hotwifed',
 			'Humiliated',
-			'Hunted For Food',
 			'Impregnated',
 			'Kept',
 			'Knocked Up',
 			'Mastered',
 			'Owned',
 			'Pleasured',
-			'Pleasured in Public',
 			'Punished',
-			'Punished in Public',
 			'Ravished',
 			'Seduced',
-			'Sexually Harrassed At My Workplace',
 			'Sold',
 			'Sold',
 			'Spanked',
-			'Spanked in Public',
 			'Shaved',
 			'Stripped',
-			'Stripped in Public',
 			'Taken',
 			'Taken',
-			'Taken Hard',
-			'Taken Hard in Public',
-			'Taken in Public',
 			'Tempted',
-			'Trained',
-			'Secretly Watched'])
+			'Trained'])
 			
 class BookVerbsTo(WordList):
 	WordHistoryQ = HistoryQ(3)
 	
 	def __init__(self):
-		super().__init__(['Bred',
-				'Bound',
+		super().__init__(['Bound',
 				'Cuckquean',
 				'Engaged',
-				'Enslaved',
 				'Hotwife',
 				'Hotwifed',
-				'Lolita',
 				'Married',
 				'Mated',
 				'Sold',
@@ -701,11 +629,6 @@ class BookTitleBuilder():
 		sTitle = sVerbBy + " by the " + sMaster
 		Titles.append(sTitle)
 		# =========================
-		
-		# Veonica Gets Blackmailed by the Billionaire Mountain Man 
-		sTitle = sHerName + " Gets " + sVerbBy + " by the " + sMaster
-		Titles.append(sTitle)
-		# =========================
 
 		# Married to the Alpha Wolf
 		sTitle = sVerbTo + " to the " + self.GetMaster(bLong = True)
@@ -717,11 +640,6 @@ class BookTitleBuilder():
 		Titles.append(sTitle)
 		# =========================
 		
-		# Veronica Gets Married to the Alpha Wolf
-		sTitle = sHerName + " Gets " + sVerbTo + " to the " + self.GetMaster(bLong = True)
-		Titles.append(sTitle)
-		# =========================
-		
 		# The President's Girl
 		sTitle = "The " + self.GetMaster(bLong = True) + "'s " + sGirl
 		if CoinFlip():
@@ -729,28 +647,6 @@ class BookTitleBuilder():
 				sTitle += ": A BDSM Romance"
 			else:
 				sTitle += ": A Hot Ménage"
-		Titles.append(sTitle)
-		# =========================
-				
-		# Seduced in the Bed of the Billionaire
-		if CoinFlip():
-			sTitle = sVerbTo + " in the Bed of the " + self.GetMaster(bLong = True)
-		else:
-			sTitle = sVerbBy + " in the Bed of the " + self.GetMaster(bLong = True)
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage
-		sTitle = "The " + sGirl + ", The " + self.Masters.GetWord() + ", & The " + sMaster + ": "
-		if CoinFlip():
-			sTitle += "A Hot Ménage"
-		else:
-			sTitle += "A " + self._getFMs_() + " Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Virgin's Secret Daddy Dom 
-		sTitle = "The " + sGirl + "'s " + sMaster
 		Titles.append(sTitle)
 		# =========================
 				
@@ -791,18 +687,6 @@ class BookTitleBuilder():
 		Titles.append(sTitle)
 		# =========================
 				
-		# The Virgin Call-Girl's Gang Bang
-		sTitle = "The " + self.GetGirl(bLong = True) + "'s Gang Bang: A " + self._getFMs_() + " Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Small-Town Virgin's First Porno
-		sTitle = "The " + self.GetGirl(bLong = True) + "'s First Porno"
-		if CoinFlip():
-			sTitle += ": An " + self._getFMs_() + " Adventure"
-		Titles.append(sTitle)
-		# =========================
-				
 		# The Small-Town Virgin's First Time
 		sTitle = "The " + self.GetGirl(bLong = True) + "'s First Time"
 		if CoinFlip():
@@ -810,15 +694,6 @@ class BookTitleBuilder():
 				sTitle += ": A " + self._getFMs_() + " Romance"
 			else:
 				sTitle += ": A BDSM Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# Enslaved: The Ebony Older Woman & The Duke 
-		sTitle = sVerbBy + ": "
-		if CoinFlip():
-			sTitle += "The " + sGirl + " & The " + sMaster
-		else:
-			sTitle += AddArticles(sGirl).title() + " Romance"
 		Titles.append(sTitle)
 		# =========================
 				
@@ -839,56 +714,12 @@ class BookTitleBuilder():
 		Titles.append(sTitle)
 		# =========================
 				
-		# I Was Stripped In Public, And I Liked It
-		sTitle = "I Was " + sVerbBy
-		if not "in public" in sVerbBy.lower():
-			sTitle += " By " + AddArticles(sMaster).title()
-		sTitle += ", And I Liked It"
-		Titles.append(sTitle)
-		# =========================
-				
-		# Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-		sTitle = sVerbBy  + " by "
-		sTitle += "the " + sMaster + ": A " + sGirl + " Story"
-		Titles.append(sTitle)
-		# =========================
-				
 		# The Amish Virgin and the Taboo MILF: A Lesbian Love Story 
 		sTitle = "The " + sGirl + " and the " + self.GetGirl()
 		if CoinFlip():
 			sTitle += ": A Lesbian Love Story"
 		else:
 			sTitle += ": A Secret Lesbian Affair"
-		Titles.append(sTitle)
-		# =========================
-		
-		# Deflowered Live on the Internet: An Amish Futa Princess Experience 
-		sTitle = "Deflowered Live"
-		if CoinFlip():
-			sTitle += "! "
-		else:
-			if CoinFlip():
-				sTitle += " on the Interet: "
-			else:
-				sTitle += " on Television: "
-		sTitle += AddArticles(self.GetGirl(bLong = True)).title() + " Experience"
-		Titles.append(sTitle)
-		# =========================
-		
-		# Here Cums The Bride: The Porn Star Pope & The Bi-Curious Christian Milk Maid 
-		sTitle = "Here Cums The Bride: The " + sMaster + " & The "
-		while 'bride' in sGirl.lower():
-			sGirl = self.GetGirl()
-		sTitle += sGirl
-		Titles.append(sTitle)
-		# =========================
-		
-		# Hotwife for Daddy: A BDSM Romance 
-		sTitle = self.GetGirl(bLong = True) + " for Daddy: "
-		if CoinFlip():
-			sTitle += "A BDSM Romance"
-		else:
-			sTitle += "An " + self._getFMs_() + " Adventure"
 		Titles.append(sTitle)
 		# =========================
 		
@@ -967,7 +798,7 @@ class Punchline():
 		self.FemalePunchlines.append("'That was the best " + self.BigEvent.GetWord(bRemoveMy = True) + " gift ever!' she said.")
 		self.FemalePunchlines.append("'" + sHappyExclamation + "You're the best " + self.JobWhiteCollar.GetPerson() +" ever!' she said.")
 		self.FemalePunchlines.append("'You should know I'm married,' she said.")
-		self.FemalePunchlines.append("'Don't you dare tell my mother about this,' she said.")
+		self.FemalePunchlines.append("'Don't you dare tell mother about this,' she said.")
 		self.FemalePunchlines.append("'" + sHappyExclamation + "I think I love you,' she said.")
 		self.FemalePunchlines.append("'" + sHappyExclamation + "I think I'm in love with you,' she said.")
 		self.FemalePunchlines.append("'You can't tell anyone that I'm a " + self.JobWealthyFemale.GetPerson() + ",' she said seriously.")

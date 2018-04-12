@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
 # Generators module
 
@@ -124,6 +124,7 @@ class Generator():
 		self.TermsOfEndearment = misc.TermsOfEndearment()
 		self.Punchline = misc.Punchline()
 		self.AfterSexPunchline = misc.PunchlineAfterSex()
+		self.WomanAdjs = misc.WomanAdjs()
 	
 		self.FemaleName = NamesFemale()
 		self.MaleName = NamesMale()
@@ -163,14 +164,12 @@ class GeneratorPromo(Generator):
 		
 		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E Winking kiss face: \U0001F618 Star: \U00002B50"
 
-		iRand = randint(1,7)
+		iRand = randint(1,8)
 		while not PromoHistoryQ.PushToHistoryQ(iRand):
 			iRand = randint(1,7)
 
 		if iRand == 1:
-			sTweet = "Reply to " + WordList(["one of my tweets", "an @bot_lust tweet", "a Flaming Lust Bot tweet"]).GetWord() + " for a fun surprise! " + GetEmoji()
-			sTweet += "\n\n\U0001F539Reply \"#book\" and I'll respond with a made-up smutty book title."
-			sTweet += "\n\U0001F539Reply \"#lovescene\" to get your own custom love scene!"
+			sTweet = "Reply to " + WordList(["one of my tweets", "an @bot_lust tweet", "a Flaming Lust Bot tweet"]).GetWord() + " and I'll respond with another " + SexyAdjs().GetWord() + " hilarious love scene! " + GetEmoji()
 		elif iRand == 2:
 			sTweet = "Tell your family, friends and lovers to follow " + WordList(["@bot_lust", "Flaming Lust Bot", "me", "this bot"]).GetWord() + " for all the steamy, sweaty, silly action!\n" + GetEmoji(randint(1,3))
 		elif iRand == 3:
@@ -190,6 +189,8 @@ class GeneratorPromo(Generator):
 		elif iRand == 6:
 			sTweet = "Look what " + WordList(["my followers are", "people are ", "other twitter users are", "the internet is"]).GetWord() + " saying:\n\n\U00002B50'I am hooked on this ridiculous account!'\n\U00002B50'The stuff this bot comes up with is hysterical. XD'\n\U00002B50'[S]imultaneously hilarious, nauseating, and inspiring'\n\n" + WordList(["Thank you!", "Thanks!", "Thank you all!", "Big bot love to everyone!"]).GetWord() 
 			sTweet += " " + GetEmoji(randint(1,3))
+		elif iRand == 7:
+			sTweet = "My " + WordList(["sister bot", "bot sibling"]).GetWord() + " @erotic_ebooks tweets made-up titles for steamy ebooks! " + WordList(["Go check it out", "Please follow her", "Go take a look", "Give her a visit"]).GetWord() + "! " + GetEmoji()
 		else:
 			sTweet = WordList(["I love you", "You're the best", "Big Bot Love", "I \U00002764 you"]).GetWord() + ", followers!"
 			if CoinFlip():
@@ -677,7 +678,7 @@ class Generator24(Generator):
 	#Whispering and giggling, they locked themselves in the dressing room. In moments, the man had Angelica bent over the bench in the dressing room, and the two were banging passionately. He was soon exploding deep within her trim entrance as an intense orgasm wracked her body. Warm beads of cream hung from Angelica's lustful cunt and onto the rubber mat. She scooped some up with her fingers and tasted it. Angelica got down on her knees and began to lick the silken cock-snot from his thick erection. Angelica wiggled into her panties.
 	#'Hell, yes! I can't believe I'm not a virgin anymore,' she said.
 	ID = 24
-	Priority = 2
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -685,25 +686,75 @@ class Generator24(Generator):
 		
 		Location = locations.LocationSelector().Location()
 		
+		sTweet = Location.BeginDesc + " "
+		
 		bMale = CoinFlip()
 		if bMale:
 			sHisName = self.MaleName.FirstName()
-			sHerName = "the woman"
+			sHerName = "the woman"	
 		else:
 			sHisName = "the man"
 			sHerName = self.FemaleName.FirstName()
 		
 		CreamPieScene = SceneCreamPie("", sHerName, Location = Location)
-		
-		sTweet = Location.BeginDesc 
-		
+		SceneSelect = SceneSelector()
+
 		if CoinFlip():
-			sTweet += " In moments, " + sHisName + " had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
-			sTweet += " " + CreamPieScene.Scene(bIsVagina = False) + "\n\n" 
-		else:
-			sTweet += " In moments, " + sHisName + " had " + sHerName + " bent over " + Location.BentOver + ", and the two were " + self.VSex.Gerund() + " " + self.VSex.GetAdv() + ".\n\n"
-			sTweet += " " + CreamPieScene.Scene() + "\n\n" 
+			if bMale:
+				sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDescription() + ". "
+			else: 
+				sTweet += sHerName + " carressed the man's " + self.MaleBodyParts.MediumDescription() + ". "
+			Scene1 = SceneSelect.GetScene(Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
 			
+			sTweet += "First " + Scene1.SceneShortDesc3P + ", then "
+			
+			Scene2 = SceneSelect.GetScene(Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+			while Scene2.__class__ == Scene1.__class__:
+				Scene2 = SceneSelect.GetScene(Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location) 
+			sTweet += Scene2.SceneShortDesc3P + ", and finally "
+			
+			Scene3 = SceneSelect.GetScene(Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location) 
+			while Scene3.__class__ == Scene1.__class__ or Scene3.__class__ == Scene2.__class__:
+				Scene3 = SceneSelect.GetScene(Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location) 
+			sTweet += Scene3.SceneShortDesc3P + ". "
+			
+			SceneClimax = SceneSelect.GetScene(Tags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+			
+			sTweet += SceneClimax.Scene() + "\n\n"
+		else: 
+			SceneForeplay = None
+			ScenePosition = None 
+			SceneClimax = None 
+			
+			if bMale:
+				SceneForeplay = SceneSelect.GetScene(Tags = {TAG_FOREPLAY, TAG_DONE_TO_HER}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+			else:
+				SceneForeplay = SceneSelect.GetScene(Tags = {TAG_FOREPLAY, TAG_DONE_TO_HIM}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+			
+			if CoinFlip():
+				sTweet += SceneForeplay.Scene() + "\n\n"
+				
+				ScenePosition = SceneSelect.GetScene(Tags = {TAG_POSITION}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+				
+				SceneClimax = SceneSelect.GetScene(Tags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+				
+				sTweet += "Then, " + ScenePosition.SceneShortDesc3P + ". At last he could stand it no longer, so " + SceneClimax.SceneShortDesc3P + ".\n\n"
+			else:
+				if bMale:
+					sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDescription() + ". "
+				else: 
+					sTweet += sHerName + " carressed the man's " + self.MaleBodyParts.MediumDescription() + ". "
+					
+				sTweet += "First, " + SceneForeplay.SceneShortDesc3P + " until at last she was ready. "
+				
+				ScenePosition = SceneSelect.GetScene(Tags = {TAG_POSITION}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+				
+				sTweet += ScenePosition.Scene() + " "
+				
+				SceneClimax = SceneSelect.GetScene(Tags = {TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+				
+				sTweet += "At last he could stand it no longer, so " + SceneClimax.SceneShortDesc3P + ".\n\n"
+		
 		if bMale:
 			sTweet += sHisName + " " + Location.PutOnMaleClothing(bBottomOnly = True) + "."
 			sTweet += " " + self.AfterSexPunchline.GetPunchline(Gender.Male)
@@ -1024,19 +1075,12 @@ class Generator36(Generator):
 		
 		Feast = []
 		Feast.append("her succulent " + self.FemBodyParts.Skin.GetAdj(sNot = "succulent") + " " + self.FemBodyParts.Skin.GetNoun() + " was dripping with syrup") 
-		#print("Added syrup")
 		Feast.append("she held a ripe cherry between her " + self.FemBodyParts.Lips.GetAdj(sNot = "cherry") + " lips")
-		#print("Added cherry")
 		Feast.append("her " + self.FemBodyParts.GetAdj(sNot = "womanly") + " " + self.FemBodyParts.GetNoun() + " was covered with fruits and berries")
-		#print("Added fruit")
 		Feast.append("her navel was a goblet brimming with liquor") 
-		#print("Added liquor")
 		Feast.append("her full, " + self.FemBodyParts.Breasts.GetAdj(sNot = "full") + " " + self.FemBodyParts.Breasts.GetNoun() + " were topped with whip cream")
-		#print("Added whip cream")
 		Feast.append("the inside of her " + self.FemBodyParts.Thighs.ShortDescription() + " were glazed with chocolate")
-		#print("Added chocolate sauce")
 		Feast.append("her " + self.FemBodyParts.Vagina.OuterLabia.GetNoun() + " gleamed with sticky honey")
-		#print("Added honey")
 			
 		sFeast = ""
 		if len(Feast) > 0:
@@ -1049,14 +1093,13 @@ class Generator36(Generator):
 				
 		sTweet += sFeast + "single, ripe strawberry was stuffed in her " + self.FemBodyParts.Vagina.MediumDescription() + ". "
 		sTweet += "'Gentlemen,' said the " + self.WealthyMan.GetPerson() + ", 'Let's feast!'\n\n"
-		sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' thought " + self.MaleName.FirstName() + ", 'That's my " + self.FFWB.GetPerson() + ", " + self.FemaleName.FirstName() + "!'"
+		sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' thought " + self.MaleName.FirstName() + ", 'That's my " + self.FFWB.GetPerson() + "!'"
 		
 		return sTweet
 		
 class Generator37(Generator):
 	ID = 37
 	Priority = 1
-	Type = GeneratorType.Test
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1444,7 +1487,6 @@ class Generator46(Generator):
 	#'Sex Slave to the Vampire Pirates,' Sabrina moaned.
 	ID = 46
 	Priority = 1
-	Type = GeneratorType.BookTitle
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1500,7 +1542,7 @@ class Generator47(Generator):
 class Generator48(Generator):
 	ID = 48
 	Priority = 1
-	Type = GeneratorType.BookTitle
+	Type = GeneratorType.Test
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1770,7 +1812,7 @@ class Generator53(Generator):
 		sHerName = self.FemaleName.FirstName()
 		
 		Location = locations.LocationSelector().Location()
-		MyScene = SceneMakeOut(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		MyScene = SceneRimjobHim(sHisName = sHisName, sHerName = sHerName, Location = Location)
 		
 		sTweet = Location.BeginDesc + " "
 		
@@ -1863,11 +1905,6 @@ def GetImgTweetText(gen):
 			TweetText.append(sText)
 		#=============================
 		
-		sText = "Look for '" + TitleBuilder.GetTitle() + "' on " + BookSeller.GetWord() + ", by F.L. Bott"
-		for _ in range(4):
-			TweetText.append(sText)
-		#=============================
-		
 	sText = WordList(["Don't hate", "Don't be hatin'", "Don't be hatin' on", "Don't hate on"]).GetWord() + " " + WordList(["me because I'm", "Flaming Lust Bot because it's", "@bot_lust because its", "this bot because it's"]).GetWord() + " " + WordList(["beautiful", "sexy", "hot", "sexxxaaayyyy", "sexy af", "sexxxy", "the hotness", "totes sexy", "sexy for reals"]).GetWord() + ". " + GetEmoji()
 	TweetText.append(sText)
 	#=============================
@@ -1888,18 +1925,7 @@ def GetImgTweetText(gen):
 	TweetText.append(sText)
 	#=============================
 	
-	sText = "Reply to this with '#book' and "
-	if CoinFlip():
-		sText += "I'll tweet a randomly-generated smutty book title @ you!"
-	else:
-		sText += "get a randomly-generated smutty book title in response!"
-			
-	sText += " " + GetEmoji()
-	for _ in range(2):
-		TweetText.append(sText)
-	#=============================
-	
-	sText = "Reply to this with '#lovescene' and "
+	sText = "Reply to this tweet and "
 	if CoinFlip():
 		sText += "I'll tweet a randomly-generated love scene @ you!"
 	else:
@@ -1912,6 +1938,11 @@ def GetImgTweetText(gen):
 	
 	sText = WordList(["You have to retweet this", "Please retweet this", "Favorite this", "Fave this", "You have to favorite this"]).GetWord() + " if it " + WordList(["made you giggle", "made you laugh", "made you smile", "got you hot", "made you blush", "made you grin", "made your privates all tingly", "made your naught bits all tingly", "turned you on", "made you feel hot", "got you going", "did it for you", "made your naughty bits feel good"]).GetWord() + ". " + WordList(["Seriously.", "For real.", "Seriously, though.", "For real, though.", "Okay?", "Pinky swear?"]).GetWord() 
 	TweetText.append(sText)
+	#=============================
+	
+	sText = WordList(["Check out", "Follow", "Visit", "Take a look at"]).GetWord() + " @erotica_ebooks for more " + WordList(["made-up ebook titles", "funny erotica titles", "machine-generated silliness", "#botlaughs", "ridiculousness", "steamy bot-generated content"]).GetWord() + "!"
+	for _ in range(6):
+		TweetText.append(sText)
 	#=============================
 	
 	FavWord.List += AnusFemale().NounList

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
 # launcher code for flaminglustbot. run this.
  
@@ -141,7 +141,7 @@ def SetGetArgs():
 	Parser.add_argument('-loop', action='store_true', help='loop infinitely until manually cancelled')
 	Parser.add_argument('-test', type=int, default=-1, help='type of tweet to generate for testing purposes')
 	Parser.add_argument('-tweettimer', type=int, default=1800, help='num of seconds to wait before next tweet')
-	Parser.add_argument('-replytimer', type=int, default=90, help='num of seconds to wait before running reply routine')
+	Parser.add_argument('-replytimer', type=int, default=300, help='num of seconds to wait before running reply routine')
 	
 	return Parser.parse_args()
 			

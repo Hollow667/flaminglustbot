@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
 # Text-to-Image module
 
@@ -109,7 +109,7 @@ def FormatText(sText, size, color):
 
 	#print("FormatText() Starting font size is " + str(iFontSize))
 	
-	font = ImageFont.truetype(PATH + FONT, size = iFontSize, layout_engine = ImageFont.LAYOUT_RAQM)
+	font = ImageFont.truetype(PATH + FONT, size = iFontSize)
 	
 	iTotLineHeight = 0
 	

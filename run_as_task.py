@@ -28,6 +28,7 @@ if not is_lock_free():
 
 # then, either include the rest of your script below,
 # or import it, if it's in a separate file:
+from util import *
 from lust_bot import *
 
 InitBot(2400, 300, bTweet = True, bLoop = True)

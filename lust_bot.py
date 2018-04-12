@@ -19,7 +19,7 @@ from generators import *
 from twitter_stuff import *
 
 def ReplyResponder(e, api, iReplyTimer):
-	print("Responding to replies every " + str(iReplyTimer) + " seconds...")
+	print("===Responding to replies every " + str(iReplyTimer) + " seconds...===")
 	ResponderThread = threading.current_thread()
 	
 	RespondToReplies(api)
@@ -34,9 +34,8 @@ def ReplyResponder(e, api, iReplyTimer):
 			e.wait(1)
 			if not ResponderThread.parent_thread.is_alive():
 				break
-	print("Exiting ReplyResponder()")
 	
-def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, bLoop = False, iGeneratorNo = MAX_GENERATOR_NO):
+def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = MAX_GENERATOR_NO):
 	print("=*=*=*= FLAMING LUST BOT IS RUNNING (@bot_lust) =*=*=*=\n\n")
 	
 	sTweet = ""
@@ -55,8 +54,10 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, bLoop = False,
 		
 		if iGeneratorNo == -1:
 			iGeneratorNo = MAX_GENERATOR_NO
+			print("InitBot() Not in test mode.")
 		else:
 			bTest = True
+			print("InitBot() In test mode.")
 		
 		i = 0
 		while i in range(0,iTweets) or bLoop:
@@ -65,13 +66,10 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, bLoop = False,
 			sTweet = ""
 			sText = ""
 			
-			#Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			#print("Generator ID: " + str(Gen.ID))
 			while bTweet and not util.TweetHistoryQ.PushToHistoryQ(Gen.ID):
-				#print("Generator ID " + str(Gen.ID) + " already in Q")
 				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
-				#print("New generator ID: " + str(Gen.ID))
 			
 			sTweet = Gen.GenerateTweet()
 			if len(sTweet) > 0:
@@ -82,7 +80,6 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = True, iTweets = 1, bLoop = False,
 				print("[" + sTweet + "]")
 				if len(sText) > 0:
 					print("Tweet text: [" + sText + "]")
-					#print(misc.TweetReplyBuilder().GetReply())
 					
 				currentDT = datetime.datetime.now()
 				if bTweet:

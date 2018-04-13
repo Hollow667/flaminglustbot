@@ -55,7 +55,7 @@ class Hashtags(WordList):
 			#'bitcoin',
 			#'blockchain',
 			'bot',
-			'botally'
+			'botALLY'
 			'botlife',
 			'botlove',
 			'eartg',

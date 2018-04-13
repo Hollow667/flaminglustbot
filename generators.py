@@ -1941,7 +1941,7 @@ def GetImgTweetText(gen):
 	#=============================
 	
 	sText = WordList(["Check out", "Follow", "Visit", "Take a look at"]).GetWord() + " @erotica_ebooks for more " + WordList(["made-up ebook titles", "funny erotica titles", "machine-generated silliness", "#botlaughs", "ridiculousness", "steamy bot-generated content"]).GetWord() + "!"
-	for _ in range(6):
+	for _ in range(3):
 		TweetText.append(sText)
 	#=============================
 	
@@ -1960,12 +1960,14 @@ def GetImgTweetText(gen):
 	#=============================
 
 	# it seems that adding any kind of hashtag at all to a bot may lead to shadowbans. so for now I'm not using this.
-	# if CoinFlip():
-		# sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-		# while IsTweetTooLong(sText):
-			# sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-	# else:
-	sText = TweetText[randint(0, len(TweetText) - 1)] 
+	iRand = randint(1,4)
+	if iRand == 4:
+		sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
+		while IsTweetTooLong(sText):
+			sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
+	else:
+		sText = TweetText[randint(0, len(TweetText) - 1)] 
+		
 	while IsTweetTooLong(sText):
 		sText = TweetText[randint(0, len(TweetText) - 1)] 
 	

@@ -1960,8 +1960,8 @@ def GetImgTweetText(gen):
 	#=============================
 
 	# it seems that adding any kind of hashtag at all to a bot may lead to shadowbans. so for now I'm not using this.
-	iRand = randint(1,4)
-	if iRand == 4:
+	iRand = randint(1,6)
+	if iRand == 6:
 		sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
 		while IsTweetTooLong(sText):
 			sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()

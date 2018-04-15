@@ -44,4 +44,4 @@ from twitter_stuff import *
 
 from lust_bot import *
 
-InitBot(2400, 300, bTweet = True, bLoop = True)
+InitBot(5400, 300, bTweet = True, bLoop = True)

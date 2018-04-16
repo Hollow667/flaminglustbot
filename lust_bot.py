@@ -48,9 +48,10 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False
 		api = InitTweepy()
 
 		e = threading.Event()
-		ResponderThread = threading.Thread(target=ReplyResponder, args=(e,api,iReplyTimer))
-		ResponderThread.parent_thread = threading.current_thread()
-		ResponderThread.start()
+		if bTweet:
+			ResponderThread = threading.Thread(target=ReplyResponder, args=(e,api,iReplyTimer))
+			ResponderThread.parent_thread = threading.current_thread()
+			ResponderThread.start()
 		
 		if iGeneratorNo == -1:
 			iGeneratorNo = MAX_GENERATOR_NO

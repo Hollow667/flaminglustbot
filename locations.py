@@ -98,6 +98,22 @@ class PublicLocation(Location):
 	
 class PrivateLocation(Location):
 	pass
+	
+class Alley(PublicLocation):
+	Name = "the alley behind the bar"
+	NamePrep = "in the alley behind the bar"
+	BeginDesc = "A dim yellow light over the back door of the bar was the only illumination in the alley."
+	Despite = "their unsavory surroundings"
+	BentOver = "a stack of pallets"
+	KneelingOn = "a stack of pallets"
+	SittingOn = "a stack of pallets"
+	LyingOn = "a strip of cardboard"
+	HurryReason = "Someone might see us"
+	Caught = "'Hey! What's going on over there?' yelled the bartender."
+	Excuse = "'Don't come back here!' he yelled back."
+	AuthorityFigure = "the bartender"
+	Consequence = "as the bartender watched them"
+	Ground = "the pavement"
 
 class Balcony(PublicLocation):
 	Name = "the hotel balcony"
@@ -164,6 +180,18 @@ class Bedroom(PrivateLocation):
 	Ground = "the thick comforter"
 	FemaleBottomClothing = "sheer panties"
 	
+class CampingTent(PrivateLocation):
+	Name = "a tent"
+	NamePrep = "in a tent"
+	Loc = LocInOutType.Indoors
+	Despite = "the thin canvas walls of the tent"
+	BeginDesc = "The tent was just big enough for two."
+	BentOver = "her heavy backpack"
+	KneelingOn = "a bedroll"
+	SittingOn = "a bedroll"
+	LyingOn = "a sleeping bag"
+	Ground = "the thick sleeping bag"
+	
 class CarBackseat(PublicLocation):
 	Name = "the backseat of the car"
 	NamePrep = "in the backseat of the car"
@@ -212,17 +240,21 @@ class Classroom(PublicLocation):
 	Consequence = "the student tugged feverishly at his crotch"
 	Ground = "the floor"
 	
-class CampingTent(PrivateLocation):
-	Name = "a tent"
-	NamePrep = "in a tent"
-	Loc = LocInOutType.Indoors
-	Despite = "the thin canvas walls of the tent"
-	BeginDesc = "The tent was just big enough for two."
-	BentOver = "her heavy backpack"
-	KneelingOn = "a bedroll"
-	SittingOn = "a bedroll"
-	LyingOn = "a sleeping bag"
-	Ground = "the thick sleeping bag"
+class ClubParkingLot(PublicLocation):
+	Name = "the club parking lot"
+	NamePrep = "on the hood of the car in the club parking lot"
+	BeginDesc = "The night was tinged with neon light and there was a distant sound of thumping bass."
+	Despite = "the fact that they were in a parking lot"
+	BentOver = "the hood of a car"
+	KneelingOn = "the hood of a car"
+	SittingOn = "the hood of a car"
+	LyingOn = "the hood of the car"
+	HurryReason = "Someone might see us"
+	Caught = "'Hey! What's going on over there?' yelled the bouncer."
+	Excuse = "'Just a little engine trouble,' he replied."
+	AuthorityFigure = "a bouncer"
+	Consequence = "as the bouncer watched them"
+	Ground = "the hood of the car"
 	
 class Den(PrivateLocation):
 	Name = "the den"
@@ -453,7 +485,7 @@ class ParkAfterDark(PublicLocation):
 	Despite = "being hidden only by the shadows"
 	BentOver = "a park bench"
 	KneelingOn = "the edge of a stone fountain"
-	SittingOn = "on sofa in front of the window"
+	SittingOn = "a park bench"
 	LyingOn = "on the end of a playground slide"
 	HurryReason = "we'll get caught"
 	Caught = "A beam of light flicked on. A night watchman was pointing it right at them."

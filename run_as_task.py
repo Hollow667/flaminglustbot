@@ -3,7 +3,7 @@
 
 import logging
 import socket
-import sys, argparse, datetime, threading, traceback
+import sys
 
 lock_socket = None  # we want to keep the socket open until the very end of
                     # our script so we use a global variable to avoid going
@@ -28,20 +28,6 @@ if not is_lock_free():
 
 # then, either include the rest of your script below,
 # or import it, if it's in a separate file:
-import bodyparts
-import locations
-import names
-import people
-import verbs
-import misc
-import scenes
+import lust_bot 
 
-from io import BytesIO
-from random import *
-from util import *
-from generators import *
-from twitter_stuff import *
-
-from lust_bot import *
-
-InitBot(5400, 300, bTweet = True, bLoop = True)
+lust_bot.InitBot(5400, 300, bTweet = True, bLoop = True)

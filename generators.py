@@ -1953,7 +1953,7 @@ def GetImgTweetText(gen):
 	#=============================
 	
 	sText = WordList(["Check out", "Follow", "Visit", "Take a look at"]).GetWord() + " @erotica_ebooks for more " + WordList(["made-up ebook titles", "funny erotica titles", "machine-generated silliness", "#botlaughs", "ridiculousness", "steamy bot-generated content"]).GetWord() + "!"
-	for _ in range(3):
+	for _ in range(2):
 		TweetText.append(sText)
 	#=============================
 	

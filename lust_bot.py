@@ -109,6 +109,8 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False
 							
 							status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
 					
+					util.TweetHistoryQ.LogHistoryQ()
+					
 					#make timer slightly variable +-33%
 					if iTweetTimer > 180:
 						iRandSecs = iTweetTimer
@@ -124,14 +126,11 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False
 	except KeyboardInterrupt:
 		print("Ending program ...")
 		
-		e.set()
-		
-		sys.exit(1)	
 	finally:
-		util.TweetHistoryQ.LogHistoryQ()
+		e.set()
 		print("***Goodbye***")
-		
-	e.set()
+		sys.exit(1)	
+
 	
 def SetGetArgs():
 	Parser = argparse.ArgumentParser(prog='lust_bot',description='Run Flaming Lust Bot for Twitter.')

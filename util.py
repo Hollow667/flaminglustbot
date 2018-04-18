@@ -134,7 +134,7 @@ class HistoryQ():
 			self.HistoryQ.insert(0,item)
 			bPushOK = True
 			
-			if len(self.HistoryQ) > self.MaxQSize:
+			while len(self.HistoryQ) > self.MaxQSize:
 				self.HistoryQ.pop()
 		
 		return bPushOK

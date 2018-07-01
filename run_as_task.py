@@ -30,4 +30,4 @@ if not is_lock_free():
 # or import it, if it's in a separate file:
 import lust_bot 
 
-lust_bot.InitBot(10800, 300, bTweet = True, bLoop = True)
+lust_bot.InitBot(21600, 300, bTweet = True, bLoop = True)

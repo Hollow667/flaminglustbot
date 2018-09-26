@@ -1692,21 +1692,12 @@ class Generator51(Generator):
 		ScenePosition = SceneSelector().GetScene(Tags = [TAG_POSITION], sHisName = sHisName, sHerName = sHerName, Location = Location)
 		SceneClimax = SceneSelector().GetScene(Tags = [TAG_CLIMAX], sHisName = sHisName, sHerName = sHerName, Location = Location)
 		
-		print(SceneForeplay)
-		print(ScenePosition)
-		print(SceneClimax)
-		
 		sTweet += Location.BeginDesc + " " 
 		sTweet += SceneForeplay.Scene() + " "
 		sTweet += ScenePosition.Scene() + " "
 		sTweet += SceneClimax.Scene() + "\n\n"
 		sTweet += self.AfterSexPunchline.GetPunchline(Gender.Male)
-		
-		
-		
-		
-		sHisName = self.MaleName.FirstName()
-		sHerName = self.FemaleName.FirstName()
+	
 
 		return sTweet
 		
@@ -1895,6 +1886,44 @@ class Generator56(Generator):
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName1 = self.FemaleName.FirstName()
+		sHerName2 = self.FemaleName.FirstName()
+		
+		while sHerName1 == sHerName2:
+			sHerName2 = self.FemaleName.FirstName()
+		
+		sHerSkinHair1 = WordList(['blonde', 'brunette', 'redhead', 'Asian', 'black girl', 'latina']).GetWord()
+		sHerSkinHair2 = WordList(['blonde', 'brunette', 'redhead', 'Asian', 'black girl', 'latina']).GetWord(sNot = sHerSkinHair1)
+
+		SceneForeplay = SceneSelector().GetScene(Tags = {TAG_FOREPLAY}, sHisName = sHisName, sHerName = sHerName2)
+		ScenePosition = SceneSelector().GetScene(Tags = {TAG_POSITION}, sHisName = sHisName, sHerName = sHerName2)
+		
+		sTweet = "'Oh " + sHerName1 + ", baby,' said " + sHisName + " to the vivacious " + sHerSkinHair1 + " lying naked next to him, 'You're so sexy.' He " + WordList(['gently', 'tenderly', 'delicately', 'softly']).GetWord() + " carressed " + sHerName1 + "'s "
+		Parts = self.FemBodyParts.GetRandomIntimateParts(iNum = 3, bIncludeInners = False)
+		for part in Parts:
+			if not part == Parts[len(Parts) - 1]:
+				sTweet += part + "; "
+			else:
+				sTweet += "and her " + part + "."
+		sTweet += "\n\nA long arm snaked around and grabbed his " + self.MaleBodyParts.Penis.FloweryDescription() + "."
+		sTweet += "\n\n'I haven't forgotten about you, " + sHerName2 + ",' " + sHisName + " said, turning to the sumptuous " + sHerSkinHair2 + " lying on the other side of him. "
+		if CoinFlip():
+			sTweet += SceneForeplay.Scene() + "\n\n"
+		else:
+			sTweet += ScenePosition.Scene() + "\n\n "
+		sTweet += "'Hey!' complained " + sHerName1 + ", 'don't forget about me!'\n\n"
+		
+		Swears = WordList(["Oh God", "Fuck", "Jesus"])
+		sTweet += "'" + Swears.GetWord() 
+		sTweet += WordList([", mom, wait your turn,' snapped " + sHerName2 + ".",
+							", " + sHerName1 + ", can't you wait your turn?' snapped her sister.",
+							", " + sHerName1 + ", can't you wait your turn?' snapped her best friend.",
+							", " + sHerName1 + ", can't you wait your turn?' snapped her bridesmaid.",
+							", " + sHerName1 + ", can't you wait your turn?' snapped her daughter.",
+							", " + sHerName1 + ", can't you wait your turn?' snapped her sister-in-law.",
+							", " + sHerName1 + ", can't you wait your turn?' snapped her step-daughter."]).GetWord()
 
 		return sTweet
 		

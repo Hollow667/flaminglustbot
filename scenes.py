@@ -673,8 +673,9 @@ class SceneRimjobHerScene(Scene):
 		
 		Ass = bodyparts.AssFemale()
 		Anus = bodyparts.AnusFemale()
-		Penis = bodyparts.Vagina()
+		Penis = bodyparts.Penis()
 		Breasts = bodyparts.Breasts()
+		Vagina = bodyparts.Vagina()
 		
 		sScene = self.HisName.capitalize() + " turned her around and bent her over. "
 		

@@ -1843,27 +1843,60 @@ class Generator54(Generator):
 		sTweet += self.VThrust.Present().capitalize() + " my " + self.FemBodyParts.Vagina.RandomDescription() + " until you " + self.VEjac.Present() + " inside it. I need you to fill me with your " + self.Semen.RandomDescription(bAllowShortDesc = True) + ", right here, right now, " + Location.NamePrep + "!'"
 		return sTweet
 
-# class Generator55(Generator):
-	# ID = 55
-	# Priority = 1
+class Generator55(Generator):
+	# 'No,' thought Nora, 'I can never forgive Brad for sleeping with my twin sister. I have to cut him out of my life 
+	# once and for all. No more will I stare at his picture. No more will I think about his lengthy, virile beef snake. 
+	ID = 55
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 		
+		sTweet = "'No,', thought " + sHerName + ". 'I can never forgive " + sHisName + " for "
+		sTweet += WordList(["sleeping with my twin sister", "doing anal with my step-sister", "rimming my best friend",
+			"spooning naked with my sister-in-law", "stepping on my cat", "refusing to go down on me", "tripping over my corgi",
+			"playing Fantasy Football on our anniversary", "fingering his secretary", "what happened during the threesome",
+			"getting drunk at my niece's Bat Mitzvah", "asking me to shave down there", "giving me a wet willy",
+			"getting drunk at my step-sister's wedding", "getting that tattoo", "giving me that awful tattoo",
+			"giving the pool boy a blowjob", "losing his wedding ring", "calling my mother those names",
+			"sexting my step-mom", "showing everyone those pictures", "letting my labradoodle escape", "refusing to marry me",
+			"suggesting I get breast enhancement surgery", "ruining my dress", "puking during the dinner with my parents",
+			"shaving his chest hair", "wearing my lingerie", "farting in my face while we 69'd", "showering with our neighbor",
+			"investing in cryptocurrency", "what he did in the sauna with Raoul", "refusing to eat my ass",
+			"not being able to find my clitoris", "what he wrote in my yearbook", "staring at my step-mom's tits",
+			"calling me Susan in bed", "shaving my maltipoo", "dying my pubes purple"]).GetWord() + ". "
+		sTweet += WordList(["I have to cut him out of my life once and for all.", 
+			"This time we are really through.",
+			"This time he has gone too far. We are finished.",
+			"I never want to see him again, ever.",
+			"I have to let him go permanently."]).GetWord() + " "
+		sTweet += "No more will I stare at his picture. No more will I think about his "
+		sTweet += WordList(["rugged jaw", "broad chest", "brawny shoulders", "full lips", "silken blonde hair", "chiseled abs"]).GetWord() + " or his "
 		
-		# return sTweet
+		if CoinFlip():
+			#penis
+			sTweet += self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True)
+		else:
+			#ass
+			sTweet += self.MaleBodyParts.Ass.FloweryDescription()
+			
+		sTweet += "."
 		
-# class Generator56(Generator):
-	# ID = 56
-	# Priority = 1
+		return sTweet
+		
+class Generator56(Generator):
+	ID = 56
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 
-		# return sTweet
+		return sTweet
 		
 # class Generator57(Generator):
 	# ID = 57

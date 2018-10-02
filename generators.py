@@ -2152,17 +2152,6 @@ def GetImgTweetText(gen):
 	TweetText.append(sText)
 	#=============================
 	
-	sText = "Reply to this tweet and "
-	if CoinFlip():
-		sText += "I'll tweet a randomly-generated love scene @ you!"
-	else:
-		sText += "get a custom love scene of your very own in response!"
-			
-	sText += " " + GetEmoji()
-	for _ in range(2):
-		TweetText.append(sText)
-	#=============================
-	
 	sText = WordList(["You have to retweet this", "Please retweet this", "Favorite this", "Fave this", "You have to favorite this"]).GetWord() + " if it " + WordList(["made you giggle", "made you laugh", "made you smile", "got you hot", "made you blush", "made you grin", "made your privates all tingly", "made your naught bits all tingly", "turned you on", "made you feel hot", "got you going", "did it for you", "made your naughty bits feel good"]).GetWord() + ". " + WordList(["Seriously.", "For real.", "Seriously, though.", "For real, though.", "Okay?", "Pinky swear?"]).GetWord() 
 	TweetText.append(sText)
 	#=============================

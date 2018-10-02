@@ -47,12 +47,14 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False
 	try:
 		
 		api = InitTweepy()
+		
+		# Bot can use threading to respond to users tweets, but Twitter keeps shadowbanning it. Disabled for now.
 
-		e = threading.Event()
-		if bTweet:
-			ResponderThread = threading.Thread(target=ReplyResponder, args=(e,api,iReplyTimer))
-			ResponderThread.parent_thread = threading.current_thread()
-			ResponderThread.start()
+		# e = threading.Event()
+		# if bTweet:
+			# ResponderThread = threading.Thread(target=ReplyResponder, args=(e,api,iReplyTimer))
+			# ResponderThread.parent_thread = threading.current_thread()
+			# ResponderThread.start()
 		
 		if iGeneratorNo == -1:
 			iGeneratorNo = MAX_GENERATOR_NO
@@ -128,7 +130,7 @@ def InitBot(iTweetTimer, iReplyTimer, bTweet = False, iTweets = 1, bLoop = False
 		print("Ending program ...")
 		
 	finally:
-		e.set()
+		# e.set()
 		print("***Goodbye***")
 
 

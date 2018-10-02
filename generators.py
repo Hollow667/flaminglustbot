@@ -1927,15 +1927,58 @@ class Generator56(Generator):
 
 		return sTweet
 		
-# class Generator57(Generator):
-	# ID = 57
-	# Priority = 1
+class Generator57(Generator):
+	ID = 57
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = self.FemaleName.FirstName()
+		
+		sEjaculated = WordList(["gasped", "exclaimed", "blurted", "burst out"]).GetWord()
+		sShockedExclaim = WordList(["Oh fuck", "Shit", "What the fuck", "Holy shit", "Holy fuck", "Holy fucking shit", "Oh shit", "Fuck"]).GetWord()
+		
+		Face = self.FemBodyParts.Face 
+		Ass = self.FemBodyParts.Ass
+		Anus = Ass.Anus 
+		Breasts = self.FemBodyParts.Breasts
+		Nipples = Breasts.Nipples 
+		Vag = self.FemBodyParts.Vagina
+		Clit = Vag.Clitoris 
+		Hips = self.FemBodyParts.Hips
+		
+		sRelation = WordList(["mom", "dad", "older brother", "step-mom", "step-dad", "sister", "roommate"]).GetWord()
+		sToy = WordList(["a curling iron", "a Ken doll", "a spatula", "a banana", "a pickle", "a cucumber", "a candle", "an electric toothbrush", "a toothbrush", "a rolled up magazine", "a rolling pin", "a screwdriver", "a baguette", "a shampoo bottle", "a baseball bat", "a TV remote", "an eggplant", "corn on the cob", "Coke bottle", "a plunger", "a crucifix", "a toothpaste tube"]).GetWord()
+		sHole = Vag.InnerVag.RandomDescription()
+		
+		sTweet += sHerName + " flung herself down on the bed. Lifting her hips she " + WordList(["pulled", "slid"]).GetWord() + " down her panties. "
+		sTweet += "Then she began to "
+		sTweet += WordList(["gently", "tenderly", "vigorously", "energetically", "ardently", "fervently"]).GetWord() + " "
+		sTweet += WordList(["massage", "pleasure", "rub", "caress", "stroke", "stimulate", "masturbate", "fondle", "finger"]).GetWord() + " "
+		sTweet += "her " + Vag.RandomDescription() + ". She spread apart her " + Vag.OuterLabia.RandomDescription() + " and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
+		sTweet += sHerName + " " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " and found the toy. "
+		sTweet += "Carefully, she inserted it into her " + Vag.InnerVag.RandomDescription() + " and then began to "
+		sTweet += WordList(["thrust it forcefully and repeatedly into her " + sHole,
+							"saw it in and out of her " + sHole, 
+							"violently penetrate her " + sHole,
+							"impale her " + sHole + " with it",
+							"plunge it deep into her " + sHole,
+							"use her " + Vag.RandomDescription(bAllowLongDesc = False) + " with it", 
+							"wantonly stuff her " + sHole + " with it",
+							"grind her " + Vag.RandomDescription(bAllowLongDesc = False) + " on it"]).GetWord() + ".\n\n"
+		sTweet += "Suddenly, the door flew open and her " 
+		if CoinFlip():
+			sTweet += WordList(["older brother", "dad", "step-dad", "step-brother", "step-son"]).GetWord() + " walked in.\n\n"
+			sTweet += "\"" + sShockedExclaim + "!\" he " + sEjaculated + ". "
+			sTweet += "\"Is that " + sToy + "?!?"
+		else:
+			sTweet += WordList(["mom", "step-mom", "sister", "step-sister", "college roommate", "best friend"]).GetWord() + " walked in.\n\n"
+			sTweet += "\"" + sShockedExclaim + "!\" she " + sEjaculated + ". "
+			sTweet += "\"Is that a " + sToy + "?!?\""
 
-		# return sTweet
+		return sTweet
 		
 # class Generator58(Generator):
 	# ID = 58
@@ -1949,6 +1992,116 @@ class Generator56(Generator):
 		
 # class Generator59(Generator):
 	# ID = 59
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator60(Generator):
+	# ID = 60
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator61(Generator):
+	# ID = 61
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator62(Generator):
+	# ID = 62
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator63(Generator):
+	# ID = 63
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator63(Generator):
+	# ID = 63
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator64(Generator):
+	# ID = 64
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator65(Generator):
+	# ID = 65
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator66(Generator):
+	# ID = 66
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator67(Generator):
+	# ID = 67
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+				
+ # class Generator68(Generator):
+	# ID = 68
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+				
+ # class Generator69(Generator):
+	# ID = 69
 	# Priority = 1
 	
 	# def GenerateTweet(self):

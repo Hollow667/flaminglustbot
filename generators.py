@@ -155,7 +155,7 @@ class Generator():
 		
 class GeneratorPromo(Generator):
 	ID = 0
-	Priority = 7
+	Priority = 0
 	Type = GeneratorType.Promo
 	
 	def GenerateTweet(self):
